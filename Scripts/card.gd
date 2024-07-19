@@ -14,6 +14,8 @@ var is_mouse_hovering : bool = false
 
 func _ready():
 	texture = load(Globals.card_texture_paths[card_type])
+	# defer by 1 frame so the position is set correctly, otherwise it's 
+	# default position
 	call_deferred("_lag_fetch_pos")
 
 
