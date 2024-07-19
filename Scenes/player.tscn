@@ -1,10 +1,35 @@
-[gd_scene load_steps=4 format=3 uid="uid://cb5w2t8c6ybt7"]
+[gd_scene load_steps=6 format=3 uid="uid://cb5w2t8c6ybt7"]
 
 [ext_resource type="Texture2D" uid="uid://cmo536iv1qbpm" path="res://icon.svg" id="1_7wxib"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_ip5or"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_47bd2"]
 size = Vector2(130, 128)
+
+[sub_resource type="Shader" id="Shader_wvdbu"]
+code = "shader_type canvas_item;
+
+
+uniform sampler2D screen_texture : hint_screen_texture, filter_nearest;
+
+void vertex() {
+	// Called for every vertex the material is visible on.
+}
+
+void fragment() {
+	vec2 disortUV = SCREEN_UV + texture(TEXTURE, UV).r * 0.05;
+	vec4 tmp = texture(screen_texture, disortUV);
+	COLOR = tmp;
+}
+
+//void light() {
+	// Called for every pixel for every light affecting the CanvasItem.
+	// Uncomment to replace the default light processing function with this one.
+//}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_poem7"]
+shader = SubResource("Shader_wvdbu")
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_ip5or")
@@ -14,3 +39,10 @@ texture = ExtResource("1_7wxib")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_47bd2")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="LightShader" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_poem7")
+position = Vector2(-2.74999, -0.249992)
+scale = Vector2(9.08984, 5.16016)
