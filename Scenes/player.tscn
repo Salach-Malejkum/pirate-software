@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cb5w2t8c6ybt7"]
+[gd_scene load_steps=19 format=3 uid="uid://cb5w2t8c6ybt7"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_ip5or"]
 [ext_resource type="Texture2D" uid="uid://dv3lxwsnesowx" path="res://ArtAssets/Characters/player_animated.png" id="2_st8uh"]
@@ -99,7 +99,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_47bd2"]
-size = Vector2(16, 22)
+size = Vector2(16, 14)
 
 [sub_resource type="Shader" id="Shader_wvdbu"]
 code = "shader_type canvas_item;
@@ -126,6 +126,9 @@ void fragment() {
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_poem7"]
 shader = SubResource("Shader_wvdbu")
 
+[sub_resource type="CanvasTexture" id="CanvasTexture_w3bxi"]
+specular_color = Color(0.152941, 0.152941, 0.266667, 1)
+
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_ip5or")
 
@@ -133,10 +136,10 @@ script = ExtResource("1_ip5or")
 sprite_frames = SubResource("SpriteFrames_qjxf2")
 animation = &"walking_sides"
 autoplay = "walking_down"
-frame_progress = 0.441266
+frame_progress = 0.71097
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1, 5)
+position = Vector2(1, 9)
 shape = SubResource("RectangleShape2D_47bd2")
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -146,3 +149,17 @@ zoom = Vector2(4, 4)
 material = SubResource("ShaderMaterial_poem7")
 position = Vector2(-2.74999, -0.249992)
 scale = Vector2(9.08984, 5.16016)
+
+[node name="ColorBG" type="CanvasLayer" parent="."]
+layer = -100
+
+[node name="TextureRect" type="TextureRect" parent="ColorBG"]
+modulate = Color(0.152941, 0.152941, 0.266667, 1)
+z_index = -100
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CanvasTexture_w3bxi")
+stretch_mode = 1

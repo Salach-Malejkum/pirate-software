@@ -135,18 +135,23 @@ texture = ExtResource("1_mhq2c")
 2:10/0 = 0
 2:10/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 2:10/0/physics_layer_0/angular_velocity = 0.0
+2:10/0/physics_layer_0/polygon_0/points = PackedVector2Array(6.01041, -8, 8, -8, 8, 8, 6.01041, 8)
 2:11/0 = 0
 2:11/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 2:11/0/physics_layer_0/angular_velocity = 0.0
+2:11/0/physics_layer_0/polygon_0/points = PackedVector2Array(6.01041, -8, 8, -8, 8, 8, -8, 8, -8, 7, 5.92202, 6.98268)
 1:11/0 = 0
 1:11/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:11/0/physics_layer_0/angular_velocity = 0.0
+1:11/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 7.03125, 8, 6.96875, 8, 8, -8, 8)
 0:11/0 = 0
 0:11/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:11/0/physics_layer_0/angular_velocity = 0.0
+0:11/0/physics_layer_0/polygon_0/points = PackedVector2Array(-5.96621, -8, -6.01041, 7.02687, 8, 7, 8, 8, -8, 8, -8, -8)
 0:10/0 = 0
 0:10/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:10/0/physics_layer_0/angular_velocity = 0.0
+0:10/0/physics_layer_0/polygon_0/points = PackedVector2Array(-6.01041, -8, -6.01041, 8, -8, 8, -8, -8)
 
 [sub_resource type="TileSet" id="TileSet_ene35"]
 physics_layer_0/collision_layer = 1
