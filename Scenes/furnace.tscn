@@ -1,0 +1,80 @@
+[gd_scene load_steps=11 format=3 uid="uid://c5iwiblniciof"]
+
+[ext_resource type="Script" path="res://Scripts/furnace.gd" id="1_2v6qf"]
+[ext_resource type="Texture2D" uid="uid://b5q2sqlfi05y7" path="res://ArtAssets/Environment/furnance_animated.png" id="1_bgbe2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1i172"]
+atlas = ExtResource("1_bgbe2")
+region = Rect2(17, 1, 16, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dgnqw"]
+atlas = ExtResource("1_bgbe2")
+region = Rect2(33, 1, 16, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dmvuv"]
+atlas = ExtResource("1_bgbe2")
+region = Rect2(49, 1, 16, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bkh53"]
+atlas = ExtResource("1_bgbe2")
+region = Rect2(65, 1, 16, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ht2qo"]
+atlas = ExtResource("1_bgbe2")
+region = Rect2(1, 1, 16, 39)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_anl6i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1i172")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dgnqw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dmvuv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bkh53")
+}],
+"loop": true,
+"name": &"fire",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ht2qo")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g4tyi"]
+size = Vector2(16, 40)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0ut3g"]
+
+[node name="Furnace" type="Node2D" groups=["card_interactable"]]
+scale = Vector2(1.5, 1.5)
+script = ExtResource("1_2v6qf")
+
+[node name="Static" type="StaticBody2D" parent="."]
+
+[node name="FurnaceSprite" type="AnimatedSprite2D" parent="Static"]
+sprite_frames = SubResource("SpriteFrames_anl6i")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Static"]
+shape = SubResource("RectangleShape2D_g4tyi")
+
+[node name="InteractArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractArea"]
+position = Vector2(0, 9.33333)
+shape = SubResource("CircleShape2D_0ut3g")
+
+[connection signal="input_event" from="InteractArea" to="." method="_on_interact_area_input_event"]
+[connection signal="mouse_entered" from="InteractArea" to="." method="_on_interact_area_mouse_entered"]
+[connection signal="mouse_exited" from="InteractArea" to="." method="_on_interact_area_mouse_exited"]

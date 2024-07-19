@@ -25,11 +25,11 @@ func manage_door():
 
 
 func _on_area_to_open_body_entered(body):
-	if body.is_in_group("Player"):
+	if body is Player:
 		player_in_range = true
 
 
 func _on_area_to_open_body_exited(body):
-	if body.is_in_group("Player"):
+	if body is Player:
 		player_in_range = false
 	

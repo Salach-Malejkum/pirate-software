@@ -1,7 +1,8 @@
-[gd_scene load_steps=19 format=3 uid="uid://cb5w2t8c6ybt7"]
+[gd_scene load_steps=20 format=3 uid="uid://cb5w2t8c6ybt7"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_ip5or"]
 [ext_resource type="Texture2D" uid="uid://dv3lxwsnesowx" path="res://ArtAssets/Characters/player_animated.png" id="2_st8uh"]
+[ext_resource type="PackedScene" uid="uid://nbofjqjf8huq" path="res://Scenes/card_manager.tscn" id="3_kv13g"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gf6bn"]
 atlas = ExtResource("2_st8uh")
@@ -130,6 +131,7 @@ shader = SubResource("Shader_wvdbu")
 specular_color = Color(0.152941, 0.152941, 0.266667, 1)
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
+z_index = 1
 script = ExtResource("1_ip5or")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -163,3 +165,5 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("CanvasTexture_w3bxi")
 stretch_mode = 1
+
+[node name="CardManager" parent="." instance=ExtResource("3_kv13g")]
