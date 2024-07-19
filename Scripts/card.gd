@@ -22,6 +22,11 @@ func _lag_fetch_pos():
 	min_y_pos = self.position
 
 
+func set_card_type(new_type : Globals.card_types):
+	card_type = new_type
+	texture = load(Globals.card_texture_paths[new_type])
+
+
 func _process(delta):
 	if is_mouse_hovering:
 		self.position = lerp(self.position, max_y_pos, lerp_weight)

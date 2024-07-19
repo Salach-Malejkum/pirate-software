@@ -1,8 +1,8 @@
 [gd_scene load_steps=2 format=3 uid="uid://nbofjqjf8huq"]
 
-[ext_resource type="PackedScene" uid="uid://csm1pjjj360jt" path="res://Scenes/card.tscn" id="1_y4mnj"]
+[ext_resource type="Script" path="res://Scripts/card_manager.gd" id="1_tla6u"]
 
-[node name="CardManager" type="Control"]
+[node name="CardManager" type="Control" groups=["CardManager"]]
 custom_minimum_size = Vector2(512, 512)
 layout_mode = 3
 anchors_preset = 15
@@ -11,6 +11,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+script = ExtResource("1_tla6u")
 
 [node name="FullScreen" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -25,14 +26,3 @@ theme_override_constants/margin_bottom = 140
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
-
-[node name="Card" parent="FullScreen/Deck" instance=ExtResource("1_y4mnj")]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="Card2" parent="FullScreen/Deck" instance=ExtResource("1_y4mnj")]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-card_type = 1
