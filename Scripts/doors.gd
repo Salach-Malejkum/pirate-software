@@ -13,21 +13,23 @@ func _process(delta):
 
 func manage_door():
 	if is_closed:
-		is_closed = false
 		animated_sprite.play("open")
 		await animated_sprite.animation_finished
+		is_closed = false
 		door_collision.disabled = true
 	else:
-		is_closed = true
 		animated_sprite.play("close")
 		door_collision.disabled = false
 		await animated_sprite.animation_finished
-		
+		is_closed = true
 
 
 func _on_area_to_open_body_entered(body):
-	player_in_range = true
+	if body.is_in_group("Player"):
+		player_in_range = true
 
 
 func _on_area_to_open_body_exited(body):
-	player_in_range = false
+	if body.is_in_group("Player"):
+		player_in_range = false
+	

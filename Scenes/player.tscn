@@ -31,7 +31,7 @@ void fragment() {
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_poem7"]
 shader = SubResource("Shader_wvdbu")
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_ip5or")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
