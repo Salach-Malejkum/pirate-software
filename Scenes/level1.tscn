@@ -1,0 +1,83 @@
+[gd_scene load_steps=11 format=3 uid="uid://b360hv35yusk0"]
+
+[ext_resource type="Script" path="res://Scripts/level1.gd" id="1_uvyuf"]
+[ext_resource type="Texture2D" uid="uid://cmo536iv1qbpm" path="res://icon.svg" id="1_wfhv4"]
+[ext_resource type="PackedScene" uid="uid://cb5w2t8c6ybt7" path="res://Scenes/player.tscn" id="2_h6cud"]
+[ext_resource type="PackedScene" uid="uid://br31pgwnuthh" path="res://Scenes/tile_map.tscn" id="3_dphda"]
+[ext_resource type="PackedScene" uid="uid://1xiakxfc81rn" path="res://Scenes/doors.tscn" id="5_cq4jq"]
+[ext_resource type="PackedScene" uid="uid://dht5pjj6hwyae" path="res://Scenes/stairs.tscn" id="6_g8727"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b3lqi"]
+size = Vector2(128.343, 123.077)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kavon"]
+size = Vector2(129.686, 123.077)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_os8b5"]
+size = Vector2(128.555, 132.923)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7pwdn"]
+size = Vector2(128.353, 123.077)
+
+[node name="Level1" type="Node2D"]
+script = ExtResource("1_uvyuf")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(643, -1018)
+scale = Vector2(37.8516, 0.40625)
+texture = ExtResource("1_wfhv4")
+
+[node name="Sprite2D3" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(3043, 125)
+rotation = 1.5708
+scale = Vector2(17.9973, 0.40625)
+texture = ExtResource("1_wfhv4")
+
+[node name="Sprite2D4" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(-1800, 125)
+rotation = 1.5708
+scale = Vector2(17.9973, 0.40625)
+texture = ExtResource("1_wfhv4")
+
+[node name="Sprite2D2" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(643, 1262)
+scale = Vector2(37.8516, 0.40625)
+texture = ExtResource("1_wfhv4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(643, -1018)
+scale = Vector2(37.8516, 0.40625)
+shape = SubResource("RectangleShape2D_b3lqi")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-1800, 125)
+rotation = 1.5708
+scale = Vector2(17.9973, 0.40625)
+shape = SubResource("RectangleShape2D_kavon")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(643, 1262)
+scale = Vector2(37.8516, 0.40625)
+shape = SubResource("RectangleShape2D_os8b5")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(3043, 125)
+rotation = 1.5708
+scale = Vector2(17.9973, 0.40625)
+shape = SubResource("RectangleShape2D_7pwdn")
+
+[node name="Player" parent="." instance=ExtResource("2_h6cud")]
+position = Vector2(-115, -67)
+scale = Vector2(0.2, 0.2)
+
+[node name="TileMap" parent="." instance=ExtResource("3_dphda")]
+layer_0/tile_data = PackedInt32Array(-393216, 0, 0, -393215, 65536, 0, -393214, 131072, 0, -393213, 196608, 0, -393212, 262144, 0, -393211, 327680, 0, -393210, 262144, 0, -393209, 262144, 0, -393208, 262144, 0, -393207, 262144, 0, -393206, 262144, 0, -393205, 0, 0, -393204, 65536, 0, -393203, 131072, 0, -393202, 262144, 0, -393201, 262144, 0, -393200, 262144, 0, -393199, 196608, 0, -393198, 262144, 0, -393197, 327680, 0, -393196, 262144, 0, -393195, 196608, 0, -393194, 262144, 0, -393193, 327680, 0, -393192, 262144, 0, -393191, 262144, 0, -327681, 262144, 0, -327682, 262144, 0, -327683, 262144, 0, -327684, 196608, 0, -327685, 327680, 0, -327686, 262144, 0, -327687, 196608, 0, -327688, 262144, 0, -327689, 131072, 0, -262153, 131072, 1, -196617, 262144, 0, -131081, 262144, 0, -65545, 262144, 0, -9, 262144, 0, 65527, 0, 0, 131063, 0, 1, 196599, 0, 2, 262135, 262144, 0, 327671, 196608, 0, 393207, 0, 0, 393208, 65536, 0, 393209, 131072, 0, 393210, 262144, 0, 393211, 196608, 0, 393212, 262144, 0, 393213, 327680, 0, 393214, 262144, 0, 393215, 262144, 0, 327680, 262144, 0, 327681, 0, 0, 327682, 65536, 0, 327683, 131072, 0, 327684, 262144, 0, 327685, 262144, 0, 327686, 262144, 0, 327687, 196608, 0, 327688, 262144, 0, 327689, 327680, 0, 327690, 262144, 0, 327691, 196608, 0, 327692, 262144, 0, 327693, 327680, 0, 327694, 262144, 0, 327695, 196608, 0, 327696, 262144, 0, 327697, 327680, 0, 327698, 262144, 0, 327699, 262144, 0, 327700, 262144, 0, 327701, 262144, 0, 327702, 0, 0, 327703, 65536, 0, 327704, 131072, 0, 327705, 262144, 0, 327706, 262144, 0, -393190, 262144, 0, -327654, 262144, 0, -262118, 65536, 0, -196582, 65536, 1, -131046, 65536, 2, -65510, 262144, 0, 26, 262144, 0, 65562, 262144, 0, 131098, 262144, 0, 196634, 262144, 0, 262170, 262144, 0)
+
+[node name="Doors" parent="." instance=ExtResource("5_cq4jq")]
+position = Vector2(164, -6)
+
+[node name="Stairs" parent="." instance=ExtResource("6_g8727")]
+position = Vector2(-106, 58)
+scale = Vector2(0.334494, 0.334494)
