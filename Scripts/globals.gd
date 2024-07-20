@@ -7,3 +7,5 @@ const card_texture_paths = [
 	"res://ArtAssets/Cards/card_water.png",
 	"res://ArtAssets/Cards/card_fire.png"
 ]
+
+const max_cards_at_hand : int = 5

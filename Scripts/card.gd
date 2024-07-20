@@ -14,14 +14,24 @@ var is_mouse_hovering : bool = false
 
 func _ready():
 	texture = load(Globals.card_texture_paths[card_type])
+	
+	# got values from debugging
+	max_y_pos = Vector2(36.0 * GameManager.current_hand_size, -lerp_offset)
+	min_y_pos = Vector2(36.0 * GameManager.current_hand_size, 0.0)
+	
+	# zostawiam to nizej tak na wszelki jakby trzeba bylo do tego jednak wrocic, 
+	# jak usiade i skoncze reszte razem z usuwaniem kart i bedzie useless to wyjebie
 	# defer by 1 frame so the position is set correctly, otherwise it's 
 	# default position
-	call_deferred("_lag_fetch_pos")
-
-
-func _lag_fetch_pos():
-	max_y_pos = Vector2(self.position.x, self.position.y - lerp_offset)
-	min_y_pos = self.position
+	#call_deferred("_lag_fetch_pos")
+#
+#
+#func _lag_fetch_pos():
+	#max_y_pos = Vector2(self.position.x, self.position.y - lerp_offset)
+	#min_y_pos = self.position
+	#print(max_y_pos)
+	#print(min_y_pos)
+	#print(GameManager.current_hand_size)
 
 
 func set_card_type(new_type : Globals.card_types):

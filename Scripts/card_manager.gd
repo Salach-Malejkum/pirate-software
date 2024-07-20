@@ -9,16 +9,21 @@ const starting_deck = [
 var preloaded_card = preload("res://Scenes/card.tscn")
 
 @onready var deck : HBoxContainer = $FullScreen/Deck
+@onready var card_add_timer : Timer = $AddCardTimer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	for card_type in starting_deck:
-		var card_instance = preloaded_card.instantiate()
-		card_instance.set_card_type(card_type)
-		deck.add_child(card_instance)
+		add_card(card_type)
 
 
 func add_card(card_type : Globals.card_types):
-	var card_instance = preloaded_card.instantiate()
-	card_instance.set_card_type(card_type)
-	deck.add_child(card_instance)
+	if GameManager.current_hand_size < Globals.max_cards_at_hand:
+		var card_instance = preloaded_card.instantiate()
+		card_instance.set_card_type(card_type)
+		deck.add_child(card_instance)
+		
+		GameManager.current_hand_size += 1
+	else:
+		#ToDO: throw info that it's max hand size
+		pass
