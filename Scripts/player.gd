@@ -1,3 +1,5 @@
+class_name Player
+
 extends CharacterBody2D
 
 @export var SPEED = 100
@@ -30,8 +32,14 @@ func move_anim():
 		anim_sprite.play("walking_up")
 
 
-
 func _physics_process(delta):
 	move_player(delta)
 	move_anim()
 	move_and_slide()
+	
+	# test dodawania kart
+	# ogolnie to jest zbugowane i jak sie dodaje nowa karte 
+	# to sie przesuwaja, jakbys mial czas to zerknij na to
+	if Input.is_action_just_pressed("open_door"):
+		var card_manager : CardManager = get_tree().get_first_node_in_group("CardManager")
+		card_manager.add_card(Globals.card_types.FIRE)
