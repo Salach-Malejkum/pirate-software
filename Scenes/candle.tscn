@@ -1,0 +1,83 @@
+[gd_scene load_steps=11 format=3 uid="uid://f5gyxbg3cfuh"]
+
+[ext_resource type="Script" path="res://Scripts/candle.gd" id="1_2s80e"]
+[ext_resource type="Texture2D" uid="uid://dt8ju8vspnib" path="res://ArtAssets/Environment/candle.png" id="1_a3eqh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_snntj"]
+atlas = ExtResource("1_a3eqh")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fxxf1"]
+atlas = ExtResource("1_a3eqh")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2c3rm"]
+atlas = ExtResource("1_a3eqh")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l6mxr"]
+atlas = ExtResource("1_a3eqh")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7n580"]
+atlas = ExtResource("1_a3eqh")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2v1v6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_snntj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fxxf1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2c3rm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l6mxr")
+}],
+"loop": true,
+"name": &"fire",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7n580")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wo5tq"]
+size = Vector2(10, 7)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3pm15"]
+
+[node name="Candle" type="Node2D"]
+script = ExtResource("1_2s80e")
+
+[node name="Static" type="StaticBody2D" parent="."]
+
+[node name="CandleSprite" type="AnimatedSprite2D" parent="Static"]
+sprite_frames = SubResource("SpriteFrames_2v1v6")
+animation = &"fire"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Static"]
+position = Vector2(-1, 4.5)
+shape = SubResource("RectangleShape2D_wo5tq")
+
+[node name="InteractArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractArea"]
+position = Vector2(0, 1)
+shape = SubResource("CircleShape2D_3pm15")
+
+[node name="BurnTimer" type="Timer" parent="."]
+
+[connection signal="input_event" from="InteractArea" to="." method="_on_interact_area_input_event"]
+[connection signal="mouse_entered" from="InteractArea" to="." method="_on_interact_area_mouse_entered"]
+[connection signal="mouse_exited" from="InteractArea" to="." method="_on_interact_area_mouse_exited"]
+[connection signal="timeout" from="BurnTimer" to="." method="_on_fire_timer_timeout"]

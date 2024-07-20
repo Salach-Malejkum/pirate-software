@@ -3,7 +3,9 @@ extends Control
 
 const starting_deck = [
 	Globals.card_types.WATER,
-	Globals.card_types.FIRE
+	Globals.card_types.FIRE,
+	Globals.card_types.CANDLE,
+	Globals.card_types.ELECTRICITY
 ]
 
 var preloaded_card = preload("res://Scenes/card.tscn")
