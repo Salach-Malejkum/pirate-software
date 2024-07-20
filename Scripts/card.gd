@@ -64,7 +64,6 @@ func _on_gui_input(event):
 	# nested ifs to ensure no exceptions
 	if is_mouse_hovering and event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-			print(max_y_pos)
 			if is_selected:
 				deselect_self()
 			else:
