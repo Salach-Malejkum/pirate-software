@@ -26,7 +26,3 @@ theme_override_constants/margin_bottom = 140
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
-
-[node name="AddCardTimer" type="Timer" parent="."]
-
-[connection signal="timeout" from="AddCardTimer" to="." method="_on_add_card_timer_timeout"]
