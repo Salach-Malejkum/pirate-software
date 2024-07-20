@@ -43,11 +43,14 @@ func try_merge_cards(card_to_merge : Card):
 	]
 	
 	if merge_key_try_1 in Globals.card_merge_results.keys():
-		card_used.emit()
-		card_merged.emit(Globals.card_merge_results[merge_key_try_1])
+		_merge_cards(merge_key_try_1)
 		return true
 	elif merge_key_try_2 in Globals.card_merge_results.keys():
-		card_used.emit()
-		card_merged.emit(Globals.card_merge_results[merge_key_try_2])
+		_merge_cards(merge_key_try_2)
 		return true
 	return false
+
+
+func _merge_cards(merge_key : String):
+	card_used.emit()
+	card_merged.emit(Globals.card_merge_results[merge_key])
