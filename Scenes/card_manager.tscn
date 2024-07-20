@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://nbofjqjf8huq"]
+[gd_scene load_steps=3 format=3 uid="uid://nbofjqjf8huq"]
 
 [ext_resource type="Script" path="res://Scripts/card_manager.gd" id="1_tla6u"]
+[ext_resource type="FontFile" uid="uid://b3h400kk2q3w3" path="res://ArtAssets/Fonts/KodeMono-Bold.ttf" id="2_r855d"]
 
 [node name="CardManager" type="Control" groups=["CardManager"]]
 custom_minimum_size = Vector2(512, 512)
@@ -20,9 +21,26 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_top = 200
 theme_override_constants/margin_bottom = 140
 
 [node name="Deck" type="HBoxContainer" parent="FullScreen"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
+
+[node name="Label" type="Label" parent="FullScreen"]
+visible = false
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("2_r855d")
+theme_override_font_sizes/font_size = 10
+text = "YOU CAN'T HOLD MORE THAN 5 CARDS AT THE SAME TIME"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WarningTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="WarningTimer" to="." method="_on_warning_timer_timeout"]

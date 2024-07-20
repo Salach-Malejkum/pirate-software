@@ -33,11 +33,21 @@ func select_card(new_card : Card):
 
 # O(N) worst case
 func try_merge_cards(card_to_merge : Card):
-	for key in Globals.card_merge_results.keys():
-		# zamiast AND w ten sposob zeby linia byla sensownych rozmiarow
-		if Globals.card_types.keys()[selected_card.card_type] in key:
-			if Globals.card_types.keys()[card_to_merge.card_type] in key:
-				card_used.emit()
-				card_merged.emit(Globals.card_merge_results[key])
-				return true
+	var merge_key_try_1 = "%s+%s" % [
+		Globals.card_types.keys()[selected_card.card_type],
+		Globals.card_types.keys()[card_to_merge.card_type]
+	]
+	var merge_key_try_2 = "%s+%s" % [
+		Globals.card_types.keys()[card_to_merge.card_type],
+		Globals.card_types.keys()[selected_card.card_type]
+	]
+	
+	if merge_key_try_1 in Globals.card_merge_results.keys():
+		card_used.emit()
+		card_merged.emit(Globals.card_merge_results[merge_key_try_1])
+		return true
+	elif merge_key_try_2 in Globals.card_merge_results.keys():
+		card_used.emit()
+		card_merged.emit(Globals.card_merge_results[merge_key_try_2])
+		return true
 	return false

@@ -10,6 +10,8 @@ var preloaded_card = preload("res://Scenes/card.tscn")
 
 @onready var deck : HBoxContainer = $FullScreen/Deck
 @onready var card_add_timer : Timer = $AddCardTimer
+@onready var max_deck_warning : Label = $FullScreen/Label
+@onready var warning_timer : Timer = $WarningTimer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -38,5 +40,9 @@ func add_card(card_type : Globals.card_types):
 		
 		GameManager.current_hand.append(card_instance)
 	else:
-		#ToDO: throw info that it's max hand size
-		pass
+		max_deck_warning.visible = true
+		warning_timer.start(2.0)
+
+
+func _on_warning_timer_timeout():
+	max_deck_warning.visible = false
