@@ -99,7 +99,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_47bd2"]
-size = Vector2(16, 14)
+size = Vector2(14, 14)
 
 [sub_resource type="Shader" id="Shader_wvdbu"]
 code = "shader_type canvas_item;
