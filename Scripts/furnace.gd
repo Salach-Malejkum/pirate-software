@@ -31,9 +31,11 @@ func _card_interaction():
 	# nested ifs to ensure no exceptions
 	if GameManager.selected_card != null:
 		if GameManager.selected_card.card_type == Globals.card_types.FIRE:
+			GameManager.card_used.emit()
 			fire_timer.start(fire_timer_seconds)
 			anim_sprite.play("fire")
 		elif  GameManager.selected_card.card_type == Globals.card_types.WATER:
+			GameManager.card_used.emit()
 			fire_timer.stop()
 			fire_timer.timeout.emit()
 

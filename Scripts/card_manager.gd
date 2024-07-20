@@ -15,15 +15,28 @@ var preloaded_card = preload("res://Scenes/card.tscn")
 func _ready():
 	for card_type in starting_deck:
 		add_card(card_type)
+	
+	GameManager.reshuffle_deck.connect(_reshuffle_deck)
+	GameManager.card_merged.connect(_merge_card)
+
+
+func _reshuffle_deck():
+	for idx in range(GameManager.current_hand.size()):
+		GameManager.current_hand[idx].refresh_lerp_idx(idx)
+
+
+func _merge_card(merged_card_type : Globals.card_types):
+	add_card(merged_card_type)
 
 
 func add_card(card_type : Globals.card_types):
-	if GameManager.current_hand_size < Globals.max_cards_at_hand:
+	if GameManager.current_hand.size() < Globals.max_cards_at_hand:
 		var card_instance = preloaded_card.instantiate()
 		card_instance.set_card_type(card_type)
+		card_instance.index_at_hand = GameManager.current_hand.size()
 		deck.add_child(card_instance)
 		
-		GameManager.current_hand_size += 1
+		GameManager.current_hand.append(card_instance)
 	else:
 		#ToDO: throw info that it's max hand size
 		pass
