@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://br2rm3y4wyli7"]
+[gd_scene load_steps=9 format=3 uid="uid://br2rm3y4wyli7"]
 
 [ext_resource type="PackedScene" uid="uid://br31pgwnuthh" path="res://Scenes/tile_map.tscn" id="1_nrvku"]
 [ext_resource type="PackedScene" uid="uid://1xiakxfc81rn" path="res://Scenes/doors.tscn" id="2_kydn8"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://drivg1a0m73sw" path="res://Scenes/lantern.tscn" id="5_oswdi"]
 [ext_resource type="PackedScene" uid="uid://bmjpimvwupc8p" path="res://Scenes/steam_engine.tscn" id="6_qvr1e"]
 [ext_resource type="PackedScene" uid="uid://bk7smumc7rwo7" path="res://Scenes/cabin.tscn" id="7_7tc2t"]
+[ext_resource type="PackedScene" uid="uid://c4c0yn3axluwb" path="res://Scenes/enemy_spawner.tscn" id="8_6k42o"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -30,3 +31,6 @@ position = Vector2(-159, -84)
 
 [node name="Cabin" parent="." instance=ExtResource("7_7tc2t")]
 position = Vector2(108, -4)
+
+[node name="EnemySpawner" parent="." instance=ExtResource("8_6k42o")]
+position = Vector2(225, 64)

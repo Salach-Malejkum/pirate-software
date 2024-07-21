@@ -1,7 +1,6 @@
 [gd_resource type="AudioBusLayout" format=3 uid="uid://damvy0evvohc5"]
 
 [resource]
-bus/0/send = &"New Bus 3"
 bus/1/name = &"Soundtrack"
 bus/1/solo = false
 bus/1/mute = false
