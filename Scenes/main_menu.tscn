@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dghxm53dyl6qt"]
+[gd_scene load_steps=7 format=3 uid="uid://dghxm53dyl6qt"]
 
 [ext_resource type="Script" path="res://Scripts/main_menu.gd" id="1_t6mk7"]
 [ext_resource type="Texture2D" uid="uid://bylgruol22feo" path="res://ArtAssets/OtherUIWebsite/menu_art.png" id="2_bjpu4"]
+[ext_resource type="PackedScene" uid="uid://b360hv35yusk0" path="res://Scenes/level1.tscn" id="2_l74fu"]
 [ext_resource type="FontFile" uid="uid://b3h400kk2q3w3" path="res://ArtAssets/Fonts/KodeMono-Bold.ttf" id="2_nc1jn"]
 [ext_resource type="StyleBox" uid="uid://bvur6kg07qs48" path="res://StyleBoxes/menu_buttons_normal.tres" id="3_vt3dn"]
 [ext_resource type="StyleBox" uid="uid://dcffcrd0ebmhd" path="res://StyleBoxes/menu_buttons_hover.tres" id="4_7545c"]
@@ -16,6 +17,7 @@ offset_bottom = 6.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_t6mk7")
+level1 = ExtResource("2_l74fu")
 
 [node name="bg_art" type="TextureRect" parent="."]
 modulate = Color(0.399389, 0.421688, 0.41994, 1)
