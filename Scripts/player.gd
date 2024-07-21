@@ -38,8 +38,19 @@ func _physics_process(delta):
 	move_and_slide()
 	
 	# test dodawania kart
-	# ogolnie to jest zbugowane i jak sie dodaje nowa karte 
-	# to sie przesuwaja, jakbys mial czas to zerknij na to
-	if Input.is_action_just_pressed("open_door"):
+	# Z - swieczka
+	# X - elektrycznosc
+	# C - woda
+	# V - ogien
+	if Input.is_action_just_pressed("test_candle"):
+		var card_manager : CardManager = get_tree().get_first_node_in_group("CardManager")
+		card_manager.add_card(Globals.card_types.CANDLE)
+	elif Input.is_action_just_pressed("test_electricity"):
+		var card_manager : CardManager = get_tree().get_first_node_in_group("CardManager")
+		card_manager.add_card(Globals.card_types.ELECTRICITY)
+	elif Input.is_action_just_pressed("test_water"):
+		var card_manager : CardManager = get_tree().get_first_node_in_group("CardManager")
+		card_manager.add_card(Globals.card_types.WATER)
+	elif Input.is_action_just_pressed("test_fire"):
 		var card_manager : CardManager = get_tree().get_first_node_in_group("CardManager")
 		card_manager.add_card(Globals.card_types.FIRE)

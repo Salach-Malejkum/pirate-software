@@ -1,12 +1,10 @@
-class_name Furnace
-
 extends Node2D
 
 const fire_timer_seconds : float = 5.0
 
 var is_mouse_hovering : bool = false
-@onready var anim_sprite : AnimatedSprite2D = $Static/FurnaceSprite
-@onready var fire_timer : Timer = $FireTimer
+@onready var anim_sprite : AnimatedSprite2D = $Static/CandleSprite
+@onready var fire_timer : Timer = $BurnTimer
 
 func _ready():
 	anim_sprite.play("idle")
@@ -32,12 +30,16 @@ func _card_interaction():
 	if GameManager.selected_card != null:
 		if GameManager.selected_card.card_type == Globals.card_types.FIRE:
 			GameManager.card_used.emit()
-			fire_timer.start(fire_timer_seconds)
-			anim_sprite.play("fire")
+			light_candle()
 		elif  GameManager.selected_card.card_type == Globals.card_types.WATER:
 			GameManager.card_used.emit()
 			fire_timer.stop()
 			fire_timer.timeout.emit()
+
+
+func light_candle():
+	fire_timer.start(fire_timer_seconds)
+	anim_sprite.play("fire")
 
 
 func _on_fire_timer_timeout():

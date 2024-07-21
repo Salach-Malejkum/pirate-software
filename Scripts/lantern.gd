@@ -1,12 +1,14 @@
-class_name Furnace
+class_name Lantern
 
 extends Node2D
 
-const fire_timer_seconds : float = 5.0
+const light_timer_seconds : float = 5.0
 
 var is_mouse_hovering : bool = false
-@onready var anim_sprite : AnimatedSprite2D = $Static/FurnaceSprite
-@onready var fire_timer : Timer = $FireTimer
+@onready var anim_sprite : AnimatedSprite2D = $Static/LanternSprite
+@onready var lantern_timer : Timer = $LanternTimer
+
+@export var managed_by_engine : bool = false
 
 func _ready():
 	anim_sprite.play("idle")
@@ -30,15 +32,20 @@ func _on_interact_area_input_event(viewport, event, shape_idx):
 func _card_interaction():
 	# nested ifs to ensure no exceptions
 	if GameManager.selected_card != null:
-		if GameManager.selected_card.card_type == Globals.card_types.FIRE:
+		if GameManager.selected_card.card_type == Globals.card_types.ELECTRICITY:
 			GameManager.card_used.emit()
-			fire_timer.start(fire_timer_seconds)
-			anim_sprite.play("fire")
-		elif  GameManager.selected_card.card_type == Globals.card_types.WATER:
-			GameManager.card_used.emit()
-			fire_timer.stop()
-			fire_timer.timeout.emit()
+			lantern_timer.start(light_timer_seconds)
+			turn_on_lantern()
 
 
-func _on_fire_timer_timeout():
+func turn_on_lantern():
+	anim_sprite.play("lit")
+
+
+func turn_off_lantern():
 	anim_sprite.play("idle")
+
+
+func _on_lantern_timer_timeout():
+	if not managed_by_engine:
+		turn_off_lantern()

@@ -1,12 +1,10 @@
-class_name Furnace
-
 extends Node2D
 
-const fire_timer_seconds : float = 5.0
+const engine_timer_seconds : float = 5.0
 
 var is_mouse_hovering : bool = false
-@onready var anim_sprite : AnimatedSprite2D = $Static/FurnaceSprite
-@onready var fire_timer : Timer = $FireTimer
+@onready var anim_sprite : AnimatedSprite2D = $Static/SteamEngineTop
+@onready var engine_timer : Timer = $EnginePowerTimer
 
 func _ready():
 	anim_sprite.play("idle")
@@ -30,15 +28,23 @@ func _on_interact_area_input_event(viewport, event, shape_idx):
 func _card_interaction():
 	# nested ifs to ensure no exceptions
 	if GameManager.selected_card != null:
-		if GameManager.selected_card.card_type == Globals.card_types.FIRE:
+		if GameManager.selected_card.card_type == Globals.card_types.STEAM:
 			GameManager.card_used.emit()
-			fire_timer.start(fire_timer_seconds)
-			anim_sprite.play("fire")
-		elif  GameManager.selected_card.card_type == Globals.card_types.WATER:
-			GameManager.card_used.emit()
-			fire_timer.stop()
-			fire_timer.timeout.emit()
+			start_engine()
 
 
-func _on_fire_timer_timeout():
+func start_engine():
+	for child in get_children():
+		if child is Lantern:
+			child.turn_on_lantern()
+			child.managed_by_engine = true
+	engine_timer.start(engine_timer_seconds)
+	anim_sprite.play("running")
+
+
+func _on_engine_power_timer_timeout():
+	for child in get_children():
+		if child is Lantern:
+			child.turn_off_lantern()
+			child.managed_by_engine = false
 	anim_sprite.play("idle")

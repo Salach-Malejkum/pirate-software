@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://bk7smumc7rwo7"]
+
+[ext_resource type="Script" path="res://Scripts/cabin.gd" id="1_2sh86"]
+[ext_resource type="Texture2D" uid="uid://bockyhuarkfif" path="res://ArtAssets/Environment/cabinet.png" id="1_m5sfm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cn0jg"]
+size = Vector2(28, 28)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6aksi"]
+size = Vector2(28, 8)
+
+[node name="Cabin" type="Node2D"]
+script = ExtResource("1_2sh86")
+
+[node name="Static" type="StaticBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Static"]
+texture = ExtResource("1_m5sfm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Static"]
+shape = SubResource("RectangleShape2D_cn0jg")
+
+[node name="InteractArea" type="Area2D" parent="."]
+
+[node name="CandlePlaceArea" type="CollisionShape2D" parent="InteractArea"]
+position = Vector2(0, -10)
+shape = SubResource("RectangleShape2D_6aksi")
+
+[connection signal="input_event" from="InteractArea" to="." method="_on_interact_area_input_event"]
+[connection signal="mouse_entered" from="InteractArea" to="." method="_on_interact_area_mouse_entered"]
+[connection signal="mouse_exited" from="InteractArea" to="." method="_on_interact_area_mouse_exited"]

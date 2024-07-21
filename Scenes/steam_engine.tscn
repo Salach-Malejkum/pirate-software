@@ -1,0 +1,78 @@
+[gd_scene load_steps=10 format=3 uid="uid://bmjpimvwupc8p"]
+
+[ext_resource type="Texture2D" uid="uid://yik4blvqtppe" path="res://ArtAssets/Environment/steam_engine_top.png" id="1_451cv"]
+[ext_resource type="Script" path="res://Scripts/steam_engine.gd" id="1_lw3w3"]
+[ext_resource type="Texture2D" uid="uid://bdbrcsdjb6dii" path="res://ArtAssets/Environment/steam_engine_base.png" id="2_3ydgy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rg5au"]
+atlas = ExtResource("1_451cv")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8drw6"]
+atlas = ExtResource("1_451cv")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xe1lk"]
+atlas = ExtResource("1_451cv")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n3q04"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rg5au")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8drw6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xe1lk")
+}],
+"loop": true,
+"name": &"running",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_juof3"]
+size = Vector2(26, 11)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kyuyy"]
+radius = 15.0037
+
+[node name="SteamEngine" type="Node2D"]
+position = Vector2(-1, 0)
+script = ExtResource("1_lw3w3")
+
+[node name="Static" type="StaticBody2D" parent="."]
+
+[node name="SteamEngineTop" type="AnimatedSprite2D" parent="Static"]
+z_index = 1
+position = Vector2(2, 0)
+sprite_frames = SubResource("SpriteFrames_n3q04")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Static"]
+position = Vector2(0, 10.5)
+shape = SubResource("RectangleShape2D_juof3")
+
+[node name="SteamEngineBase" type="Sprite2D" parent="Static"]
+position = Vector2(0, 8)
+texture = ExtResource("2_3ydgy")
+
+[node name="InteractArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractArea"]
+position = Vector2(0, 9)
+shape = SubResource("CircleShape2D_kyuyy")
+
+[node name="EnginePowerTimer" type="Timer" parent="."]
+
+[connection signal="input_event" from="InteractArea" to="." method="_on_interact_area_input_event"]
+[connection signal="mouse_entered" from="InteractArea" to="." method="_on_interact_area_mouse_entered"]
+[connection signal="mouse_exited" from="InteractArea" to="." method="_on_interact_area_mouse_exited"]
+[connection signal="timeout" from="EnginePowerTimer" to="." method="_on_engine_power_timer_timeout"]

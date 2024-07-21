@@ -1,15 +1,10 @@
-class_name Furnace
+class_name Cabin
 
 extends Node2D
 
-const fire_timer_seconds : float = 5.0
-
 var is_mouse_hovering : bool = false
-@onready var anim_sprite : AnimatedSprite2D = $Static/FurnaceSprite
-@onready var fire_timer : Timer = $FireTimer
 
-func _ready():
-	anim_sprite.play("idle")
+var packed_candle = preload("res://Scenes/candle.tscn")
 
 func _on_interact_area_mouse_entered():
 	is_mouse_hovering = true
@@ -30,15 +25,17 @@ func _on_interact_area_input_event(viewport, event, shape_idx):
 func _card_interaction():
 	# nested ifs to ensure no exceptions
 	if GameManager.selected_card != null:
-		if GameManager.selected_card.card_type == Globals.card_types.FIRE:
-			GameManager.card_used.emit()
-			fire_timer.start(fire_timer_seconds)
-			anim_sprite.play("fire")
-		elif  GameManager.selected_card.card_type == Globals.card_types.WATER:
-			GameManager.card_used.emit()
-			fire_timer.stop()
-			fire_timer.timeout.emit()
+		if GameManager.selected_card.card_type == Globals.card_types.CANDLE:
+			_spawn_candle_on_mouse(false)
+		elif GameManager.selected_card.card_type == Globals.card_types.CANDLE_LIT:
+			_spawn_candle_on_mouse(true)
 
 
-func _on_fire_timer_timeout():
-	anim_sprite.play("idle")
+func _spawn_candle_on_mouse(is_lit : bool):
+	var mouse_position = get_local_mouse_position()
+	var candle_instantiate = packed_candle.instantiate()
+	candle_instantiate.position = Vector2(mouse_position.x, mouse_position.y - 8.0)
+	if is_lit:
+		candle_instantiate.call_deferred("light_candle")
+	add_child(candle_instantiate)
+	GameManager.card_used.emit()
