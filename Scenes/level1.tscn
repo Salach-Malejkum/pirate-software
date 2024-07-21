@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b360hv35yusk0"]
+[gd_scene load_steps=11 format=3 uid="uid://b360hv35yusk0"]
 
 [ext_resource type="Script" path="res://Scripts/level1.gd" id="1_uvyuf"]
 [ext_resource type="PackedScene" uid="uid://cb5w2t8c6ybt7" path="res://Scenes/player.tscn" id="2_h6cud"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dht5pjj6hwyae" path="res://Scenes/stairs.tscn" id="6_g8727"]
 [ext_resource type="PackedScene" uid="uid://c5iwiblniciof" path="res://Scenes/furnace.tscn" id="8_spcvc"]
 [ext_resource type="PackedScene" uid="uid://drivg1a0m73sw" path="res://Scenes/lantern.tscn" id="9_p7nmk"]
+[ext_resource type="PackedScene" uid="uid://dondxin01374w" path="res://Scenes/circle_transition.tscn" id="10_g8rls"]
 [ext_resource type="PackedScene" uid="uid://bmjpimvwupc8p" path="res://Scenes/steam_engine.tscn" id="10_m4d3g"]
 
 [node name="Level1" type="Node2D"]
@@ -94,3 +95,14 @@ position = Vector2(379, -56)
 
 [node name="Lantern2" parent="MapElements/SteamEngine" instance=ExtResource("9_p7nmk")]
 position = Vector2(157, -56)
+
+[node name="SteamEngine" parent="MapElements" instance=ExtResource("10_m4d3g")]
+position = Vector2(159, 28)
+
+[node name="CircleTransition" parent="." instance=ExtResource("10_g8rls")]
+visible = false
+
+[connection signal="level_entered" from="." to="CircleTransition" method="_on_level_1_level_entered"]
+[connection signal="level_exit" from="MapElements/Stairs" to="CircleTransition" method="_on_stairs_level_exit"]
+[connection signal="exit_anim_finished" from="CircleTransition" to="MapElements/Stairs" method="exit_level"]
+
