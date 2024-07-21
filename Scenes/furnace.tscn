@@ -3,6 +3,9 @@
 [ext_resource type="Script" path="res://Scripts/furnace.gd" id="1_2v6qf"]
 [ext_resource type="Texture2D" uid="uid://b5q2sqlfi05y7" path="res://ArtAssets/Environment/furnance_animated.png" id="1_bgbe2"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g4tyi"]
+size = Vector2(16, 20)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_1i172"]
 atlas = ExtResource("1_bgbe2")
 region = Rect2(17, 1, 16, 39)
@@ -51,9 +54,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_g4tyi"]
-size = Vector2(16, 40)
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_0ut3g"]
 
 [node name="Furnace" type="Node2D" groups=["card_interactable"]]
@@ -61,15 +61,24 @@ scale = Vector2(1.5, 1.5)
 script = ExtResource("1_2v6qf")
 
 [node name="Static" type="StaticBody2D" parent="."]
-
-[node name="FurnaceSprite" type="AnimatedSprite2D" parent="Static"]
-sprite_frames = SubResource("SpriteFrames_anl6i")
-animation = &"idle"
+y_sort_enabled = true
+collision_layer = 8
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Static"]
+position = Vector2(0, 10)
 shape = SubResource("RectangleShape2D_g4tyi")
 
+[node name="FurnaceSprite" type="AnimatedSprite2D" parent="Static"]
+z_index = 1
+y_sort_enabled = true
+position = Vector2(0.666667, -40)
+sprite_frames = SubResource("SpriteFrames_anl6i")
+animation = &"fire"
+offset = Vector2(0, 40)
+
 [node name="InteractArea" type="Area2D" parent="."]
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractArea"]
 position = Vector2(0, 9.33333)

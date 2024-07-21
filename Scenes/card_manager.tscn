@@ -4,6 +4,7 @@
 [ext_resource type="FontFile" uid="uid://b3h400kk2q3w3" path="res://ArtAssets/Fonts/KodeMono-Bold.ttf" id="2_r855d"]
 
 [node name="CardManager" type="Control" groups=["CardManager"]]
+z_index = 100
 custom_minimum_size = Vector2(512, 512)
 layout_mode = 3
 anchors_preset = 15
