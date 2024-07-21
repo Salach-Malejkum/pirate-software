@@ -1,7 +1,9 @@
-[gd_scene load_steps=20 format=3 uid="uid://cb5w2t8c6ybt7"]
+[gd_scene load_steps=23 format=3 uid="uid://cb5w2t8c6ybt7"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_ip5or"]
 [ext_resource type="Texture2D" uid="uid://dv3lxwsnesowx" path="res://ArtAssets/Characters/player_animated.png" id="2_st8uh"]
+[ext_resource type="Texture2D" uid="uid://1vg2qw4odvfq" path="res://ArtAssets/lightmap.png" id="3_8ingo"]
+[ext_resource type="Shader" path="res://Shaders/light.gdshader" id="3_e2iku"]
 [ext_resource type="PackedScene" uid="uid://nbofjqjf8huq" path="res://Scenes/card_manager.tscn" id="3_kv13g"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sgxte"]
@@ -99,6 +101,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_chilp"]
+shader = ExtResource("3_e2iku")
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_47bd2"]
 size = Vector2(14, 10.5)
 
@@ -145,6 +150,14 @@ sprite_frames = SubResource("SpriteFrames_qjxf2")
 animation = &"walking_down"
 autoplay = "walking_down"
 frame_progress = 0.345823
+
+[node name="PointLight2D" type="PointLight2D" parent="AnimatedSprite2D"]
+material = SubResource("ShaderMaterial_chilp")
+position = Vector2(9, -3)
+energy = 0.5
+shadow_enabled = true
+texture = ExtResource("3_8ingo")
+texture_scale = 4.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, 7.75)

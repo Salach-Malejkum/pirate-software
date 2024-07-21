@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bk7smumc7rwo7"]
+[gd_scene load_steps=6 format=3 uid="uid://bk7smumc7rwo7"]
 
 [ext_resource type="Script" path="res://Scripts/cabin.gd" id="1_2sh86"]
 [ext_resource type="Texture2D" uid="uid://bockyhuarkfif" path="res://ArtAssets/Environment/cabinet.png" id="1_m5sfm"]
@@ -8,6 +8,9 @@ size = Vector2(28, 28)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6aksi"]
 size = Vector2(28, 8)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_docvi"]
+polygon = PackedVector2Array(-14, -14, 14, -14, 14, 14, 12, 14, 12, 6, -12, 6, -12, 14, -14, 14)
 
 [node name="Cabin" type="Node2D"]
 y_sort_enabled = true
@@ -34,6 +37,9 @@ collision_mask = 2
 [node name="CandlePlaceArea" type="CollisionShape2D" parent="InteractArea"]
 position = Vector2(0, -10)
 shape = SubResource("RectangleShape2D_6aksi")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_docvi")
 
 [connection signal="input_event" from="InteractArea" to="." method="_on_interact_area_input_event"]
 [connection signal="mouse_entered" from="InteractArea" to="." method="_on_interact_area_mouse_entered"]

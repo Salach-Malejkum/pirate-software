@@ -5,6 +5,7 @@ extends CharacterBody2D
 @export var SPEED = 100
 @onready var anim_sprite = $AnimatedSprite2D
 @onready var texture_rect = $CanvasLayer/TextureRect
+@onready var light = $AnimatedSprite2D/PointLight2D
 
 func move_player(time):
 	var movement_direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
@@ -19,9 +20,12 @@ func move_anim():
 	if vertical_movement == 1:
 		anim_sprite.play("walking_sides")
 		anim_sprite.flip_h = false
+		light.position.x = light.position.x if light.position.x > 0  else -light.position.x 
+		
 	elif vertical_movement == -1:
 		anim_sprite.play("walking_sides")
 		anim_sprite.flip_h = true
+		light.position.x = light.position.x if light.position.x < 0  else -light.position.x 
 	
 	var horizontal_movement = Input.get_axis("move_up", "move_down")
 	if horizontal_movement == 0:
