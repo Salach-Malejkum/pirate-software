@@ -131,6 +131,7 @@ shader = SubResource("Shader_wvdbu")
 specular_color = Color(0.152941, 0.152941, 0.266667, 1)
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
+z_index = 1
 y_sort_enabled = true
 collision_layer = 2
 collision_mask = 13

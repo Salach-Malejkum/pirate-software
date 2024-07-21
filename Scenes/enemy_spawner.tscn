@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://c4c0yn3axluwb"]
+
+[ext_resource type="Script" path="res://Scripts/enemy_spawner.gd" id="1_2nmba"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_b213s"]
+
+[node name="EnemySpawner" type="Node2D"]
+script = ExtResource("1_2nmba")
+
+[node name="VisualDebug" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_b213s")
+debug_color = Color(0.130218, 0.520566, 1, 0.42)
+
+[node name="SpawnTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
