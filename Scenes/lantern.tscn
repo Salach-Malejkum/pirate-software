@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://drivg1a0m73sw"]
+[gd_scene load_steps=11 format=3 uid="uid://drivg1a0m73sw"]
 
 [ext_resource type="Script" path="res://Scripts/lantern.gd" id="1_fo2j3"]
 [ext_resource type="Texture2D" uid="uid://ckce10rmdiya4" path="res://ArtAssets/Environment/lantern.png" id="1_x1vyt"]
+[ext_resource type="Texture2D" uid="uid://1vg2qw4odvfq" path="res://ArtAssets/lightmap.png" id="3_ajc1y"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3e60l"]
 
@@ -33,7 +34,12 @@ animations = [{
 }]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_boq48"]
-polygon = PackedVector2Array(-5, 1, -1, -3, -1, -6, -2, -6, -2, -7, 2, -7, 2, -6, 1, -6, 1, -3, 5, 1, 4, 1, 4, 6, 4, 7, 2, 8, -2, 8, -4, 6, -4, 1)
+polygon = PackedVector2Array(-5, 1, -1, -3, -1, -6, -2, -6, -2, -7, 2, -7, 2, -6, 1, -6, 1, -3, 5, 1, 4, 1, -4, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8ukq2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oleu8"]
+radius = 66.0076
 
 [node name="Lantern" type="Node2D"]
 y_sort_enabled = true
@@ -59,7 +65,24 @@ animation = &"idle"
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 occluder = SubResource("OccluderPolygon2D_boq48")
 
+[node name="PointLight2D" type="PointLight2D" parent="."]
+material = SubResource("ShaderMaterial_8ukq2")
+position = Vector2(0, 4)
+energy = 0.0
+shadow_enabled = true
+texture = ExtResource("3_ajc1y")
+texture_scale = 4.0
+
+[node name="DamageArea" type="Area2D" parent="PointLight2D"]
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PointLight2D/DamageArea"]
+shape = SubResource("CircleShape2D_oleu8")
+
 [connection signal="input_event" from="InteractArea" to="." method="_on_interact_area_input_event"]
 [connection signal="mouse_entered" from="InteractArea" to="." method="_on_interact_area_mouse_entered"]
 [connection signal="mouse_exited" from="InteractArea" to="." method="_on_interact_area_mouse_exited"]
 [connection signal="timeout" from="LanternTimer" to="." method="_on_lantern_timer_timeout"]
+[connection signal="body_entered" from="PointLight2D/DamageArea" to="." method="_on_damage_area_body_entered"]
+[connection signal="body_exited" from="PointLight2D/DamageArea" to="." method="_on_damage_area_body_exited"]

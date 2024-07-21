@@ -30,7 +30,7 @@ position = Vector2(78, -18)
 position = Vector2(177, 54)
 
 [node name="Lantern" parent="SteamEngine" instance=ExtResource("5_oswdi")]
-position = Vector2(-159, -84)
+position = Vector2(-34, -81)
 
 [node name="Cabin" parent="." instance=ExtResource("7_7tc2t")]
 y_sort_enabled = false

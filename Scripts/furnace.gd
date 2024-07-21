@@ -5,10 +5,12 @@ extends Node2D
 const fire_timer_seconds : float = 5.0
 
 var is_mouse_hovering : bool = false
+var enemy_arr = []
 @onready var anim_sprite : AnimatedSprite2D = $Static/FurnaceSprite
-@onready var fire_timer : Timer = $FireTimer
+@onready var light = $PointLight2D
 
 func _ready():
+	
 	anim_sprite.play("idle")
 
 func _on_interact_area_mouse_entered():
@@ -32,13 +34,36 @@ func _card_interaction():
 	if GameManager.selected_card != null:
 		if GameManager.selected_card.card_type == Globals.card_types.FIRE:
 			GameManager.card_used.emit()
-			fire_timer.start(fire_timer_seconds)
+			light.energy = Globals.interactable_light_energy
 			anim_sprite.play("fire")
 		elif  GameManager.selected_card.card_type == Globals.card_types.WATER:
 			GameManager.card_used.emit()
-			fire_timer.stop()
-			fire_timer.timeout.emit()
+			light.energy = 0.0
 
 
-func _on_fire_timer_timeout():
-	anim_sprite.play("idle")
+func _process(delta):
+	for enemy in enemy_arr:
+		if not is_instance_valid(enemy):
+			enemy_arr.erase(enemy)
+		else:
+			if light.energy <= 0.1:
+				anim_sprite.play("idle")
+				enemy.del_dmg_source(self)
+			else:
+				enemy.add_dmg_source(self)
+	
+	if light.energy > 0.0:
+		light.energy -= delta / Globals.light_delta_modifier
+
+
+func _on_damage_area_body_entered(body):
+	if body is Enemy:
+		enemy_arr.append(body)
+		if light.energy > 0.0:
+			body.add_dmg_source(self)
+
+
+func _on_damage_area_body_exited(body):
+	if body is Enemy:
+		enemy_arr.erase(body)
+		body.del_dmg_source(self)
