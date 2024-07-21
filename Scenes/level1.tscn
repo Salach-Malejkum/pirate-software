@@ -96,7 +96,7 @@ position = Vector2(379, -56)
 [node name="Lantern2" parent="MapElements/SteamEngine" instance=ExtResource("9_p7nmk")]
 position = Vector2(157, -56)
 
-[node name="SteamEngine" parent="MapElements" instance=ExtResource("10_m4d3g")]
+[node name="SteamEngine2" parent="MapElements" instance=ExtResource("10_m4d3g")]
 position = Vector2(159, 28)
 
 [node name="CircleTransition" parent="." instance=ExtResource("10_g8rls")]
@@ -105,4 +105,3 @@ visible = false
 [connection signal="level_entered" from="." to="CircleTransition" method="_on_level_1_level_entered"]
 [connection signal="level_exit" from="MapElements/Stairs" to="CircleTransition" method="_on_stairs_level_exit"]
 [connection signal="exit_anim_finished" from="CircleTransition" to="MapElements/Stairs" method="exit_level"]
-

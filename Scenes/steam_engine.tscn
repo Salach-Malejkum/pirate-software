@@ -4,6 +4,9 @@
 [ext_resource type="Script" path="res://Scripts/steam_engine.gd" id="1_lw3w3"]
 [ext_resource type="Texture2D" uid="uid://bdbrcsdjb6dii" path="res://ArtAssets/Environment/steam_engine_base.png" id="2_3ydgy"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_juof3"]
+size = Vector2(26, 11)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_rg5au"]
 atlas = ExtResource("1_451cv")
 region = Rect2(0, 0, 32, 32)
@@ -38,9 +41,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_juof3"]
-size = Vector2(26, 11)
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_kyuyy"]
 radius = 15.0037
 
@@ -54,21 +54,19 @@ script = ExtResource("1_lw3w3")
 collision_layer = 8
 collision_mask = 2
 
-[node name="SteamEngineTop" type="AnimatedSprite2D" parent="Static"]
-z_index = 1
-y_sort_enabled = true
-position = Vector2(2, 0)
-sprite_frames = SubResource("SpriteFrames_n3q04")
-animation = &"idle"
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Static"]
 position = Vector2(0, 10.5)
 shape = SubResource("RectangleShape2D_juof3")
 
 [node name="SteamEngineBase" type="Sprite2D" parent="Static"]
-y_sort_enabled = true
 position = Vector2(0, 8)
 texture = ExtResource("2_3ydgy")
+
+[node name="SteamEngineTop" type="AnimatedSprite2D" parent="Static"]
+y_sort_enabled = true
+position = Vector2(2, 0)
+sprite_frames = SubResource("SpriteFrames_n3q04")
+animation = &"idle"
 
 [node name="InteractArea" type="Area2D" parent="."]
 collision_mask = 2
