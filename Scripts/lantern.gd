@@ -71,3 +71,8 @@ func _on_damage_area_body_exited(body):
 	if body is Enemy:
 		enemy_arr.erase(body)
 		body.del_dmg_source(self)
+
+
+func _on_lantern_timer_timeout():
+	if not managed_by_engine:
+		turn_off_lantern()
