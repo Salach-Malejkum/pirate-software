@@ -12,17 +12,14 @@ func _process(delta):
 		
 
 func manage_stairs():
-	#get_tree().change_scene_to_packed(scene_to_load)
-	get_tree().reload_current_scene()
+	get_tree().change_scene_to_packed(scene_to_load)
 
 
 func _on_area_2d_body_entered(body):
-	print("out")
 	if body.is_in_group("Player"):
 		player_in_range = true
 
 
 func _on_area_2d_body_exited(body):
-	print("in")
 	if body.is_in_group("Player"):
 		player_in_range = false
