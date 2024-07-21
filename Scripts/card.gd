@@ -3,6 +3,7 @@ class_name Card
 extends TextureRect
 
 @export var card_type : Globals.card_types
+@export var index_at_hand : int
 
 const lerp_offset : float = 20.0
 const lerp_weight : float = 0.3
@@ -12,26 +13,29 @@ var is_selected : bool = false
 
 var is_mouse_hovering : bool = false
 
+@onready var hint_type_label = $Label
+
+
 func _ready():
 	texture = load(Globals.card_texture_paths[card_type])
 	
 	# got values from debugging
-	max_y_pos = Vector2(36.0 * GameManager.current_hand_size, -lerp_offset)
-	min_y_pos = Vector2(36.0 * GameManager.current_hand_size, 0.0)
-	
-	# zostawiam to nizej tak na wszelki jakby trzeba bylo do tego jednak wrocic, 
-	# jak usiade i skoncze reszte razem z usuwaniem kart i bedzie useless to wyjebie
-	# defer by 1 frame so the position is set correctly, otherwise it's 
-	# default position
-	#call_deferred("_lag_fetch_pos")
-#
-#
-#func _lag_fetch_pos():
-	#max_y_pos = Vector2(self.position.x, self.position.y - lerp_offset)
-	#min_y_pos = self.position
-	#print(max_y_pos)
-	#print(min_y_pos)
-	#print(GameManager.current_hand_size)
+	max_y_pos = Vector2(36.0 * index_at_hand, -lerp_offset)
+	min_y_pos = Vector2(36.0 * index_at_hand, 0.0)
+	hint_type_label.text = Globals.card_types.keys()[self.card_type]
+	hint_type_label.visible = false
+
+
+func refresh_lerp_idx(new_idx : int):
+	self.index_at_hand = new_idx
+	self.max_y_pos = Vector2(36.0 * index_at_hand, -lerp_offset)
+	self.min_y_pos = Vector2(36.0 * index_at_hand, 0.0)
+
+
+func _on_card_used():
+	GameManager.current_hand.remove_at(index_at_hand)
+	GameManager.reshuffle_deck.emit()
+	queue_free()
 
 
 func set_card_type(new_type : Globals.card_types):
@@ -47,10 +51,12 @@ func _process(delta):
 
 
 func _on_mouse_entered():
+	hint_type_label.visible = true
 	is_mouse_hovering = true
 
 
 func _on_mouse_exited():
+	hint_type_label.visible = false
 	is_mouse_hovering = false
 
 
@@ -58,8 +64,14 @@ func _on_gui_input(event):
 	# nested ifs to ensure no exceptions
 	if is_mouse_hovering and event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-			GameManager.select_card(self)
+			if is_selected:
+				deselect_self()
+			else:
+				GameManager.card_used.connect(_on_card_used)
+				GameManager.select_card(self)
 
 func deselect_self():
+	GameManager.card_used.disconnect(_on_card_used)
+	GameManager.selected_card = null
 	is_selected = false
 

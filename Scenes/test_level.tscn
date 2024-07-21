@@ -1,9 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://br2rm3y4wyli7"]
+[gd_scene load_steps=8 format=3 uid="uid://br2rm3y4wyli7"]
 
 [ext_resource type="PackedScene" uid="uid://br31pgwnuthh" path="res://Scenes/tile_map.tscn" id="1_nrvku"]
 [ext_resource type="PackedScene" uid="uid://1xiakxfc81rn" path="res://Scenes/doors.tscn" id="2_kydn8"]
 [ext_resource type="PackedScene" uid="uid://cb5w2t8c6ybt7" path="res://Scenes/player.tscn" id="3_qwiv5"]
 [ext_resource type="PackedScene" uid="uid://c5iwiblniciof" path="res://Scenes/furnace.tscn" id="4_vpxnq"]
+[ext_resource type="PackedScene" uid="uid://drivg1a0m73sw" path="res://Scenes/lantern.tscn" id="5_oswdi"]
+[ext_resource type="PackedScene" uid="uid://bmjpimvwupc8p" path="res://Scenes/steam_engine.tscn" id="6_qvr1e"]
+[ext_resource type="PackedScene" uid="uid://bk7smumc7rwo7" path="res://Scenes/cabin.tscn" id="7_7tc2t"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -18,3 +21,12 @@ position = Vector2(49, 20)
 
 [node name="Furnace" parent="." instance=ExtResource("4_vpxnq")]
 position = Vector2(78, -18)
+
+[node name="SteamEngine" parent="." instance=ExtResource("6_qvr1e")]
+position = Vector2(177, 54)
+
+[node name="Lantern" parent="SteamEngine" instance=ExtResource("5_oswdi")]
+position = Vector2(-159, -84)
+
+[node name="Cabin" parent="." instance=ExtResource("7_7tc2t")]
+position = Vector2(108, -4)

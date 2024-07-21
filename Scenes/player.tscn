@@ -102,6 +102,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_47bd2"]
 size = Vector2(14, 14)
 
+
 [sub_resource type="Shader" id="Shader_wvdbu"]
 code = "shader_type canvas_item;
 
@@ -141,7 +142,7 @@ autoplay = "walking_down"
 frame_progress = 0.71097
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1, 9)
+position = Vector2(1, 12.5)
 shape = SubResource("RectangleShape2D_47bd2")
 
 [node name="Camera2D" type="Camera2D" parent="."]

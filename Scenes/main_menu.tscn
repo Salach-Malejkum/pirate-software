@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dghxm53dyl6qt"]
+[gd_scene load_steps=6 format=3 uid="uid://dghxm53dyl6qt"]
 
 [ext_resource type="Script" path="res://Scripts/main_menu.gd" id="1_t6mk7"]
+[ext_resource type="Texture2D" uid="uid://bylgruol22feo" path="res://ArtAssets/OtherUIWebsite/menu_art.png" id="2_bjpu4"]
 [ext_resource type="FontFile" uid="uid://b3h400kk2q3w3" path="res://ArtAssets/Fonts/KodeMono-Bold.ttf" id="2_nc1jn"]
 [ext_resource type="StyleBox" uid="uid://bvur6kg07qs48" path="res://StyleBoxes/menu_buttons_normal.tres" id="3_vt3dn"]
 [ext_resource type="StyleBox" uid="uid://dcffcrd0ebmhd" path="res://StyleBoxes/menu_buttons_hover.tres" id="4_7545c"]
@@ -16,6 +17,17 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_t6mk7")
 
+[node name="bg_art" type="TextureRect" parent="."]
+modulate = Color(0.399389, 0.421688, 0.41994, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_bjpu4")
+
 [node name="Title" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 5
@@ -29,7 +41,7 @@ grow_horizontal = 2
 theme_override_colors/font_color = Color(0.94902, 0.827451, 0.670588, 1)
 theme_override_fonts/font = ExtResource("2_nc1jn")
 theme_override_font_sizes/font_size = 64
-text = "TEMPORARY TITLE"
+text = "ESCAPE FROM MELINA"
 horizontal_alignment = 1
 vertical_alignment = 1
 
