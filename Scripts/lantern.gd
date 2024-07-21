@@ -5,7 +5,7 @@ extends Node2D
 const light_timer_seconds : float = 5.0
 
 var is_mouse_hovering : bool = false
-@onready var anim_sprite : AnimatedSprite2D = $Static/LanternSprite
+@onready var anim_sprite : AnimatedSprite2D = $LanternSprite
 @onready var lantern_timer : Timer = $LanternTimer
 
 @export var managed_by_engine : bool = false

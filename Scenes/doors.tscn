@@ -79,9 +79,12 @@ size = Vector2(16, 32)
 radius = 36.0
 
 [node name="Doors" type="Node2D"]
+z_index = 1
 script = ExtResource("1_8prgw")
 
 [node name="Static" type="StaticBody2D" parent="."]
+collision_layer = 8
+collision_mask = 2
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Static"]
 sprite_frames = SubResource("SpriteFrames_05hki")
@@ -91,6 +94,7 @@ animation = &"open"
 shape = SubResource("RectangleShape2D_3kjj3")
 
 [node name="AreaToOpen" type="Area2D" parent="."]
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaToOpen"]
 shape = SubResource("CircleShape2D_7ux6j")

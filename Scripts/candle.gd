@@ -3,7 +3,7 @@ extends Node2D
 const fire_timer_seconds : float = 5.0
 
 var is_mouse_hovering : bool = false
-@onready var anim_sprite : AnimatedSprite2D = $Static/CandleSprite
+@onready var anim_sprite : AnimatedSprite2D = $CandleSprite
 @onready var fire_timer : Timer = $BurnTimer
 
 func _ready():

@@ -10,17 +10,26 @@ size = Vector2(28, 28)
 size = Vector2(28, 8)
 
 [node name="Cabin" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_2sh86")
 
 [node name="Static" type="StaticBody2D" parent="."]
+y_sort_enabled = true
+collision_layer = 8
+collision_mask = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="Static"]
+z_index = 1
+z_as_relative = false
+y_sort_enabled = true
 texture = ExtResource("1_m5sfm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Static"]
 shape = SubResource("RectangleShape2D_cn0jg")
 
 [node name="InteractArea" type="Area2D" parent="."]
+z_index = 1
+collision_mask = 2
 
 [node name="CandlePlaceArea" type="CollisionShape2D" parent="InteractArea"]
 position = Vector2(0, -10)
