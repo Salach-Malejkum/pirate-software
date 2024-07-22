@@ -22,7 +22,7 @@ func _ready():
 	# got values from debugging
 	max_y_pos = Vector2(36.0 * index_at_hand, -lerp_offset)
 	min_y_pos = Vector2(36.0 * index_at_hand, 0.0)
-	hint_type_label.text = Globals.card_types.keys()[self.card_type]
+	hint_type_label.text = Globals.card_types.keys()[self.card_type].replace("_", " ")
 	hint_type_label.visible = false
 
 

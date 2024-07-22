@@ -42,12 +42,14 @@ func _card_interaction():
 
 
 func _process(delta):
+	if light.energy <= 0.1:
+		anim_sprite.play("idle")
+
 	for enemy in enemy_arr:
 		if not is_instance_valid(enemy):
 			enemy_arr.erase(enemy)
 		else:
 			if light.energy <= 0.1:
-				anim_sprite.play("idle")
 				enemy.del_dmg_source(self)
 			else:
 				enemy.add_dmg_source(self)
