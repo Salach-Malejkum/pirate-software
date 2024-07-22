@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://cgovf6a645sg7"]
+[gd_scene load_steps=5 format=3 uid="uid://cgovf6a645sg7"]
 
+[ext_resource type="Script" path="res://Scripts/enemy_ai.gd" id="1_5if5t"]
 [ext_resource type="Texture2D" uid="uid://bdcr1t4idbrux" path="res://ArtAssets/Enemies/enemy_basic_no_anim.png" id="1_eabui"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_cle2h"]
@@ -21,6 +22,7 @@ radius = 5.06897
 scale = Vector2(1.2, 1.2)
 collision_layer = 4
 collision_mask = 0
+script = ExtResource("1_5if5t")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 2
