@@ -5,7 +5,8 @@ extends CharacterBody2D
 @export var SPEED = 100
 @onready var anim_sprite = $AnimatedSprite2D
 @onready var texture_rect = $CanvasLayer/TextureRect
-@onready var light = $AnimatedSprite2D/PointLight2D
+@onready var light = $PointLight2D
+@onready var light_shader = $LigthtShader
 
 var _current_damage_chunk : float = 0.0
 var enemy_arr = []
@@ -23,12 +24,12 @@ func move_anim():
 	if vertical_movement == 1:
 		anim_sprite.play("walking_sides")
 		anim_sprite.flip_h = false
-		light.position.x = light.position.x if light.position.x > 0  else -light.position.x
+		flip_light_right()
 		
 	elif vertical_movement == -1:
 		anim_sprite.play("walking_sides")
 		anim_sprite.flip_h = true
-		light.position.x = light.position.x if light.position.x < 0  else -light.position.x
+		flip_light_left()
 	
 	var horizontal_movement = Input.get_axis("move_up", "move_down")
 	if horizontal_movement == 0:
@@ -38,11 +39,22 @@ func move_anim():
 	else:
 		anim_sprite.play("walking_up")
 
+func flip_light_right():
+	light.position.x = light.position.x if light.position.x > 0  else -light.position.x 
+	light_shader.position.x = light_shader.position.x if light_shader.position.x > 0  else -light_shader.position.x 
+	
+
+func flip_light_left():
+	light.position.x = light.position.x if light.position.x < 0  else -light.position.x 
+	light_shader.position.x = light_shader.position.x if light_shader.position.x < 0  else -light_shader.position.x 
+	
+
 
 func _physics_process(delta):
 	move_player(delta)
 	move_anim()
 	move_and_slide()
+	light_shader.material.set_shader_parameter("u_resolution", get_viewport().size)
 	
 	# clear dead enemies before rest
 	for enemy in enemy_arr:
