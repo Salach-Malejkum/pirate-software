@@ -1,6 +1,7 @@
-[gd_scene load_steps=24 format=3 uid="uid://cb5w2t8c6ybt7"]
+[gd_scene load_steps=25 format=3 uid="uid://cb5w2t8c6ybt7"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_ip5or"]
+[ext_resource type="PackedScene" uid="uid://b3uuv03a8cak8" path="res://Scenes/tutorial_info.tscn" id="2_owgf5"]
 [ext_resource type="Texture2D" uid="uid://dv3lxwsnesowx" path="res://ArtAssets/Characters/player_animated.png" id="2_st8uh"]
 [ext_resource type="Texture2D" uid="uid://1vg2qw4odvfq" path="res://ArtAssets/lightmap.png" id="3_8ingo"]
 [ext_resource type="PackedScene" uid="uid://nbofjqjf8huq" path="res://Scenes/card_manager.tscn" id="3_kv13g"]
@@ -123,6 +124,9 @@ y_sort_enabled = true
 collision_layer = 2
 collision_mask = 9
 script = ExtResource("1_ip5or")
+
+[node name="TutorialInfo" parent="." instance=ExtResource("2_owgf5")]
+visible = false
 
 [node name="CardManager" parent="." instance=ExtResource("3_kv13g")]
 offset_left = -246.0

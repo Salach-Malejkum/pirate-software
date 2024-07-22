@@ -17,6 +17,9 @@ script = ExtResource("1_tla6u")
 
 [node name="WarningTimer" type="Timer" parent="."]
 
+[node name="NextCardPull" type="Timer" parent="."]
+one_shot = true
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="FullScreen" type="MarginContainer" parent="CanvasLayer"]
@@ -35,7 +38,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 
-[node name="Label" type="Label" parent="CanvasLayer/FullScreen"]
+[node name="InfoLabel" type="Label" parent="CanvasLayer/FullScreen"]
 visible = false
 texture_filter = 1
 layout_mode = 2
@@ -47,4 +50,32 @@ text = "YOU CAN'T HOLD MORE THAN 5 CARDS AT THE SAME TIME"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="PullDeckMarginBase" type="MarginContainer" parent="CanvasLayer/FullScreen"]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_top = 70
+
+[node name="RandomTxt" type="Label" parent="CanvasLayer/FullScreen/PullDeckMarginBase"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_r855d")
+theme_override_font_sizes/font_size = 32
+text = "CHOOSE CARD"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DeckMargin" type="MarginContainer" parent="CanvasLayer/FullScreen/PullDeckMarginBase"]
+layout_mode = 2
+theme_override_constants/margin_top = 80
+
+[node name="ChooseCard" type="HBoxContainer" parent="CanvasLayer/FullScreen/PullDeckMarginBase/DeckMargin"]
+custom_minimum_size = Vector2(300, 144)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
 [connection signal="timeout" from="WarningTimer" to="." method="_on_warning_timer_timeout"]
+[connection signal="timeout" from="NextCardPull" to="." method="_on_next_card_pull_timeout"]

@@ -3,13 +3,16 @@ class_name Player
 extends CharacterBody2D
 
 @export var SPEED = 100
+@export var is_tutorial = false
 @onready var anim_sprite = $AnimatedSprite2D
 @onready var texture_rect = $CanvasLayer/TextureRect
 @onready var light = $PointLight2D
 @onready var light_shader = $LigthtShader
+@onready var tutorial_node = $TutorialInfo
 
 var _current_damage_chunk : float = 0.0
 var enemy_arr = []
+
 
 func move_player(time):
 	var movement_direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")

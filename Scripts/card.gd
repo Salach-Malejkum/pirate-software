@@ -4,6 +4,7 @@ extends TextureRect
 
 @export var card_type : Globals.card_types
 @export var index_at_hand : int
+@export var is_random : bool = false
 
 const lerp_offset : float = 20.0
 const lerp_weight : float = 0.3
@@ -18,7 +19,8 @@ var is_mouse_hovering : bool = false
 
 func _ready():
 	texture = load(Globals.card_texture_paths[card_type])
-	
+	if self.is_random:
+		hint_type_label.add_theme_color_override("font_color", Color(0.0, 0.0, 0.0, 1.0))
 	# got values from debugging
 	max_y_pos = Vector2(112.0 * index_at_hand, -lerp_offset)
 	min_y_pos = Vector2(112.0 * index_at_hand, 0.0)
@@ -44,9 +46,9 @@ func set_card_type(new_type : Globals.card_types):
 
 
 func _process(delta):
-	if is_mouse_hovering:
+	if is_mouse_hovering and not is_random:
 		self.position = lerp(self.position, max_y_pos, lerp_weight)
-	elif not is_selected:
+	elif not is_selected and not is_random:
 		self.position = lerp(self.position, min_y_pos, lerp_weight)
 
 
@@ -66,6 +68,8 @@ func _on_gui_input(event):
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 			if is_selected:
 				deselect_self()
+			elif is_random:
+				GameManager.random_card_chosen.emit(self.card_type)
 			else:
 				GameManager.card_used.connect(_on_card_used)
 				GameManager.select_card(self)
