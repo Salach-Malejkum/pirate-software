@@ -17,7 +17,7 @@ var preloaded_card = preload("res://Scenes/card.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	for card_type in starting_deck:
+	for card_type in self.starting_deck:
 		add_card(card_type)
 	
 	GameManager.reshuffle_deck.connect(_reshuffle_deck)

@@ -189,12 +189,6 @@ grow_vertical = 2
 texture = SubResource("CanvasTexture_w3bxi")
 stretch_mode = 1
 
-[node name="CardManager" parent="." instance=ExtResource("3_kv13g")]
-offset_left = -246.0
-offset_top = -258.0
-offset_right = 266.0
-offset_bottom = 254.0
-
 [node name="DeathArea" type="Area2D" parent="."]
 collision_layer = 2
 collision_mask = 4
