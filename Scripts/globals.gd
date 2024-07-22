@@ -18,3 +18,5 @@ const card_merge_results = {
 }
 
 const max_cards_at_hand : int = 5
+const interactable_light_energy = 0.4
+const light_delta_modifier = 10.0

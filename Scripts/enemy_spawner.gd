@@ -2,7 +2,7 @@ extends Node2D
 
 
 @export var on_ready_timer : float = 4.0
-@export var spawn_timer : float = 15.0
+@export var spawn_timer : float = 6.0
 
 @onready var timer_node : Timer = $SpawnTimer
 
@@ -14,7 +14,6 @@ func _ready():
 
 
 func _on_spawn_timer_timeout():
-	print("spawn")
 	_spawn_enemy_details()
 	
 	timer_node.start(spawn_timer)
