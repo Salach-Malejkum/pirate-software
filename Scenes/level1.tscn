@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://b360hv35yusk0"]
+[gd_scene load_steps=15 format=3 uid="uid://b360hv35yusk0"]
 
 [ext_resource type="Script" path="res://Scripts/level1.gd" id="1_uvyuf"]
 [ext_resource type="PackedScene" uid="uid://cb5w2t8c6ybt7" path="res://Scenes/player.tscn" id="2_h6cud"]
@@ -10,6 +10,18 @@
 [ext_resource type="PackedScene" uid="uid://drivg1a0m73sw" path="res://Scenes/lantern.tscn" id="9_p7nmk"]
 [ext_resource type="PackedScene" uid="uid://dondxin01374w" path="res://Scenes/circle_transition.tscn" id="10_g8rls"]
 [ext_resource type="PackedScene" uid="uid://bmjpimvwupc8p" path="res://Scenes/steam_engine.tscn" id="10_m4d3g"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_0lapq"]
+polygon = PackedVector2Array(6, 16, 6, -16, 4, -16, 4, 16)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_fhlks"]
+polygon = PackedVector2Array(-6, -16, -5, -16, -5, 16, -6, 16)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_bmuer"]
+polygon = PackedVector2Array(-6, -16, -5, -16, -5, 16, -6, 16)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_d2ic1"]
+polygon = PackedVector2Array(-6, 16, -5, 16, -5, -16, -6, -16)
 
 [node name="Level1" type="Node2D"]
 y_sort_enabled = true
@@ -58,20 +70,32 @@ flip_h = true
 open_anim_name = "open_v"
 close_anim_name = "close_v"
 
+[node name="LightOccluder2D" type="LightOccluder2D" parent="MapElements/AllDoors/Doors2"]
+occluder = SubResource("OccluderPolygon2D_0lapq")
+
 [node name="Doors3" parent="MapElements/AllDoors" instance=ExtResource("5_cq4jq")]
 position = Vector2(405, 320)
 open_anim_name = "open_v"
 close_anim_name = "close_v"
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="MapElements/AllDoors/Doors3"]
+occluder = SubResource("OccluderPolygon2D_fhlks")
 
 [node name="Doors4" parent="MapElements/AllDoors" instance=ExtResource("5_cq4jq")]
 position = Vector2(405, 144)
 open_anim_name = "open_v"
 close_anim_name = "close_v"
 
+[node name="LightOccluder2D" type="LightOccluder2D" parent="MapElements/AllDoors/Doors4"]
+occluder = SubResource("OccluderPolygon2D_bmuer")
+
 [node name="Doors5" parent="MapElements/AllDoors" instance=ExtResource("5_cq4jq")]
 position = Vector2(405, 16)
 open_anim_name = "open_v"
 close_anim_name = "close_v"
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="MapElements/AllDoors/Doors5"]
+occluder = SubResource("OccluderPolygon2D_d2ic1")
 
 [node name="SteamEngine" parent="MapElements" instance=ExtResource("10_m4d3g")]
 position = Vector2(159, 28)
@@ -107,7 +131,7 @@ visible = false
 [node name="Walls" type="Node2D" parent="Light"]
 
 [node name="CanvasModulate" type="CanvasModulate" parent="Light"]
-color = Color(0.158472, 0.158472, 0.158472, 1)
+color = Color(0, 0, 0, 1)
 
 [connection signal="level_entered" from="." to="CircleTransition" method="_on_level_1_level_entered"]
 [connection signal="level_exit" from="MapElements/Stairs" to="CircleTransition" method="_on_stairs_level_exit"]

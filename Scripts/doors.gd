@@ -20,6 +20,7 @@ func manage_door():
 	print(is_closed)
 	if is_closed:
 		animated_sprite.play(open_anim_name)
+		manage_oclussion()
 		await animated_sprite.animation_finished
 		print("reach")
 		is_closed = false
@@ -29,7 +30,20 @@ func manage_door():
 		print(animated_sprite.animation)
 		door_collision.disabled = false
 		await animated_sprite.animation_finished
+		manage_oclussion()
 		is_closed = true
+
+func try_get_child(child_name: String) -> Node:
+	if has_node(child_name):
+		return get_node(child_name)
+	else:
+		return null
+		
+
+func manage_oclussion():
+	var oclussion = try_get_child("LightOccluder2D")
+	if oclussion != null:
+		oclussion.visible  = not oclussion.visible 
 
 
 func _on_area_to_open_body_entered(body):
