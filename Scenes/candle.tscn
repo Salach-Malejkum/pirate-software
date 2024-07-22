@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://f5gyxbg3cfuh"]
+[gd_scene load_steps=13 format=3 uid="uid://f5gyxbg3cfuh"]
 
 [ext_resource type="Script" path="res://Scripts/candle.gd" id="1_2s80e"]
 [ext_resource type="Texture2D" uid="uid://dt8ju8vspnib" path="res://ArtAssets/Environment/candle.png" id="1_a3eqh"]
+[ext_resource type="Texture2D" uid="uid://1vg2qw4odvfq" path="res://ArtAssets/lightmap.png" id="3_rxa5u"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3pm15"]
 
@@ -53,6 +54,11 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h76jh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_b5uej"]
+radius = 66.0076
+
 [node name="Candle" type="Node2D"]
 script = ExtResource("1_2s80e")
 
@@ -62,14 +68,30 @@ script = ExtResource("1_2s80e")
 position = Vector2(0, 1)
 shape = SubResource("CircleShape2D_3pm15")
 
-[node name="BurnTimer" type="Timer" parent="."]
-
 [node name="CandleSprite" type="AnimatedSprite2D" parent="."]
 z_index = 2
 sprite_frames = SubResource("SpriteFrames_2v1v6")
 animation = &"fire"
 
+[node name="PointLight2D" type="PointLight2D" parent="."]
+material = SubResource("ShaderMaterial_h76jh")
+energy = 0.0
+shadow_enabled = true
+shadow_item_cull_mask = 2
+texture = ExtResource("3_rxa5u")
+texture_scale = 4.0
+
+[node name="DamageArea" type="Area2D" parent="PointLight2D"]
+position = Vector2(-9, 3)
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PointLight2D/DamageArea"]
+position = Vector2(9, -3)
+shape = SubResource("CircleShape2D_b5uej")
+
 [connection signal="input_event" from="InteractArea" to="." method="_on_interact_area_input_event"]
 [connection signal="mouse_entered" from="InteractArea" to="." method="_on_interact_area_mouse_entered"]
 [connection signal="mouse_exited" from="InteractArea" to="." method="_on_interact_area_mouse_exited"]
-[connection signal="timeout" from="BurnTimer" to="." method="_on_fire_timer_timeout"]
+[connection signal="body_entered" from="PointLight2D/DamageArea" to="." method="_on_damage_area_body_entered"]
+[connection signal="body_exited" from="PointLight2D/DamageArea" to="." method="_on_damage_area_body_exited"]

@@ -20,20 +20,20 @@ func _ready():
 	texture = load(Globals.card_texture_paths[card_type])
 	
 	# got values from debugging
-	max_y_pos = Vector2(36.0 * index_at_hand, -lerp_offset)
-	min_y_pos = Vector2(36.0 * index_at_hand, 0.0)
-	hint_type_label.text = Globals.card_types.keys()[self.card_type]
+	max_y_pos = Vector2(112.0 * index_at_hand, -lerp_offset)
+	min_y_pos = Vector2(112.0 * index_at_hand, 0.0)
+	hint_type_label.text = Globals.card_types.keys()[self.card_type].replace("_", " ")
 	hint_type_label.visible = false
 
 
 func refresh_lerp_idx(new_idx : int):
 	self.index_at_hand = new_idx
-	self.max_y_pos = Vector2(36.0 * index_at_hand, -lerp_offset)
-	self.min_y_pos = Vector2(36.0 * index_at_hand, 0.0)
+	self.max_y_pos = Vector2(112.0 * index_at_hand, -lerp_offset)
+	self.min_y_pos = Vector2(112.0 * index_at_hand, 0.0)
 
 
 func _on_card_used():
-	GameManager.current_hand.remove_at(index_at_hand)
+	GameManager.current_hand.erase(self)
 	GameManager.reshuffle_deck.emit()
 	queue_free()
 

@@ -10,9 +10,9 @@ const starting_deck = [
 
 var preloaded_card = preload("res://Scenes/card.tscn")
 
-@onready var deck : HBoxContainer = $FullScreen/Deck
+@onready var deck : HBoxContainer = $CanvasLayer/FullScreen/Deck
 @onready var card_add_timer : Timer = $AddCardTimer
-@onready var max_deck_warning : Label = $FullScreen/Label
+@onready var max_deck_warning : Label = $CanvasLayer/FullScreen/Label
 @onready var warning_timer : Timer = $WarningTimer
 
 # Called when the node enters the scene tree for the first time.

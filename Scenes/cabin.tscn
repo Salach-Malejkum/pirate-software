@@ -10,7 +10,7 @@ size = Vector2(28, 28)
 size = Vector2(28, 8)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_docvi"]
-polygon = PackedVector2Array(-14, -14, 14, -14, 14, 14, 12, 14, 12, 6, -12, 6, -12, 14, -14, 14)
+polygon = PackedVector2Array(-14, -14, 14, -14, 14, -6, -14, -6)
 
 [node name="Cabin" type="Node2D"]
 y_sort_enabled = true
