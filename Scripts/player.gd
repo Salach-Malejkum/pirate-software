@@ -80,24 +80,6 @@ func _physics_process(delta):
 		if _current_damage_chunk >= 0.5:
 			_current_damage_chunk = 0.0
 			light.energy -= 0.05
-	
-	# test dodawania kart
-	# Z - swieczka
-	# X - elektrycznosc
-	# C - woda
-	# V - ogien
-	if Input.is_action_just_pressed("test_candle"):
-		var card_manager : CardManager = get_tree().get_first_node_in_group("CardManager")
-		card_manager.add_card(Globals.card_types.CANDLE)
-	elif Input.is_action_just_pressed("test_electricity"):
-		var card_manager : CardManager = get_tree().get_first_node_in_group("CardManager")
-		card_manager.add_card(Globals.card_types.ELECTRICITY)
-	elif Input.is_action_just_pressed("test_water"):
-		var card_manager : CardManager = get_tree().get_first_node_in_group("CardManager")
-		card_manager.add_card(Globals.card_types.WATER)
-	elif Input.is_action_just_pressed("test_fire"):
-		var card_manager : CardManager = get_tree().get_first_node_in_group("CardManager")
-		card_manager.add_card(Globals.card_types.FIRE)
 
 
 func _on_damage_area_body_entered(body):
