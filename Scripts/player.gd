@@ -13,6 +13,12 @@ var _current_damage_chunk : float = 0.0
 var enemy_arr = []
 
 
+func _ready():
+	if not is_tutorial:
+		GameManager.tutorial_select_blocked = false
+		GameManager.merged_blocked = false
+
+
 func move_player(time):
 	var movement_direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	velocity = movement_direction * SPEED

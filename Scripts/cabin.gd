@@ -35,7 +35,7 @@ func _on_interact_area_input_event(viewport, event, shape_idx):
 # nie mam pomyslu jak to zrobic ladniej wiec moze sie bedzie dalo poprawic
 func _card_interaction():
 	# nested ifs to ensure no exceptions
-	if not GameManager.merged_blocked and GameManager.merged_total_count < 2:
+	if is_tutorial and not GameManager.merged_blocked and GameManager.merged_total_count < 2:
 		return
 	if GameManager.selected_card != null and not is_tutorial:
 		if GameManager.selected_card.card_type == Globals.card_types.CANDLE:
