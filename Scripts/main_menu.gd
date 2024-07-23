@@ -1,6 +1,6 @@
 extends Control
 
-@export var level1 = preload("res://Scenes/test_level.tscn")
+@export var level1 = preload("res://Scenes/tutorial_zone.tscn")
 
 func _on_start_pressed():
 	get_tree().change_scene_to_packed(level1)

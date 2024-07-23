@@ -3,7 +3,6 @@ extends Node2D
 
 @export var scene_to_load = preload("res://Scenes/main_menu.tscn")
 var player_in_range = false
-@onready var animated_sprite = $Static/AnimatedSprite2D
 @onready var door_collision = $Static/CollisionShape2D
 signal level_exit
 

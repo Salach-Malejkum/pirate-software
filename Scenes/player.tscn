@@ -1,15 +1,13 @@
-[gd_scene load_steps=22 format=3 uid="uid://cb5w2t8c6ybt7"]
+[gd_scene load_steps=25 format=3 uid="uid://cb5w2t8c6ybt7"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_ip5or"]
+[ext_resource type="PackedScene" uid="uid://b3uuv03a8cak8" path="res://Scenes/tutorial_info.tscn" id="2_owgf5"]
 [ext_resource type="Texture2D" uid="uid://dv3lxwsnesowx" path="res://ArtAssets/Characters/player_animated.png" id="2_st8uh"]
 [ext_resource type="Texture2D" uid="uid://1vg2qw4odvfq" path="res://ArtAssets/lightmap.png" id="3_8ingo"]
 [ext_resource type="PackedScene" uid="uid://nbofjqjf8huq" path="res://Scenes/card_manager.tscn" id="3_kv13g"]
 [ext_resource type="Texture2D" uid="uid://cmo536iv1qbpm" path="res://icon.svg" id="4_alfa1"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xi7jf"]
-shader = ExtResource("3_e2iku")
-shader_parameter/u_resolution = null
-shader_parameter/radius = 0.8
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sgxte"]
 atlas = ExtResource("2_st8uh")
@@ -127,6 +125,15 @@ collision_layer = 2
 collision_mask = 9
 script = ExtResource("1_ip5or")
 
+[node name="TutorialInfo" parent="." instance=ExtResource("2_owgf5")]
+visible = false
+
+[node name="CardManager" parent="." instance=ExtResource("3_kv13g")]
+offset_left = -246.0
+offset_top = -258.0
+offset_right = 266.0
+offset_bottom = 254.0
+
 [node name="LigthtShader" type="Sprite2D" parent="."]
 visible = false
 z_index = 10
@@ -165,7 +172,6 @@ collision_mask = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/PointLight2D/DamageArea"]
 shape = SubResource("CircleShape2D_xot6b")
 
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, 7.75)
 shape = SubResource("RectangleShape2D_47bd2")
@@ -187,12 +193,6 @@ grow_vertical = 2
 texture = SubResource("CanvasTexture_w3bxi")
 stretch_mode = 1
 
-[node name="CardManager" parent="." instance=ExtResource("3_kv13g")]
-offset_left = -246.0
-offset_top = -258.0
-offset_right = 266.0
-offset_bottom = 254.0
-
 [node name="DeathArea" type="Area2D" parent="."]
 collision_layer = 2
 collision_mask = 4
@@ -203,4 +203,3 @@ shape = SubResource("CircleShape2D_pbeac")
 [connection signal="body_entered" from="AnimatedSprite2D/PointLight2D/DamageArea" to="." method="_on_damage_area_body_entered"]
 [connection signal="body_exited" from="AnimatedSprite2D/PointLight2D/DamageArea" to="." method="_on_damage_area_body_exited"]
 [connection signal="body_entered" from="DeathArea" to="." method="_on_death_area_body_entered"]
-

@@ -7,13 +7,21 @@ const light_timer_seconds : float = 5.0
 var is_mouse_hovering : bool = false
 @onready var anim_sprite : AnimatedSprite2D = $LanternSprite
 @onready var lantern_timer : Timer = $LanternTimer
-
+@export var is_tutorial : bool = false
 @export var managed_by_engine : bool = false
 @onready var light = $PointLight2D
 var enemy_arr = []
+var _is_tutorial_progressed : bool = false
 
 func _ready():
+	GameManager.tutorial_lantern.connect(_on_tutorial_allow_interaction)
 	anim_sprite.play("idle")
+
+
+func _on_tutorial_allow_interaction():
+	print("test")
+	self.is_tutorial = false
+
 
 func _on_interact_area_mouse_entered():
 	is_mouse_hovering = true
@@ -33,11 +41,17 @@ func _on_interact_area_input_event(viewport, event, shape_idx):
 # nie mam pomyslu jak to zrobic ladniej wiec moze sie bedzie dalo poprawic
 func _card_interaction():
 	# nested ifs to ensure no exceptions
-	if GameManager.selected_card != null:
+	if not GameManager.merged_blocked and GameManager.merged_total_count < 2:
+		return
+	if GameManager.selected_card != null and not is_tutorial:
 		if GameManager.selected_card.card_type == Globals.card_types.ELECTRICITY:
 			GameManager.card_used.emit()
 			lantern_timer.start(light_timer_seconds)
 			turn_on_lantern()
+		
+		if not _is_tutorial_progressed:
+				_is_tutorial_progressed = true
+				GameManager.tutorial_progress.emit()
 
 
 func turn_on_lantern():

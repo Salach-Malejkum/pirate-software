@@ -20,6 +20,9 @@ func _physics_process(delta):
 	_current_hp -= delta * 30 * _damage_sources.size()
 	
 	if _current_hp <= 0.0:
+		GameManager.total_kills += 1
+		if GameManager.total_kills == 2:
+			GameManager.tutorial_progress.emit()
 		queue_free()
 
 

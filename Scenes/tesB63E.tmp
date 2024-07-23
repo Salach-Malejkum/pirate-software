@@ -1,15 +1,16 @@
-[gd_scene load_steps=9 format=3 uid="uid://br2rm3y4wyli7"]
+[gd_scene load_steps=10 format=3 uid="uid://br2rm3y4wyli7"]
 
 [ext_resource type="PackedScene" uid="uid://br31pgwnuthh" path="res://Scenes/tile_map.tscn" id="1_nrvku"]
 [ext_resource type="PackedScene" uid="uid://1xiakxfc81rn" path="res://Scenes/doors.tscn" id="2_kydn8"]
 [ext_resource type="PackedScene" uid="uid://cb5w2t8c6ybt7" path="res://Scenes/player.tscn" id="3_qwiv5"]
+[ext_resource type="PackedScene" uid="uid://b360hv35yusk0" path="res://Scenes/level1.tscn" id="3_v5hbx"]
 [ext_resource type="PackedScene" uid="uid://c5iwiblniciof" path="res://Scenes/furnace.tscn" id="4_vpxnq"]
 [ext_resource type="PackedScene" uid="uid://drivg1a0m73sw" path="res://Scenes/lantern.tscn" id="5_oswdi"]
 [ext_resource type="PackedScene" uid="uid://bmjpimvwupc8p" path="res://Scenes/steam_engine.tscn" id="6_qvr1e"]
 [ext_resource type="PackedScene" uid="uid://bk7smumc7rwo7" path="res://Scenes/cabin.tscn" id="7_7tc2t"]
 [ext_resource type="PackedScene" uid="uid://c4c0yn3axluwb" path="res://Scenes/enemy_spawner.tscn" id="8_6k42o"]
 
-[node name="Node2D" type="Node2D"]
+[node name="TutorialZone" type="Node2D"]
 y_sort_enabled = true
 
 [node name="TileMap" parent="." instance=ExtResource("1_nrvku")]
@@ -19,22 +20,30 @@ layer_1/tile_data = PackedInt32Array(-196608, 0, 3, -131072, 0, 4, -65536, 0, 5,
 
 [node name="Doors" parent="." instance=ExtResource("2_kydn8")]
 position = Vector2(184, -16)
+is_exit = true
+exit_scene = ExtResource("3_v5hbx")
 
 [node name="Player" parent="." instance=ExtResource("3_qwiv5")]
 position = Vector2(49, 20)
+is_tutorial = true
 
 [node name="Furnace" parent="." instance=ExtResource("4_vpxnq")]
 position = Vector2(78, -18)
+is_tutorial = true
 
 [node name="SteamEngine" parent="." instance=ExtResource("6_qvr1e")]
 position = Vector2(177, 54)
+is_tutorial = true
 
 [node name="Lantern" parent="SteamEngine" instance=ExtResource("5_oswdi")]
 position = Vector2(-34, -81)
+is_tutorial = true
 
 [node name="Cabin" parent="." instance=ExtResource("7_7tc2t")]
 y_sort_enabled = false
 position = Vector2(108, -4)
+is_tutorial = true
 
 [node name="EnemySpawner" parent="." instance=ExtResource("8_6k42o")]
 position = Vector2(225, 64)
+is_tutorial = true

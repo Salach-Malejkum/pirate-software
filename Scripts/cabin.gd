@@ -5,6 +5,17 @@ extends Node2D
 var is_mouse_hovering : bool = false
 
 var packed_candle = preload("res://Scenes/candle.tscn")
+@export var is_tutorial : bool = false
+var _is_tutorial_progressed : bool = false
+
+
+func _ready():
+	GameManager.tutorial_cabin.connect(_on_tutorial_allow_interaction)
+
+
+func _on_tutorial_allow_interaction():
+	self.is_tutorial = false
+
 
 func _on_interact_area_mouse_entered():
 	is_mouse_hovering = true
@@ -24,11 +35,17 @@ func _on_interact_area_input_event(viewport, event, shape_idx):
 # nie mam pomyslu jak to zrobic ladniej wiec moze sie bedzie dalo poprawic
 func _card_interaction():
 	# nested ifs to ensure no exceptions
-	if GameManager.selected_card != null:
+	if not GameManager.merged_blocked and GameManager.merged_total_count < 2:
+		return
+	if GameManager.selected_card != null and not is_tutorial:
 		if GameManager.selected_card.card_type == Globals.card_types.CANDLE:
 			_spawn_candle_on_mouse(false)
 		elif GameManager.selected_card.card_type == Globals.card_types.CANDLE_LIT:
 			_spawn_candle_on_mouse(true)
+		
+		if not _is_tutorial_progressed:
+			_is_tutorial_progressed = true
+			GameManager.tutorial_progress.emit()
 
 
 func _spawn_candle_on_mouse(is_lit : bool):

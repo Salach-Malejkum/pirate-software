@@ -252,6 +252,7 @@ physics_layer_0/collision_mask = 6
 sources/0 = SubResource("TileSetAtlasSource_pmwxw")
 
 [node name="TileMap" type="TileMap"]
+light_mask = 3
 z_as_relative = false
 y_sort_enabled = true
 tile_set = SubResource("TileSet_ene35")

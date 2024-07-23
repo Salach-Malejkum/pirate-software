@@ -5,10 +5,13 @@ extends Node2D
 @export var flip_h = false
 @export var open_anim_name = "open"
 @export var close_anim_name = "close"
+@export var is_exit : bool = false
+@export var exit_scene : PackedScene
 
 var player_in_range = false
 @onready var animated_sprite = $Static/AnimatedSprite2D
 @onready var door_collision = $Static/CollisionShape2D
+
 
 func _process(delta):
 	animated_sprite.animation = open_anim_name
@@ -17,17 +20,16 @@ func _process(delta):
 		await manage_door()
 
 func manage_door():
-	print(is_closed)
 	if is_closed:
 		animated_sprite.play(open_anim_name)
 		manage_oclussion()
 		await animated_sprite.animation_finished
-		print("reach")
+		if is_exit:
+			get_tree().change_scene_to_packed(exit_scene)
 		is_closed = false
 		door_collision.disabled = true
 	else:
 		animated_sprite.play_backwards(open_anim_name)
-		print(animated_sprite.animation)
 		door_collision.disabled = false
 		await animated_sprite.animation_finished
 		manage_oclussion()

@@ -3,6 +3,7 @@ extends Node2D
 
 @export var on_ready_timer : float = 4.0
 @export var spawn_timer : float = 6.0
+@export var is_tutorial : bool = false
 
 @onready var timer_node : Timer = $SpawnTimer
 
@@ -10,7 +11,14 @@ var packaged_enemy = preload("res://Scenes/enemy.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	timer_node.start(on_ready_timer)
+	GameManager.tutorial_spawner.connect(_on_tutorial_spawn)
+	if not is_tutorial:
+		timer_node.start(on_ready_timer)
+
+
+func _on_tutorial_spawn():
+	print("reach")
+	timer_node.start(1.0)
 
 
 func _on_spawn_timer_timeout():

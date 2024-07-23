@@ -18,5 +18,8 @@ const card_merge_results = {
 }
 
 const max_cards_at_hand : int = 5
-const interactable_light_energy = 0.4
+const interactable_light_energy = 1.0
 const light_delta_modifier = 10.0
+const random_card_pull_time = 15.0
+
+const tutorial_text_timer = 7.0
