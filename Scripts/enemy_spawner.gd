@@ -28,6 +28,7 @@ func _on_spawn_timer_timeout():
 
 func _spawn_enemy_details():
 	var enemy_instance = packaged_enemy.instantiate()
-	
 	add_child(enemy_instance)
+	
+	enemy_instance.connect("enemy_dead", Callable(GameManager, "increament_score"))
 	pass

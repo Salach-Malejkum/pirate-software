@@ -122,3 +122,8 @@ func _merge_cards(merge_key : String):
 	merged_total_count += 1
 	if merged_total_count == 2:
 		tutorial_progress.emit()
+
+
+func increament_score():
+	total_kills += 1
+	print(total_kills)
