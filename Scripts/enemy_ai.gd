@@ -1,12 +1,18 @@
 class_name Enemy
 
 extends CharacterBody2D
+signal enemy_dead
 
 var player_node : Player
 const SPEED : int = 20
 
 var _damage_sources = []
 var _current_hp : float = 30.0
+
+
+func _ready():
+	AudioPlayer.play_timed_sfx("enemy_sound", enemy_dead)
+
 
 func _physics_process(delta):
 	if player_node == null:
@@ -24,6 +30,7 @@ func _physics_process(delta):
 		if GameManager.total_kills == 2:
 			GameManager.tutorial_progress.emit()
 		queue_free()
+		emit_signal("enemy_dead")
 
 
 func add_dmg_source(src):

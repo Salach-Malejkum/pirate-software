@@ -55,10 +55,16 @@ func flip_light_left():
 	light.position.x = light.position.x if light.position.x < 0  else -light.position.x 
 
 
+func move_sfx():
+	if not velocity.is_zero_approx():
+		AudioPlayer.random_movement_sfx()
+
+
 func _physics_process(delta):
 	move_player(delta)
 	move_anim()
 	move_and_slide()
+	move_sfx()
 	#light_shader.material.set_shader_parameter("u_resolution", get_viewport().size)
 	
 	# clear dead enemies before rest
