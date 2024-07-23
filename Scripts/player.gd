@@ -7,7 +7,6 @@ extends CharacterBody2D
 @onready var anim_sprite = $AnimatedSprite2D
 @onready var texture_rect = $CanvasLayer/TextureRect
 @onready var light = $PointLight2D
-@onready var light_shader = $LigthtShader
 @onready var tutorial_node = $TutorialInfo
 
 var _current_damage_chunk : float = 0.0
@@ -44,20 +43,17 @@ func move_anim():
 
 func flip_light_right():
 	light.position.x = light.position.x if light.position.x > 0  else -light.position.x 
-	light_shader.position.x = light_shader.position.x if light_shader.position.x > 0  else -light_shader.position.x 
-	
+
 
 func flip_light_left():
 	light.position.x = light.position.x if light.position.x < 0  else -light.position.x 
-	light_shader.position.x = light_shader.position.x if light_shader.position.x < 0  else -light_shader.position.x 
-	
 
 
 func _physics_process(delta):
 	move_player(delta)
 	move_anim()
 	move_and_slide()
-	light_shader.material.set_shader_parameter("u_resolution", get_viewport().size)
+	#light_shader.material.set_shader_parameter("u_resolution", get_viewport().size)
 	
 	# clear dead enemies before rest
 	for enemy in enemy_arr:

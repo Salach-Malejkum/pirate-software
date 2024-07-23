@@ -23,6 +23,7 @@ func manage_door():
 	if is_closed:
 		animated_sprite.play(open_anim_name)
 		manage_oclussion()
+		AudioPlayer.play_sfx("door_open")
 		await animated_sprite.animation_finished
 		if is_exit:
 			get_tree().change_scene_to_packed(exit_scene)
@@ -31,6 +32,7 @@ func manage_door():
 	else:
 		animated_sprite.play_backwards(open_anim_name)
 		door_collision.disabled = false
+		AudioPlayer.play_sfx("door_close")
 		await animated_sprite.animation_finished
 		manage_oclussion()
 		is_closed = true

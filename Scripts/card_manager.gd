@@ -58,6 +58,7 @@ func _reshuffle_deck():
 
 
 func _merge_card(merged_card_type : Globals.card_types):
+	AudioPlayer.play_sfx("card_merge")
 	add_card(merged_card_type)
 
 

@@ -52,6 +52,7 @@ func _spawn_candle_on_mouse(is_lit : bool):
 	var mouse_position = get_local_mouse_position()
 	var candle_instantiate = packed_candle.instantiate()
 	candle_instantiate.position = Vector2(mouse_position.x, mouse_position.y - 8.0)
+	AudioPlayer.play_sfx("put_candle")
 	if is_lit:
 		candle_instantiate.call_deferred("light_candle")
 	add_child(candle_instantiate)

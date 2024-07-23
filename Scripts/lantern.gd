@@ -62,6 +62,7 @@ func turn_on_lantern():
 			enemy.add_dmg_source(self)
 	light.energy = Globals.interactable_light_energy
 	anim_sprite.play("lit")
+	AudioPlayer.play_sfx("lit_lamp")
 
 
 func turn_off_lantern():
