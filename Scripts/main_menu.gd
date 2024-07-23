@@ -10,6 +10,7 @@ func _ready():
 
 func _on_start_pressed():
 	emit_signal("menu_ended")
+	AudioPlayer.play_sfx("level_bg")
 	get_tree().change_scene_to_packed(level1)
 
 

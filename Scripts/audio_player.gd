@@ -8,13 +8,15 @@ var sfx = {
 	"lit_lamp": preload("res://Audio/lantern_on_electricity_card.mp3"),
 	"water_card": preload("res://Audio/water_card_use.mp3"),
 	"lit_candle": preload("res://Audio/candle_light.mp3"),
+	"level_bg": preload("res://Audio/level_bg.mp3")
 }
 
 var timed_sfx = {
 	"steam_engine": preload("res://Audio/steam_engine_running.mp3"),
 	"furnance_fire": preload("res://Audio/furnace_fire.mp3"),
 	"enemy_sound": preload("res://Audio/enemy_sound.mp3"),
-	"menu_music": preload("res://Audio/menu.mp3")
+	"menu_music": preload("res://Audio/menu.mp3"),
+	#"level_bg": preload("res://Audio/level_bg.mp3")
 }
 
 var movement_sfx = [
