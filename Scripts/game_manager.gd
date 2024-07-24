@@ -10,6 +10,7 @@ var tutorial_select_progress : bool = false
 @export var merged_total_count = 0
 @export var total_new_cards = 0
 @export var total_kills = 0
+@export var cards_used = 0
 @export var current_hand : Array[Card] = []
 
 # card used jak jest rownoczesnie callowany to lapie tez obecnie usuwana karte
@@ -59,6 +60,7 @@ signal tutorial_progress
 func _ready():
 	tutorial_merge.connect(_tutorial_unblock_merge)
 	tutorial_select.connect(_tutorial_select_card)
+	card_used.connect(_add_card_use_point)
 
 
 func _tutorial_unblock_merge():
@@ -67,6 +69,10 @@ func _tutorial_unblock_merge():
 
 func _tutorial_select_card():
 	tutorial_select_blocked = false
+
+
+func _add_card_use_point():
+	cards_used += 1
 
 
 func set_menu_size():

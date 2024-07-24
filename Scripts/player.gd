@@ -4,6 +4,7 @@ extends CharacterBody2D
 
 @export var SPEED = 100
 @export var is_tutorial = false
+@export var player_min_hp = 0.1
 @onready var anim_sprite = $AnimatedSprite2D
 @onready var texture_rect = $CanvasLayer/TextureRect
 @onready var light = $PointLight2D
@@ -12,6 +13,7 @@ extends CharacterBody2D
 var _current_damage_chunk : float = 0.0
 var enemy_arr = []
 
+var _death_scene = preload("res://Scenes/end_score.tscn")
 
 func _ready():
 	if not is_tutorial:
@@ -72,10 +74,10 @@ func _physics_process(delta):
 		if not is_instance_valid(enemy):
 			enemy_arr.erase(enemy)
 		else:
-			if light.energy <= 0.0:
+			if light.energy <= player_min_hp:
 				enemy.del_dmg_source(self)
 	
-	if enemy_arr.size() > 0 and light.energy > 0.0:
+	if enemy_arr.size() > 0 and light.energy > player_min_hp:
 		_current_damage_chunk += delta
 		if _current_damage_chunk >= 0.5:
 			_current_damage_chunk = 0.0
@@ -83,19 +85,18 @@ func _physics_process(delta):
 
 
 func _on_damage_area_body_entered(body):
-	if body is Enemy and self.light.energy > 0.0:
+	if body is Enemy and self.light.energy > player_min_hp:
 		enemy_arr.append(body)
-		if light.energy > 0.0:
+		if light.energy > player_min_hp:
 			body.add_dmg_source(self)
 
 
 func _on_damage_area_body_exited(body):
-	if body is Enemy and self.light.energy > 0.0:
+	if body is Enemy and self.light.energy > player_min_hp:
 		enemy_arr.erase(body)
 		body.del_dmg_source(self)
 
 
 func _on_death_area_body_entered(body):
-	if body is Enemy and self.light.energy <= 0.0:
-		# todo: lose condition
-		print("dead")
+	if body is Enemy and self.light.energy <= player_min_hp:
+		get_tree().change_scene_to_packed(_death_scene)

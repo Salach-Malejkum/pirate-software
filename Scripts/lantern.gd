@@ -19,7 +19,6 @@ func _ready():
 
 
 func _on_tutorial_allow_interaction():
-	print("test")
 	self.is_tutorial = false
 
 

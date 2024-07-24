@@ -33,6 +33,10 @@ func _physics_process(delta):
 		emit_signal("enemy_dead")
 
 
+func set_max_hp(max_hp):
+	_current_hp = max_hp
+
+
 func add_dmg_source(src):
 	if src not in self._damage_sources:
 		self._damage_sources.append(src)

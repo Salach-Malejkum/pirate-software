@@ -41,7 +41,7 @@ grow_horizontal = 2
 theme_override_colors/font_color = Color(0.94902, 0.827451, 0.670588, 1)
 theme_override_fonts/font = ExtResource("2_nc1jn")
 theme_override_font_sizes/font_size = 64
-text = "ESCAPE FROM MELINA"
+text = "THE BLESSED ONES"
 horizontal_alignment = 1
 vertical_alignment = 1
 
