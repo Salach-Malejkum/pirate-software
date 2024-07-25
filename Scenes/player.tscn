@@ -130,12 +130,6 @@ offset_top = -258.0
 offset_right = 266.0
 offset_bottom = 254.0
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
-position = Vector2(9, -3)
-shadow_enabled = true
-texture = ExtResource("3_8ingo")
-texture_scale = 4.0
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = 1
 z_as_relative = false
@@ -147,8 +141,7 @@ frame_progress = 0.345823
 
 [node name="PointLight2D" type="PointLight2D" parent="AnimatedSprite2D"]
 material = SubResource("ShaderMaterial_chilp")
-position = Vector2(9, -3)
-energy = 0.5
+position = Vector2(4, -3)
 shadow_enabled = true
 texture = ExtResource("3_8ingo")
 texture_scale = 4.0

@@ -7,7 +7,7 @@ extends CharacterBody2D
 @export var player_min_hp = 0.1
 @onready var anim_sprite = $AnimatedSprite2D
 @onready var texture_rect = $CanvasLayer/TextureRect
-@onready var light = $PointLight2D
+@onready var light = $AnimatedSprite2D/PointLight2D
 @onready var tutorial_node = $TutorialInfo
 
 var _current_damage_chunk : float = 0.0
