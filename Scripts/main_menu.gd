@@ -3,6 +3,8 @@ extends Control
 @export var level1 = preload("res://Scenes/tutorial_zone.tscn")
 signal menu_ended
 
+@onready var main_tab = $MainTab
+@onready var option_tab = $Options
 
 func _ready():
 	AudioPlayer.play_timed_sfx("menu_music", menu_ended)
@@ -19,3 +21,13 @@ func _on_quit_pressed():
 		pass
 	else:
 		get_tree().quit()
+
+
+func _on_back_pressed():
+	option_tab.visible  = false
+	main_tab.visible  = true
+
+
+func _on_options_pressed():
+	main_tab.visible  = false
+	option_tab.visible  = true

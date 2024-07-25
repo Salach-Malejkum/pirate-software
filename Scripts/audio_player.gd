@@ -26,6 +26,11 @@ var movement_sfx = [
 	preload("res://Audio/player_move_5.mp3")
 ]
 
+var music_sfx_names = [
+	"menu_music",
+	"level_bg"
+]
+
 var is_movement_running = false
 
 func play_sfx(sfx_name: String):
@@ -33,6 +38,7 @@ func play_sfx(sfx_name: String):
 		var asp = AudioStreamPlayer.new()
 		asp.stream = sfx[sfx_name]
 		asp.name = "SFX"
+		asp = add_to_bus(asp, sfx_name)
 		
 		add_child(asp)
 		asp.play()
@@ -46,6 +52,7 @@ func play_timed_sfx(sfx_name: String, signal_name):
 		var asp = AudioStreamPlayer.new()
 		asp.stream = timed_sfx[sfx_name]
 		asp.name = "Timed_SFX"
+		asp = add_to_bus(asp, sfx_name)
 		
 		add_child(asp)
 		asp.play()
@@ -61,6 +68,7 @@ func random_movement_sfx():
 	var asp = AudioStreamPlayer.new()
 	asp.stream = movement_sfx[randi() % movement_sfx.size()]
 	asp.name = "Movement_SFX"
+	asp = add_to_bus(asp)
 	
 	add_child(asp)
 	asp.play()
@@ -75,3 +83,12 @@ func player_dead():
 			await child.finished
 		remove_child(child)
 		child.queue_free()
+
+
+func add_to_bus(asp, sfx_name="default"):
+	if sfx_name in music_sfx_names:
+		asp.bus = "Music"
+	else:
+		asp.bus = "SFX"
+	
+	return asp
