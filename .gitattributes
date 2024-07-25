@@ -1,0 +1,4 @@
+# Normalize EOL for all files that Git considers text files.
+*.tscn text eof=lf
+* text=auto eol=lf
+
