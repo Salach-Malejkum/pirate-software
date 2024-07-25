@@ -8,7 +8,6 @@ var sfx = {
 	"lit_lamp": preload("res://Audio/lantern_on_electricity_card.mp3"),
 	"water_card": preload("res://Audio/water_card_use.mp3"),
 	"lit_candle": preload("res://Audio/candle_light.mp3"),
-	"level_bg": preload("res://Audio/level_bg.mp3")
 }
 
 var timed_sfx = {
@@ -16,7 +15,7 @@ var timed_sfx = {
 	"furnance_fire": preload("res://Audio/furnace_fire.mp3"),
 	"enemy_sound": preload("res://Audio/enemy_sound.mp3"),
 	"menu_music": preload("res://Audio/menu.mp3"),
-	#"level_bg": preload("res://Audio/level_bg.mp3")
+	"level_bg": preload("res://Audio/level_bg.mp3")
 }
 
 var movement_sfx = [
@@ -69,3 +68,10 @@ func random_movement_sfx():
 	await asp.finished
 	asp.queue_free()
 	is_movement_running = false
+
+func player_dead():
+	for child in get_children():
+		if child.name == "Movement_SFX" || child.name == "SFX":
+			await child.finished
+		remove_child(child)
+		child.queue_free()
