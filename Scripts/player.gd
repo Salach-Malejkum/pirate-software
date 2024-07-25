@@ -8,7 +8,7 @@ signal player_dead
 @export var player_min_hp = 0.1
 @onready var anim_sprite = $AnimatedSprite2D
 @onready var texture_rect = $CanvasLayer/TextureRect
-@onready var light = $PointLight2D
+@onready var light = $AnimatedSprite2D/PointLight2D
 @onready var tutorial_node = $TutorialInfo
 
 var _current_damage_chunk : float = 0.0
@@ -18,6 +18,7 @@ var _death_scene = preload("res://Scenes/end_score.tscn")
 
 func _ready():
 	player_dead.connect(Callable(AudioPlayer, "player_dead"))
+	GameManager.card_used.connect(_add_hp_on_card_use)
 	if not is_tutorial:
 		GameManager.tutorial_select_blocked = false
 		GameManager.merged_blocked = false
@@ -26,6 +27,10 @@ func _ready():
 func move_player(time):
 	var movement_direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	velocity = movement_direction * SPEED
+
+
+func _add_hp_on_card_use():
+	light.energy = clamp(light.energy + 0.15, player_min_hp, 1.0)
 
 
 func move_anim():
