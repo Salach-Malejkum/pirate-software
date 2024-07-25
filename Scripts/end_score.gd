@@ -23,9 +23,9 @@ var _total_score = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	_merged_score = GameManager.merged_total_count * 100
-	_random_card_score = GameManager.merged_total_count * 50
-	_kills_score = GameManager.merged_total_count * 200
-	_card_used_score = GameManager.merged_total_count * 50
+	_random_card_score = GameManager.total_new_cards * 50
+	_kills_score = GameManager.total_kills * 200
+	_card_used_score = GameManager.cards_used * 50
 	_total_score = _merged_score + _random_card_score + _kills_score + _card_used_score
 	
 	merge_score_node.text = _merged_score_txt % _merged_score
