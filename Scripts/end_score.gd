@@ -36,4 +36,8 @@ func _ready():
 
 
 func _on_restart_pressed():
+	GameManager.merged_total_count = 0
+	GameManager.total_new_cards = 0
+	GameManager.total_kills = 0
+	GameManager.cards_used = 0
 	get_tree().change_scene_to_packed(restart_scene)

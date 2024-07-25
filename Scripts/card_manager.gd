@@ -23,6 +23,7 @@ var preloaded_card = preload("res://Scenes/card.tscn")
 @onready var card_add_timer : Timer = $NextCardPull
 @onready var max_deck_warning : Label = $CanvasLayer/FullScreen/InfoLabel
 @onready var warning_timer : Timer = $WarningTimer
+@onready var score_label : Label = $CanvasLayer/FullScreen/MarginContainer/ScoreLabel
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -33,7 +34,14 @@ func _ready():
 	GameManager.tutorial_random_card.connect(_start_random_card)
 	GameManager.tutorial_merge.connect(_merge_deck_swap)
 	if not get_parent().is_tutorial:
+		score_label.visible = true
 		card_add_timer.start(Globals.random_card_pull_time)
+
+var total_score
+
+func _process(delta):
+	total_score = GameManager.merged_total_count * 100 + GameManager.total_new_cards * 50 + GameManager.total_kills * 200 + GameManager.cards_used * 50
+	score_label.text = "Total score: %d" % total_score
 
 
 func swap_deck(new_deck : Array):

@@ -40,6 +40,7 @@ position = Vector2(25, 10)
 y_sort_enabled = true
 
 [node name="Stairs" parent="MapElements" instance=ExtResource("6_g8727")]
+visible = false
 y_sort_enabled = true
 position = Vector2(672, 6)
 scale = Vector2(0.25, 0.4)
