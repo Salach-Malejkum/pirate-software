@@ -58,6 +58,7 @@ func _reshuffle_deck():
 
 
 func _merge_card(merged_card_type : Globals.card_types):
+	AudioPlayer.play_sfx("card_merge")
 	add_card(merged_card_type)
 
 
@@ -66,6 +67,7 @@ func _add_chosen_card(chosen_card : Globals.card_types):
 	for child in randomized_deck.get_children():
 		child.queue_free()
 	add_card(chosen_card)
+	card_add_timer.start(Globals.random_card_pull_time)
 	GameManager.total_new_cards += 1
 	if GameManager.total_new_cards == 1:
 		GameManager.tutorial_progress.emit()
@@ -107,5 +109,5 @@ func _on_next_card_pull_timeout():
 		_randomize_card_selection()
 	else:
 		max_deck_warning.visible = true
+		card_add_timer.start(Globals.random_card_pull_time)
 		warning_timer.start(2.0)
-	card_add_timer.start(Globals.random_card_pull_time)

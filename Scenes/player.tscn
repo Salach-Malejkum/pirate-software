@@ -1,13 +1,10 @@
-[gd_scene load_steps=25 format=3 uid="uid://cb5w2t8c6ybt7"]
+[gd_scene load_steps=23 format=3 uid="uid://cb5w2t8c6ybt7"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_ip5or"]
 [ext_resource type="PackedScene" uid="uid://b3uuv03a8cak8" path="res://Scenes/tutorial_info.tscn" id="2_owgf5"]
 [ext_resource type="Texture2D" uid="uid://dv3lxwsnesowx" path="res://ArtAssets/Characters/player_animated.png" id="2_st8uh"]
 [ext_resource type="Texture2D" uid="uid://1vg2qw4odvfq" path="res://ArtAssets/lightmap.png" id="3_8ingo"]
 [ext_resource type="PackedScene" uid="uid://nbofjqjf8huq" path="res://Scenes/card_manager.tscn" id="3_kv13g"]
-[ext_resource type="Texture2D" uid="uid://cmo536iv1qbpm" path="res://icon.svg" id="4_alfa1"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_xi7jf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sgxte"]
 atlas = ExtResource("2_st8uh")
@@ -113,7 +110,6 @@ radius = 66.0076
 size = Vector2(14, 10.5)
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_w3bxi"]
-specular_color = Color(0.152941, 0.152941, 0.266667, 1)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pbeac"]
 radius = 19.0263
@@ -133,14 +129,6 @@ offset_left = -246.0
 offset_top = -258.0
 offset_right = 266.0
 offset_bottom = 254.0
-
-[node name="LigthtShader" type="Sprite2D" parent="."]
-visible = false
-z_index = 10
-material = SubResource("ShaderMaterial_xi7jf")
-position = Vector2(9, -3)
-scale = Vector2(2.78125, 1.54688)
-texture = ExtResource("4_alfa1")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(9, -3)
@@ -183,7 +171,7 @@ zoom = Vector2(4, 4)
 layer = -100
 
 [node name="TextureRect" type="TextureRect" parent="ColorBG"]
-modulate = Color(0.152941, 0.152941, 0.266667, 1)
+modulate = Color(0, 0, 0, 1)
 z_index = -100
 anchors_preset = 15
 anchor_right = 1.0

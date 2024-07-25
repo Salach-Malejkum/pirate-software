@@ -4,14 +4,21 @@ extends CharacterBody2D
 
 @export var SPEED = 100
 @export var is_tutorial = false
+@export var player_min_hp = 0.1
 @onready var anim_sprite = $AnimatedSprite2D
 @onready var texture_rect = $CanvasLayer/TextureRect
 @onready var light = $PointLight2D
-@onready var light_shader = $LigthtShader
 @onready var tutorial_node = $TutorialInfo
 
 var _current_damage_chunk : float = 0.0
 var enemy_arr = []
+
+var _death_scene = preload("res://Scenes/end_score.tscn")
+
+func _ready():
+	if not is_tutorial:
+		GameManager.tutorial_select_blocked = false
+		GameManager.merged_blocked = false
 
 
 func move_player(time):
@@ -44,68 +51,52 @@ func move_anim():
 
 func flip_light_right():
 	light.position.x = light.position.x if light.position.x > 0  else -light.position.x 
-	light_shader.position.x = light_shader.position.x if light_shader.position.x > 0  else -light_shader.position.x 
-	
+
 
 func flip_light_left():
 	light.position.x = light.position.x if light.position.x < 0  else -light.position.x 
-	light_shader.position.x = light_shader.position.x if light_shader.position.x < 0  else -light_shader.position.x 
-	
+
+
+func move_sfx():
+	if not velocity.is_zero_approx():
+		AudioPlayer.random_movement_sfx()
 
 
 func _physics_process(delta):
 	move_player(delta)
 	move_anim()
 	move_and_slide()
-	light_shader.material.set_shader_parameter("u_resolution", get_viewport().size)
+	move_sfx()
+	#light_shader.material.set_shader_parameter("u_resolution", get_viewport().size)
 	
 	# clear dead enemies before rest
 	for enemy in enemy_arr:
 		if not is_instance_valid(enemy):
 			enemy_arr.erase(enemy)
 		else:
-			if light.energy <= 0.0:
+			if light.energy <= player_min_hp:
 				enemy.del_dmg_source(self)
 	
-	if enemy_arr.size() > 0 and light.energy > 0.0:
+	if enemy_arr.size() > 0 and light.energy > player_min_hp:
 		_current_damage_chunk += delta
 		if _current_damage_chunk >= 0.5:
 			_current_damage_chunk = 0.0
 			light.energy -= 0.05
-	
-	# test dodawania kart
-	# Z - swieczka
-	# X - elektrycznosc
-	# C - woda
-	# V - ogien
-	if Input.is_action_just_pressed("test_candle"):
-		var card_manager : CardManager = get_tree().get_first_node_in_group("CardManager")
-		card_manager.add_card(Globals.card_types.CANDLE)
-	elif Input.is_action_just_pressed("test_electricity"):
-		var card_manager : CardManager = get_tree().get_first_node_in_group("CardManager")
-		card_manager.add_card(Globals.card_types.ELECTRICITY)
-	elif Input.is_action_just_pressed("test_water"):
-		var card_manager : CardManager = get_tree().get_first_node_in_group("CardManager")
-		card_manager.add_card(Globals.card_types.WATER)
-	elif Input.is_action_just_pressed("test_fire"):
-		var card_manager : CardManager = get_tree().get_first_node_in_group("CardManager")
-		card_manager.add_card(Globals.card_types.FIRE)
 
 
 func _on_damage_area_body_entered(body):
-	if body is Enemy and self.light.energy > 0.0:
+	if body is Enemy and self.light.energy > player_min_hp:
 		enemy_arr.append(body)
-		if light.energy > 0.0:
+		if light.energy > player_min_hp:
 			body.add_dmg_source(self)
 
 
 func _on_damage_area_body_exited(body):
-	if body is Enemy and self.light.energy > 0.0:
+	if body is Enemy and self.light.energy > player_min_hp:
 		enemy_arr.erase(body)
 		body.del_dmg_source(self)
 
 
 func _on_death_area_body_entered(body):
-	if body is Enemy and self.light.energy <= 0.0:
-		# todo: lose condition
-		print("dead")
+	if body is Enemy and self.light.energy <= player_min_hp:
+		get_tree().change_scene_to_packed(_death_scene)

@@ -1,6 +1,7 @@
 extends Node2D
 
 const engine_timer_seconds : float = 5.0
+signal steam_engine_stop
 
 var is_mouse_hovering : bool = false
 @onready var anim_sprite : AnimatedSprite2D = $Static/SteamEngineTop
@@ -35,7 +36,7 @@ func _on_interact_area_input_event(viewport, event, shape_idx):
 # nie mam pomyslu jak to zrobic ladniej wiec moze sie bedzie dalo poprawic
 func _card_interaction():
 	# nested ifs to ensure no exceptions
-	if not GameManager.merged_blocked and GameManager.merged_total_count < 2:
+	if is_tutorial and not GameManager.merged_blocked and GameManager.merged_total_count < 2:
 		return
 	if GameManager.selected_card != null and not is_tutorial:
 		if GameManager.selected_card.card_type == Globals.card_types.STEAM:
@@ -54,6 +55,7 @@ func start_engine():
 			child.managed_by_engine = true
 	engine_timer.start(engine_timer_seconds)
 	anim_sprite.play("running")
+	AudioPlayer.play_timed_sfx("steam_engine", steam_engine_stop)
 
 
 func _on_engine_power_timer_timeout():
@@ -62,3 +64,4 @@ func _on_engine_power_timer_timeout():
 			child.turn_off_lantern()
 			child.managed_by_engine = false
 	anim_sprite.play("idle")
+	emit_signal("steam_engine_stop")

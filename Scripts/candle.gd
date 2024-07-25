@@ -41,6 +41,7 @@ func _card_interaction():
 func light_candle():
 	light.energy = Globals.interactable_light_energy
 	anim_sprite.play("fire")
+	AudioPlayer.play_sfx("lit_candle")
 
 
 func _process(delta):

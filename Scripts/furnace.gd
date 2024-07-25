@@ -3,6 +3,7 @@ class_name Furnace
 extends Node2D
 
 const fire_timer_seconds : float = 5.0
+signal furnance_stop
 
 var is_mouse_hovering : bool = false
 var enemy_arr = []
@@ -38,16 +39,20 @@ func _on_interact_area_input_event(viewport, event, shape_idx):
 # nie mam pomyslu jak to zrobic ladniej wiec moze sie bedzie dalo poprawic
 func _card_interaction():
 	# nested ifs to ensure no exceptions
-	if not GameManager.merged_blocked and GameManager.merged_total_count < 2:
+	if is_tutorial and not GameManager.merged_blocked and GameManager.merged_total_count < 2:
 		return
 	if GameManager.selected_card != null and not is_tutorial:
 		if GameManager.selected_card.card_type == Globals.card_types.FIRE:
 			GameManager.card_used.emit()
 			light.energy = Globals.interactable_light_energy
 			anim_sprite.play("fire")
+			AudioPlayer.play_timed_sfx("furnance_fire", furnance_stop)
 		elif  GameManager.selected_card.card_type == Globals.card_types.WATER:
+			AudioPlayer.play_sfx("water_card")
 			GameManager.card_used.emit()
 			light.energy = 0.0
+			emit_signal("furnance_stop")
+			
 		
 		if not _is_tutorial_progressed:
 			_is_tutorial_progressed = true
@@ -57,6 +62,7 @@ func _card_interaction():
 func _process(delta):
 	if light.energy <= 0.1:
 		anim_sprite.play("idle")
+		emit_signal("furnance_stop")
 
 	for enemy in enemy_arr:
 		if not is_instance_valid(enemy):

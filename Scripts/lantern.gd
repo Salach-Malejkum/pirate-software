@@ -19,7 +19,6 @@ func _ready():
 
 
 func _on_tutorial_allow_interaction():
-	print("test")
 	self.is_tutorial = false
 
 
@@ -41,7 +40,7 @@ func _on_interact_area_input_event(viewport, event, shape_idx):
 # nie mam pomyslu jak to zrobic ladniej wiec moze sie bedzie dalo poprawic
 func _card_interaction():
 	# nested ifs to ensure no exceptions
-	if not GameManager.merged_blocked and GameManager.merged_total_count < 2:
+	if is_tutorial and not GameManager.merged_blocked and GameManager.merged_total_count < 2:
 		return
 	if GameManager.selected_card != null and not is_tutorial:
 		if GameManager.selected_card.card_type == Globals.card_types.ELECTRICITY:
@@ -62,6 +61,7 @@ func turn_on_lantern():
 			enemy.add_dmg_source(self)
 	light.energy = Globals.interactable_light_energy
 	anim_sprite.play("lit")
+	AudioPlayer.play_sfx("lit_lamp")
 
 
 func turn_off_lantern():

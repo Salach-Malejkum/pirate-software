@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://br2rm3y4wyli7"]
+[gd_scene load_steps=10 format=3 uid="uid://qi4ghap1fsah"]
 
 [ext_resource type="PackedScene" uid="uid://br31pgwnuthh" path="res://Scenes/tile_map.tscn" id="1_nrvku"]
 [ext_resource type="PackedScene" uid="uid://1xiakxfc81rn" path="res://Scenes/doors.tscn" id="2_kydn8"]
@@ -46,4 +46,6 @@ is_tutorial = true
 
 [node name="EnemySpawner" parent="." instance=ExtResource("8_6k42o")]
 position = Vector2(225, 64)
+spawn_timer = 5.0
 is_tutorial = true
+enemy_hp_on_spawn = 50.0
