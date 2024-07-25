@@ -1,11 +1,41 @@
-[gd_scene load_steps=6 format=3 uid="uid://dhf36hlemaiir"]
+[gd_scene load_steps=7 format=3 uid="uid://dhf36hlemaiir"]
 
 [ext_resource type="FontFile" uid="uid://b3h400kk2q3w3" path="res://ArtAssets/Fonts/KodeMono-Bold.ttf" id="1_k527e"]
 [ext_resource type="Script" path="res://Scripts/end_score.gd" id="1_rvrnu"]
-[ext_resource type="StyleBox" uid="uid://bvur6kg07qs48" path="res://StyleBoxes/menu_buttons_normal.tres" id="2_f1n0v"]
-[ext_resource type="StyleBox" uid="uid://dcffcrd0ebmhd" path="res://StyleBoxes/menu_buttons_hover.tres" id="3_mprgw"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_sogpl"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kfnxn"]
+bg_color = Color(0.94902, 0.827451, 0.670588, 1)
+skew = Vector2(0.4, 0)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+shadow_color = Color(0, 0, 0, 1)
+shadow_size = 5
+shadow_offset = Vector2(5, 5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5vp4n"]
+bg_color = Color(0.984314, 0.960784, 0.937255, 1)
+skew = Vector2(0.4, 0)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+shadow_size = 5
+shadow_offset = Vector2(5, 5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f7ao5"]
+bg_color = Color(0.152941, 0.152941, 0.266667, 1)
+skew = Vector2(0.3, 0)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+shadow_color = Color(0, 0, 0, 0.972549)
+shadow_size = 5
+shadow_offset = Vector2(5, 5)
 
 [node name="EndScore" type="Control"]
 layout_mode = 3
@@ -98,13 +128,13 @@ theme_override_constants/margin_top = 70
 
 [node name="Restart" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.94902, 0.827451, 0.670588, 1)
-theme_override_colors/font_hover_color = Color(0.984314, 0.960784, 0.937255, 1)
+theme_override_colors/font_color = Color(0.152941, 0.152941, 0.266667, 1)
+theme_override_colors/font_hover_color = Color(0.545098, 0.427451, 0.611765, 1)
 theme_override_fonts/font = ExtResource("1_k527e")
 theme_override_font_sizes/font_size = 32
-theme_override_styles/normal = ExtResource("2_f1n0v")
-theme_override_styles/hover = ExtResource("3_mprgw")
-theme_override_styles/pressed = ExtResource("2_f1n0v")
+theme_override_styles/normal = SubResource("StyleBoxFlat_kfnxn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_5vp4n")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_f7ao5")
 text = "RESTART"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/Restart" to="." method="_on_restart_pressed"]
