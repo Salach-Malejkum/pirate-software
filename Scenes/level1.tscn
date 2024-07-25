@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://b360hv35yusk0"]
+[gd_scene load_steps=16 format=3 uid="uid://b360hv35yusk0"]
 
 [ext_resource type="Script" path="res://Scripts/level1.gd" id="1_uvyuf"]
 [ext_resource type="PackedScene" uid="uid://cb5w2t8c6ybt7" path="res://Scenes/player.tscn" id="2_h6cud"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://drivg1a0m73sw" path="res://Scenes/lantern.tscn" id="9_p7nmk"]
 [ext_resource type="PackedScene" uid="uid://dondxin01374w" path="res://Scenes/circle_transition.tscn" id="10_g8rls"]
 [ext_resource type="PackedScene" uid="uid://bmjpimvwupc8p" path="res://Scenes/steam_engine.tscn" id="10_m4d3g"]
+[ext_resource type="PackedScene" uid="uid://c4c0yn3axluwb" path="res://Scenes/enemy_spawner.tscn" id="11_0mev1"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_0lapq"]
 polygon = PackedVector2Array(6, 16, 6, -16, 4, -16, 4, 16)
@@ -131,7 +132,28 @@ visible = false
 [node name="Walls" type="Node2D" parent="Light"]
 
 [node name="CanvasModulate" type="CanvasModulate" parent="Light"]
+visible = false
 color = Color(0, 0, 0, 1)
+
+[node name="Spawners" type="Node2D" parent="."]
+
+[node name="EnemySpawner" parent="Spawners" instance=ExtResource("11_0mev1")]
+position = Vector2(42, 332)
+on_ready_timer = 8.0
+max_enemies_for_spawner = 3
+
+[node name="EnemySpawner2" parent="Spawners" instance=ExtResource("11_0mev1")]
+position = Vector2(621, 309)
+
+[node name="EnemySpawner3" parent="Spawners" instance=ExtResource("11_0mev1")]
+position = Vector2(611, 156)
+on_ready_timer = 16.0
+max_enemies_for_spawner = 2
+
+[node name="EnemySpawner4" parent="Spawners" instance=ExtResource("11_0mev1")]
+position = Vector2(601, 29)
+on_ready_timer = 12.0
+max_enemies_for_spawner = 2
 
 [connection signal="level_entered" from="." to="CircleTransition" method="_on_level_1_level_entered"]
 [connection signal="level_exit" from="MapElements/Stairs" to="CircleTransition" method="_on_stairs_level_exit"]

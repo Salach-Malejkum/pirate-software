@@ -1,6 +1,7 @@
 class_name Player
 
 extends CharacterBody2D
+signal player_dead
 
 @export var SPEED = 100
 @export var is_tutorial = false
@@ -16,6 +17,7 @@ var enemy_arr = []
 var _death_scene = preload("res://Scenes/end_score.tscn")
 
 func _ready():
+	player_dead.connect(Callable(AudioPlayer, "player_dead"))
 	if not is_tutorial:
 		GameManager.tutorial_select_blocked = false
 		GameManager.merged_blocked = false
@@ -99,4 +101,5 @@ func _on_damage_area_body_exited(body):
 
 func _on_death_area_body_entered(body):
 	if body is Enemy and self.light.energy <= player_min_hp:
+		emit_signal("player_dead")
 		get_tree().change_scene_to_packed(_death_scene)
