@@ -125,14 +125,12 @@ position = Vector2(157, -56)
 position = Vector2(159, 28)
 
 [node name="CircleTransition" parent="." instance=ExtResource("10_g8rls")]
-visible = false
 
 [node name="Light" type="Node2D" parent="."]
 
 [node name="Walls" type="Node2D" parent="Light"]
 
 [node name="CanvasModulate" type="CanvasModulate" parent="Light"]
-visible = false
 color = Color(0, 0, 0, 1)
 
 [node name="Spawners" type="Node2D" parent="."]
