@@ -98,6 +98,7 @@ func select_card(new_card : Card):
 			selected_card.deselect_self()
 	
 	selected_card = new_card
+	AudioPlayer.play_sfx("card_selected")
 	selected_card.material.set_shader_parameter("active", true)
 	selected_card.is_selected = true
 
