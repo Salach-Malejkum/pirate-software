@@ -76,6 +76,7 @@ func _add_chosen_card(chosen_card : Globals.card_types):
 		child.queue_free()
 	add_card(chosen_card)
 	card_add_timer.start(Globals.random_card_pull_time)
+	AudioPlayer.play_sfx("card_draw")
 	GameManager.total_new_cards += 1
 	if GameManager.total_new_cards == 1:
 		GameManager.tutorial_progress.emit()
