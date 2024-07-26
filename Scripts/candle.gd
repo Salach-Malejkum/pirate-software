@@ -30,9 +30,11 @@ func _card_interaction():
 	# nested ifs to ensure no exceptions
 	if GameManager.selected_card != null:
 		if GameManager.selected_card.card_type == Globals.card_types.FIRE:
+			AudioPlayer.play_sfx("fire_card")
 			GameManager.card_used.emit()
 			light_candle()
 		elif  GameManager.selected_card.card_type == Globals.card_types.WATER:
+			AudioPlayer.play_sfx("water_card")
 			GameManager.card_used.emit()
 			light.energy = 0.0
 			anim_sprite.play("idle")

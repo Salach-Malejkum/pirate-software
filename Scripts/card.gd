@@ -77,5 +77,7 @@ func _on_gui_input(event):
 func deselect_self():
 	GameManager.card_used.disconnect(_on_card_used)
 	GameManager.selected_card = null
+	material.set_shader_parameter("active", false)
+	AudioPlayer.play_sfx("card_unselected")
 	is_selected = false
 

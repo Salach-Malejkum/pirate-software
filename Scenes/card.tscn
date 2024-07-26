@@ -1,17 +1,60 @@
-[gd_scene load_steps=4 format=3 uid="uid://csm1pjjj360jt"]
+[gd_scene load_steps=6 format=3 uid="uid://csm1pjjj360jt"]
 
-[ext_resource type="Texture2D" uid="uid://b0m7ov7d2v8e3" path="res://ArtAssets/Cards/card_fire.png" id="1_134lu"]
+[ext_resource type="Texture2D" uid="uid://c0i50s1qpdt7q" path="res://ArtAssets/Cards/card_candle_4_px.png" id="1_ftf4c"]
 [ext_resource type="Script" path="res://Scripts/card.gd" id="2_nfq7i"]
 [ext_resource type="FontFile" uid="uid://b3h400kk2q3w3" path="res://ArtAssets/Fonts/KodeMono-Bold.ttf" id="3_1rhgd"]
 
+[sub_resource type="Shader" id="Shader_medy1"]
+code = "shader_type canvas_item;
+
+uniform vec4 line_color: source_color;
+uniform float amplitude = 0.5;
+uniform float frequency = 2.0;
+uniform float line_thickness: hint_range(0.0, 10) = 2.;
+uniform bool active = false;
+
+float random (vec2 uv) {
+    return fract(sin(dot(uv.xy,
+        vec2(12.9898,78.233))) * 43758.5453123);
+}
+
+
+void fragment( )
+{
+	if (active)
+	{
+		vec2 size = TEXTURE_PIXEL_SIZE * line_thickness;
+		float outline = texture(TEXTURE, UV + vec2(-size.x, 0)).a;
+		outline += texture(TEXTURE, UV + vec2(0, size.y)).a;
+		outline += texture(TEXTURE, UV + vec2(size.x, 0)).a;
+		outline += texture(TEXTURE, UV + vec2(0, -size.y)).a;
+		outline = min(outline, 1.0);
+		
+		float pulsate = (sin(TIME * frequency) + 1.) / 2.  * amplitude + 0.3;
+		vec4 color = texture(TEXTURE, UV);
+		vec4 line = line_color * pulsate;
+		COLOR = mix(color, line, outline - color.a);
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wpyk8"]
+resource_local_to_scene = true
+shader = SubResource("Shader_medy1")
+shader_parameter/line_color = Color(0.94902, 0.827451, 0.670588, 1)
+shader_parameter/amplitude = 0.5
+shader_parameter/frequency = 6.0
+shader_parameter/line_thickness = 2.0
+shader_parameter/active = false
+
 [node name="Card" type="TextureRect"]
 z_index = 100
-custom_minimum_size = Vector2(96, 144)
+material = SubResource("ShaderMaterial_wpyk8")
+custom_minimum_size = Vector2(104, 152)
 offset_right = 32.0
 offset_bottom = 48.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture = ExtResource("1_134lu")
+texture = ExtResource("1_ftf4c")
 script = ExtResource("2_nfq7i")
 
 [node name="Label" type="Label" parent="."]

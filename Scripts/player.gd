@@ -86,7 +86,7 @@ func _physics_process(delta):
 	
 	if enemy_arr.size() > 0 and light.energy > player_min_hp:
 		_current_damage_chunk += delta
-		if _current_damage_chunk >= 0.5:
+		if _current_damage_chunk >= 1.5:
 			_current_damage_chunk = 0.0
 			light.energy -= 0.05
 

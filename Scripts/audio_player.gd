@@ -7,7 +7,11 @@ var sfx = {
 	"card_merge": preload("res://Audio/card_merge.mp3"),
 	"lit_lamp": preload("res://Audio/lantern_on_electricity_card.mp3"),
 	"water_card": preload("res://Audio/water_card_use.mp3"),
+	"fire_card": preload("res://Audio/fire_card_use.mp3"),
 	"lit_candle": preload("res://Audio/candle_light.mp3"),
+	"card_selected": preload("res://Audio/card_selected.mp3"),
+	"card_unselected": preload("res://Audio/card_unselected.mp3"),
+	"card_draw": preload("res://Audio/card_draw.mp3")
 }
 
 var timed_sfx = {

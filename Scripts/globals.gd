@@ -4,12 +4,12 @@ class_name Globals
 enum card_types {WATER, FIRE, STEAM, ELECTRICITY, CANDLE, CANDLE_LIT}
 
 const card_texture_paths = [
-	"res://ArtAssets/Cards/card_water.png",
-	"res://ArtAssets/Cards/card_fire.png",
-	"res://ArtAssets/Cards/card_steam.png",
-	"res://ArtAssets/Cards/card_electricity.png",
-	"res://ArtAssets/Cards/card_candle.png",
-	"res://ArtAssets/Cards/card_candle_light.png"
+	"res://ArtAssets/Cards/card_water_4_px.png",
+	"res://ArtAssets/Cards/card_fire_4_px.png",
+	"res://ArtAssets/Cards/card_steam_4_px.png",
+	"res://ArtAssets/Cards/card_electricity_4_px.png",
+	"res://ArtAssets/Cards/card_candle_4_px.png",
+	"res://ArtAssets/Cards/card_candle_light_4_px.png"
 ]
 
 const card_merge_results = {
