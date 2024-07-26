@@ -46,6 +46,7 @@ func _card_interaction():
 			GameManager.card_used.emit()
 			light.energy = Globals.interactable_light_energy
 			anim_sprite.play("fire")
+			AudioPlayer.play_sfx("fire_card")
 			AudioPlayer.play_timed_sfx("furnance_fire", furnance_stop)
 		elif  GameManager.selected_card.card_type == Globals.card_types.WATER:
 			AudioPlayer.play_sfx("water_card")
