@@ -92,16 +92,18 @@ func _physics_process(delta):
 
 
 func _on_damage_area_body_entered(body):
-	if body is Enemy and self.light.energy > player_min_hp:
-		enemy_arr.append(body)
-		if light.energy > player_min_hp:
-			body.add_dmg_source(self)
+	if body is Enemy or body is Enemy_Brute: 
+		if self.light.energy > player_min_hp:
+			enemy_arr.append(body)
+			if light.energy > player_min_hp:
+				body.add_dmg_source(self)
 
 
 func _on_damage_area_body_exited(body):
-	if body is Enemy and self.light.energy > player_min_hp:
-		enemy_arr.erase(body)
-		body.del_dmg_source(self)
+	if body is Enemy or body is Enemy_Brute: 
+		if self.light.energy > player_min_hp:
+			enemy_arr.erase(body)
+			body.del_dmg_source(self)
 
 
 func _on_death_area_body_entered(body):

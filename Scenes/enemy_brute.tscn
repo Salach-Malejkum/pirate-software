@@ -52,6 +52,7 @@ animations = [{
 radius = 34.0147
 
 [node name="EnemyBrute" type="CharacterBody2D"]
+collision_layer = 4
 script = ExtResource("1_klkr3")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

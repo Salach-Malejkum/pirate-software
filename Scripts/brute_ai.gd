@@ -21,9 +21,6 @@ var next_positions: Array
 var current_position
 
 func _physics_process(delta):
-	#if player_node == null:
-	#	player_node = get_tree().get_first_node_in_group("Player")
-	#else:
 	if current_position:
 		velocity = self.global_position.direction_to(current_position.global_position) * SPEED
 		if velocity.x < 0.0:
@@ -75,7 +72,6 @@ func del_dmg_source(src):
 
 func _on_player_spotted_body_entered(body):
 	if body is Player:
-		print("chase")
 		current_position = body
 
 
