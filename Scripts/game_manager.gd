@@ -3,6 +3,7 @@ extends Node2D
 var menu_size = Vector2(1280, 720)
 var level_size = Vector2(320, 180)
 
+var player = null
 var selected_card : Card = null
 var tutorial_select_blocked : bool = true
 var tutorial_select_progress : bool = false
@@ -30,6 +31,7 @@ signal tutorial_spawner
 signal tutorial_random_card
 signal tutorial_merge
 signal tutorial_progress
+signal assign_player(player)
 
 @export var tutorial_texts : Dictionary = {
 	"Hello, operator. Today we are going to show you how to control your lightbringer." : null,
@@ -62,6 +64,7 @@ func _ready():
 	tutorial_merge.connect(_tutorial_unblock_merge)
 	tutorial_select.connect(_tutorial_select_card)
 	card_used.connect(_add_card_use_point)
+	assign_player.connect(_assign_player)
 
 
 func _tutorial_unblock_merge():
@@ -74,6 +77,11 @@ func _tutorial_select_card():
 
 func _add_card_use_point():
 	cards_used += 1
+	
+
+func _assign_player(new_player):
+	if player == null:
+		player = new_player
 
 
 func set_menu_size():
@@ -131,3 +139,8 @@ func _merge_cards(merge_key : String):
 	merged_total_count += 1
 	if merged_total_count == 2:
 		tutorial_progress.emit()
+
+
+func change_scene(scene_to_load):
+	player.get_parent().remove_child(player)
+	get_tree().change_scene_to_packed(scene_to_load)
