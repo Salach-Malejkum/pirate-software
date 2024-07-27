@@ -54,6 +54,8 @@ signal assign_player(player)
 	"There should be an enemy coming at you. Don't worry, these things die pretty easily." : null,
 	"Every light source will kill the enemy." : null,
 	"Kill 2 enemies." : tutorial_spawner,
+	"Please remember that there are more cards you can obtain, but these are not cover under basic operation manual." : null,
+	"I can tell you only that some of those cards will help you with destroying spawners or other enemies." : null,
 	"Now that we have explained the basics of hunting the blessed ones, you can proceed out of the controlled zone." : null,
 	"It will be way darker out there, so watch out and good luck, operator." : null,
 	"Please exit the through the door by pressing E or F." : null

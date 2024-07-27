@@ -1,0 +1,108 @@
+[gd_scene load_steps=13 format=3 uid="uid://10f3h0qs5m5x"]
+
+[ext_resource type="Texture2D" uid="uid://du8p6beqbaou0" path="res://ArtAssets/Enemies/cultist_activate_player_spotted.png" id="1_08c1c"]
+[ext_resource type="Script" path="res://Scripts/enemy_cultist.gd" id="1_m47hh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xk35v"]
+atlas = ExtResource("1_08c1c")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vini8"]
+atlas = ExtResource("1_08c1c")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ip17m"]
+atlas = ExtResource("1_08c1c")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t12oy"]
+atlas = ExtResource("1_08c1c")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2oydw"]
+atlas = ExtResource("1_08c1c")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1rrpf"]
+atlas = ExtResource("1_08c1c")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fndkf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xk35v")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vini8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ip17m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t12oy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2oydw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1rrpf")
+}],
+"loop": false,
+"name": &"player_seen",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_va2wv"]
+size = Vector2(15, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nvuye"]
+size = Vector2(20, 42)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jjg0p"]
+radius = 16.0
+
+[node name="EnemyCultist" type="Node2D"]
+script = ExtResource("1_m47hh")
+
+[node name="body_hitbox" type="StaticBody2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="body_hitbox"]
+sprite_frames = SubResource("SpriteFrames_fndkf")
+animation = &"player_seen"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="body_hitbox"]
+position = Vector2(-1.5, 1)
+shape = SubResource("RectangleShape2D_va2wv")
+
+[node name="sight_area" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="sight_area"]
+position = Vector2(-1, 37)
+shape = SubResource("RectangleShape2D_nvuye")
+
+[node name="Cooldown" type="Timer" parent="."]
+one_shot = true
+
+[node name="InteractArea" type="Area2D" parent="."]
+y_sort_enabled = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractArea"]
+z_index = 1
+y_sort_enabled = true
+position = Vector2(0, 1)
+shape = SubResource("CircleShape2D_jjg0p")
+
+[connection signal="body_entered" from="sight_area" to="." method="_on_sight_area_body_entered"]
+[connection signal="body_exited" from="sight_area" to="." method="_on_sight_area_body_exited"]
+[connection signal="timeout" from="Cooldown" to="." method="_on_cooldown_timeout"]
+[connection signal="input_event" from="InteractArea" to="." method="_on_interact_area_input_event"]
+[connection signal="mouse_entered" from="InteractArea" to="." method="_on_interact_area_mouse_entered"]
+[connection signal="mouse_exited" from="InteractArea" to="." method="_on_interact_area_mouse_exited"]

@@ -10,11 +10,14 @@ signal player_dead
 @onready var texture_rect = $CanvasLayer/TextureRect
 @onready var light = $AnimatedSprite2D/PointLight2D
 @onready var tutorial_node = $TutorialInfo
+@onready var shield_sprite = $shield
 
 var _current_damage_chunk : float = 0.0
 var enemy_arr = []
+var deadly_enemies = 0
 
 var _death_scene = preload("res://Scenes/end_score.tscn")
+
 
 func _ready():
 	player_dead.connect(Callable(AudioPlayer, "player_dead"))
@@ -89,6 +92,18 @@ func _physics_process(delta):
 		if _current_damage_chunk >= 1.5:
 			_current_damage_chunk = 0.0
 			light.energy -= 0.05
+	if light.energy <= player_min_hp:
+		shield_sprite.visible = false
+		if deadly_enemies > 0:
+			_player_death()
+	else:
+		shield_sprite.visible = true
+	
+
+func take_spell_damage(damage: float):
+	light.energy = clamp(light.energy - damage, player_min_hp - 0.05, 1.0)
+	if light.energy <= player_min_hp:
+		_player_death()
 
 
 func _on_damage_area_body_entered(body):
@@ -107,6 +122,15 @@ func _on_damage_area_body_exited(body):
 
 
 func _on_death_area_body_entered(body):
-	if body is Enemy and self.light.energy <= player_min_hp:
-		emit_signal("player_dead")
-		get_tree().change_scene_to_packed(_death_scene)
+	if body is Enemy or body is Enemy_Brute:
+		self.deadly_enemies += 1
+
+
+func _on_death_area_body_exited(body):
+	if body is Enemy or body is Enemy_Brute:
+		self.deadly_enemies -= 1
+
+
+func _player_death():
+	emit_signal("player_dead")
+	get_tree().change_scene_to_packed(_death_scene)

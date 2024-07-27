@@ -7,7 +7,7 @@ var player_node : Player
 const SPEED : int = 45
 
 var _damage_sources = []
-var _current_hp : float = 30.0
+var _current_hp : float = 200.0
 
 @export var patrol_points : Array[Marker2D]
 @onready var sprite = $AnimatedSprite2D
