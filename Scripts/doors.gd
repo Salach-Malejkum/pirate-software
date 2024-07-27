@@ -6,7 +6,7 @@ extends Node2D
 @export var open_anim_name = "open"
 @export var close_anim_name = "close"
 @export var is_exit : bool = false
-@export var exit_scene : PackedScene
+@export var exit_scene = preload("res://Scenes/level1.tscn")
 
 var player_in_range = false
 @onready var animated_sprite = $Static/AnimatedSprite2D
