@@ -1,6 +1,6 @@
 extends Control
 
-@export var level1 = preload("res://Scenes/tutorial_zone.tscn")
+@export var level = preload("res://Scenes/tutorial_zone.tscn")
 signal menu_ended
 
 @onready var main_tab = $MainTab
@@ -12,7 +12,8 @@ func _ready():
 
 func _on_start_pressed():
 	emit_signal("menu_ended")
-	get_tree().change_scene_to_packed(level1)
+	#GameManager.change_scene(level)
+	get_tree().change_scene_to_packed(level)
 
 
 

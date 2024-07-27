@@ -26,4 +26,4 @@ func _on_area_2d_body_exited(body):
 
 
 func exit_level():
-	get_tree().change_scene_to_packed(scene_to_load)
+	GameManager.change_scene(scene_to_load)
