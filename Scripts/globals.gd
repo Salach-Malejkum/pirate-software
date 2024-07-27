@@ -1,7 +1,7 @@
 class_name Globals
 
 # no support for string enum, add path to texture below to access
-enum card_types {WATER, FIRE, STEAM, ELECTRICITY, CANDLE, CANDLE_LIT}
+enum card_types {WATER, FIRE, STEAM, ELECTRICITY, CANDLE, CANDLE_LIT, ESSENCE, CULT_MARK, BEAST_HEAD}
 
 const card_texture_paths = [
 	"res://ArtAssets/Cards/card_water_4_px.png",
@@ -9,12 +9,18 @@ const card_texture_paths = [
 	"res://ArtAssets/Cards/card_steam_4_px.png",
 	"res://ArtAssets/Cards/card_electricity_4_px.png",
 	"res://ArtAssets/Cards/card_candle_4_px.png",
-	"res://ArtAssets/Cards/card_candle_light_4_px.png"
+	"res://ArtAssets/Cards/card_candle_light_4_px.png",
+	"res://ArtAssets/Cards/card_essence_4_px.png",
+	"res://ArtAssets/Cards/card_cult_mark_4_px.png",
+	"res://ArtAssets/Cards/card_beast_4_px.png"
 ]
 
 const card_merge_results = {
 	"WATER+FIRE": card_types.STEAM,
-	"CANDLE+FIRE": card_types.CANDLE_LIT
+	"CANDLE+FIRE": card_types.CANDLE_LIT,
+	"STEAM+ELECTRICITY": card_types.ESSENCE,
+	"ESSENCE+WATER": card_types.CULT_MARK,
+	"CULT_MARK+CANDLE_LIT": card_types.BEAST_HEAD
 }
 
 const max_cards_at_hand : int = 5

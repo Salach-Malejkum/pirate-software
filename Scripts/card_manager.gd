@@ -84,7 +84,7 @@ func _add_chosen_card(chosen_card : Globals.card_types):
 
 func _randomize_card_selection():
 	var random_idx = []
-	for i in range(Globals.card_types.size()):
+	for i in range(Globals.card_types.size() - 3):
 		random_idx.append(i)
 	random_idx.shuffle()
 	
