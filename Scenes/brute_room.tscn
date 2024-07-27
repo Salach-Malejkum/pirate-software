@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://byi082db1bj0n"]
+
+[ext_resource type="PackedScene" uid="uid://cmger4fkxwgg4" path="res://Scenes/enemy_brute.tscn" id="1_qcdf1"]
+[ext_resource type="PackedScene" uid="uid://cb5w2t8c6ybt7" path="res://Scenes/player.tscn" id="2_bruxw"]
+
+[node name="BruteRoom" type="Node2D"]
+
+[node name="Marker2D3" type="Marker2D" parent="."]
+position = Vector2(581, 431)
+
+[node name="Marker2D2" type="Marker2D" parent="."]
+position = Vector2(276, 185)
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(1014, 198)
+
+[node name="EnemyBrute" parent="." node_paths=PackedStringArray("patrol_points") instance=ExtResource("1_qcdf1")]
+position = Vector2(188, 426)
+patrol_points = [NodePath("../Marker2D"), NodePath("../Marker2D2"), NodePath("../Marker2D3")]
+
+[node name="Player" parent="." instance=ExtResource("2_bruxw")]
+position = Vector2(314, 417)
