@@ -58,6 +58,7 @@ func _card_interaction():
 	# nested ifs to ensure no exceptions
 	if GameManager.selected_card != null and not is_tutorial:
 		if GameManager.selected_card.card_type == Globals.card_types.ESSENCE:
+			AudioPlayer.play_sfx("essence_card")
 			GameManager.card_used.emit()
 			sprite.play("destroy")
 			await sprite.animation_finished

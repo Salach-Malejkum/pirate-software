@@ -70,6 +70,7 @@ func _on_interact_area_input_event(viewport, event, shape_idx):
 func _card_interaction():
 	if GameManager.selected_card != null:
 		if GameManager.selected_card.card_type == Globals.card_types.CULT_MARK:
+			AudioPlayer.play_sfx("cultist_card")
 			GameManager.card_used.emit()
 			sprite_node.play_backwards("player_seen")
 			await sprite_node.animation_finished

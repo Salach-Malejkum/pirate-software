@@ -9,6 +9,7 @@ func _ready():
 	self.global_position = get_tree().get_first_node_in_group("Player").global_position
 	sprite.play("warning")
 	call_deferred("_lag_spell_timer")
+	AudioPlayer.play_sfx("cultist_attack")
 
 
 func _lag_spell_timer():

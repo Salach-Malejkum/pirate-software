@@ -13,7 +13,10 @@ var sfx = {
 	"card_unselected": preload("res://Audio/card_unselected.mp3"),
 	"card_draw": preload("res://Audio/card_draw.mp3"),
 	"steam_card": preload("res://Audio/steam_card.mp3"),
-	"candle_card": preload("res://Audio/candle_card.mp3")
+	"candle_card": preload("res://Audio/candle_card.mp3"),
+	"essence_card": preload("res://Audio/essence_card.mp3"),
+	"cultist_card": preload("res://Audio/cultist_card.mp3"),
+	"cultist_attack": preload("res://Audio/cultist_attack.mp3")
 }
 
 var timed_sfx = {
