@@ -46,7 +46,7 @@ var is_movement_running = false
 var is_clicked_sound = false
 
 func _input(event):
-	if event is InputEventMouseButton && !is_clicked_sound:
+	if event is InputEventMouseButton && event.pressed && !is_clicked_sound:
 		is_clicked_sound = true
 		var asp = AudioStreamPlayer.new()
 		asp.stream = sfx["mouse_clicked"]
