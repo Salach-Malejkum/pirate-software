@@ -39,7 +39,7 @@ func _ready():
 
 var total_score
 
-func _process(delta):
+func _process(_delta):
 	total_score = GameManager.merged_total_count * 100 + GameManager.total_new_cards * 50 + GameManager.total_kills * 200 + GameManager.cards_used * 50
 	score_label.text = "Total score: %d" % total_score
 

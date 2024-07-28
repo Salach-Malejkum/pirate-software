@@ -108,7 +108,7 @@ animations = [{
 radius = 66.0076
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_47bd2"]
-size = Vector2(14, 10.5)
+size = Vector2(14, 16)
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_w3bxi"]
 
@@ -161,7 +161,7 @@ y_sort_enabled = true
 texture = ExtResource("4_2kpp6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1, 7.75)
+position = Vector2(1, 5)
 shape = SubResource("RectangleShape2D_47bd2")
 
 [node name="Camera2D" type="Camera2D" parent="."]

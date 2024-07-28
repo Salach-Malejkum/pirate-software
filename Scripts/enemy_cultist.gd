@@ -7,14 +7,6 @@ var packaged_spell = preload("res://Scenes/cult_mark_spell.tscn")
 @onready var sprite_node : AnimatedSprite2D = $body_hitbox/AnimatedSprite2D
 @onready var cd_timer : Timer = $Cooldown
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
 
 
 func _cultist_skill():
@@ -60,7 +52,7 @@ func _on_interact_area_mouse_exited():
 	is_mouse_hovering = false
 
 
-func _on_interact_area_input_event(viewport, event, shape_idx):
+func _on_interact_area_input_event(_viewport, event, _shape_idx):
 	# nested ifs to ensure no exceptions
 	if is_mouse_hovering and event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:

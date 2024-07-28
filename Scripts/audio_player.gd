@@ -117,6 +117,7 @@ func player_dead():
 
 
 func change_scene():
+	print(len(get_children()))
 	for child in get_children():
 		if child.name == "level_bg":
 			continue

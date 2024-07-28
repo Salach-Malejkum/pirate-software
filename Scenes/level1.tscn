@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cb5w2t8c6ybt7" path="res://Scenes/player.tscn" id="2_h6cud"]
 [ext_resource type="PackedScene" uid="uid://br31pgwnuthh" path="res://Scenes/tile_map.tscn" id="3_dphda"]
 [ext_resource type="PackedScene" uid="uid://1xiakxfc81rn" path="res://Scenes/doors.tscn" id="5_cq4jq"]
-[ext_resource type="PackedScene" uid="uid://cxi65aji40i2b" path="res://Scenes/level2.tscn" id="5_nh5ob"]
+[ext_resource type="PackedScene" uid="uid://cxi65aji40i2b" path="res://Scenes/level2.tscn" id="5_svqun"]
 [ext_resource type="PackedScene" uid="uid://bk7smumc7rwo7" path="res://Scenes/cabin.tscn" id="6_f51ug"]
 [ext_resource type="PackedScene" uid="uid://dht5pjj6hwyae" path="res://Scenes/stairs.tscn" id="6_g8727"]
 [ext_resource type="PackedScene" uid="uid://c5iwiblniciof" path="res://Scenes/furnace.tscn" id="8_spcvc"]
@@ -46,7 +46,7 @@ visible = false
 y_sort_enabled = true
 position = Vector2(672, 6)
 scale = Vector2(0.25, 0.4)
-scene_to_load = ExtResource("5_nh5ob")
+scene_to_load = ExtResource("5_svqun")
 
 [node name="Cabin" parent="MapElements" instance=ExtResource("6_f51ug")]
 position = Vector2(172, 143)
@@ -135,6 +135,7 @@ position = Vector2(159, 28)
 [node name="Walls" type="Node2D" parent="Light"]
 
 [node name="CanvasModulate" type="CanvasModulate" parent="Light"]
+visible = false
 color = Color(0, 0, 0, 1)
 
 [node name="Spawners" type="Node2D" parent="."]

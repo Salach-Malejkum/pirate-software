@@ -45,7 +45,7 @@ func set_card_type(new_type : Globals.card_types):
 	texture = load(Globals.card_texture_paths[new_type])
 
 
-func _process(delta):
+func _process(_delta):
 	if is_mouse_hovering and not is_random:
 		self.position = lerp(self.position, max_y_pos, lerp_weight)
 	elif not is_selected and not is_random:

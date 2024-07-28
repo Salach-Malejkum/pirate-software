@@ -27,7 +27,7 @@ func _ready():
 		GameManager.merged_blocked = false
 
 
-func move_player(time):
+func move_player():
 	var movement_direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	velocity = movement_direction * SPEED
 
@@ -38,8 +38,6 @@ func _add_hp_on_card_use():
 
 func move_anim():
 	var vertical_movement = Input.get_axis("move_left", "move_right")
-	
-	var movement_direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	
 	if vertical_movement == 1:
 		anim_sprite.play("walking_sides")
@@ -73,7 +71,7 @@ func move_sfx():
 
 
 func _physics_process(delta):
-	move_player(delta)
+	move_player()
 	move_anim()
 	move_and_slide()
 	move_sfx()

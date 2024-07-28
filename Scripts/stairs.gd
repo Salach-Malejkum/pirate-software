@@ -6,7 +6,7 @@ var player_in_range = false
 @onready var door_collision = $Static/CollisionShape2D
 signal level_exit
 
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_just_pressed("open_door") && player_in_range:
 		manage_stairs()
 		

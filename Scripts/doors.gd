@@ -13,7 +13,7 @@ var player_in_range = false
 @onready var door_collision = $Static/CollisionShape2D
 
 
-func _process(delta):
+func _process(_delta):
 	animated_sprite.animation = open_anim_name
 	animated_sprite.flip_h = flip_h
 	if Input.is_action_just_pressed("open_door") && player_in_range:

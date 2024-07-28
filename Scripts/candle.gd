@@ -2,6 +2,7 @@ extends Node2D
 
 const fire_timer_seconds : float = 5.0
 
+@export var never_expire = false
 var is_mouse_hovering : bool = false
 @onready var anim_sprite : AnimatedSprite2D = $CandleSprite
 var enemy_arr = []
@@ -18,7 +19,7 @@ func _on_interact_area_mouse_exited():
 	is_mouse_hovering = false
 
 
-func _on_interact_area_input_event(viewport, event, shape_idx):
+func _on_interact_area_input_event(_viewport, event, _shape_idx):
 	# nested ifs to ensure no exceptions
 	if is_mouse_hovering and event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
@@ -58,7 +59,7 @@ func _process(delta):
 			else:
 				enemy.add_dmg_source(self)
 	
-	if light.energy > 0.0:
+	if light.energy > 0.0 && !never_expire:
 		light.energy -= delta / Globals.light_delta_modifier
 
 

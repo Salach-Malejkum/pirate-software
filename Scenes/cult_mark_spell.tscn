@@ -55,6 +55,7 @@ animations = [{
 }]
 
 [node name="CultMarkSpell" type="Node2D"]
+z_index = 120
 script = ExtResource("1_63gv4")
 
 [node name="Area2D" type="Area2D" parent="."]

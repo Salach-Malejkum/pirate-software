@@ -47,7 +47,7 @@ func _on_interact_area_mouse_exited():
 	is_mouse_hovering = false
 
 
-func _on_interact_area_input_event(viewport, event, shape_idx):
+func _on_interact_area_input_event(_viewport, event, _shape_idx):
 	# nested ifs to ensure no exceptions
 	if is_mouse_hovering and event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
