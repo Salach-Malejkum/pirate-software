@@ -168,3 +168,8 @@ visible = false
 color = Color(0, 0, 0, 1)
 
 [node name="CircleTransition" parent="." instance=ExtResource("7_4iy0l")]
+
+[connection signal="level_entered" from="." to="CircleTransition" method="_on_level_1_level_entered"]
+[connection signal="level_exit" from="Objects/Stairs_down" to="CircleTransition" method="_on_stairs_level_exit"]
+[connection signal="level_exit" from="Objects/Stairs_up" to="CircleTransition" method="_on_stairs_level_exit"]
+[connection signal="exit_anim_finished" from="CircleTransition" to="Objects/Stairs_up" method="exit_level"]
