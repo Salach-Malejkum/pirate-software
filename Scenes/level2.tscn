@@ -1,10 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://cxi65aji40i2b"]
+[gd_scene load_steps=9 format=3 uid="uid://cxi65aji40i2b"]
 
 [ext_resource type="Script" path="res://Scripts/level2.gd" id="1_8x3p3"]
 [ext_resource type="PackedScene" uid="uid://dht5pjj6hwyae" path="res://Scenes/stairs.tscn" id="1_c4g4c"]
 [ext_resource type="PackedScene" uid="uid://br31pgwnuthh" path="res://Scenes/tile_map.tscn" id="1_lnr04"]
 [ext_resource type="PackedScene" uid="uid://1xiakxfc81rn" path="res://Scenes/doors.tscn" id="3_mvghb"]
 [ext_resource type="PackedScene" uid="uid://b360hv35yusk0" path="res://Scenes/level1.tscn" id="5_ejwfo"]
+[ext_resource type="PackedScene" uid="uid://djmc8evnp1bjp" path="res://Scenes/level_3.tscn" id="6_8q68h"]
+[ext_resource type="PackedScene" uid="uid://dondxin01374w" path="res://Scenes/circle_transition.tscn" id="7_4iy0l"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_e8lq8"]
 polygon = PackedVector2Array(-6.5, -16, -6.5, -16, -6.5, 7.043, -6.5, 16, -6.5, 16)
@@ -157,7 +159,12 @@ scale = Vector2(0.255, 0.385)
 scene_to_load = ExtResource("5_ejwfo")
 
 [node name="Stairs_up" parent="Objects" instance=ExtResource("1_c4g4c")]
+position = Vector2(16, -10)
+scale = Vector2(0.24, 0.4)
+scene_to_load = ExtResource("6_8q68h")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 visible = false
 color = Color(0, 0, 0, 1)
+
+[node name="CircleTransition" parent="." instance=ExtResource("7_4iy0l")]
