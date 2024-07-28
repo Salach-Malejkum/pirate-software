@@ -105,9 +105,11 @@ func select_card(new_card : Card):
 		tutorial_progress.emit()
 	if selected_card != null:
 		if not try_merge_cards(new_card):
-			selected_card.deselect_self()
+			for card in current_hand:
+				card.deselect_self()
 	
 	selected_card = new_card
+	selected_card.select_connect_signal()
 	AudioPlayer.play_sfx("card_selected")
 	selected_card.material.set_shader_parameter("active", true)
 	selected_card.is_selected = true
@@ -127,9 +129,11 @@ func try_merge_cards(card_to_merge : Card):
 	]
 	
 	if merge_key_try_1 in Globals.card_merge_results.keys():
+		card_to_merge.select_connect_signal()
 		_merge_cards(merge_key_try_1)
 		return true
 	elif merge_key_try_2 in Globals.card_merge_results.keys():
+		card_to_merge.select_connect_signal()
 		_merge_cards(merge_key_try_2)
 		return true
 	return false

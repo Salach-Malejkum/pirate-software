@@ -22,16 +22,16 @@ func _ready():
 	if self.is_random:
 		hint_type_label.add_theme_color_override("font_color", Color(1.0, 1.0, 1.0, 1.0))
 	# got values from debugging
-	max_y_pos = Vector2(112.0 * index_at_hand, -lerp_offset)
-	min_y_pos = Vector2(112.0 * index_at_hand, 0.0)
+	max_y_pos = Vector2(120.0 * index_at_hand, -lerp_offset)
+	min_y_pos = Vector2(120.0 * index_at_hand, 0.0)
 	hint_type_label.text = Globals.card_types.keys()[self.card_type].replace("_", " ")
 	hint_type_label.visible = false
 
 
 func refresh_lerp_idx(new_idx : int):
 	self.index_at_hand = new_idx
-	self.max_y_pos = Vector2(112.0 * index_at_hand, -lerp_offset)
-	self.min_y_pos = Vector2(112.0 * index_at_hand, 0.0)
+	self.max_y_pos = Vector2(120.0 * index_at_hand, -lerp_offset)
+	self.min_y_pos = Vector2(120.0 * index_at_hand, 0.0)
 
 
 func _on_card_used():
@@ -71,8 +71,12 @@ func _on_gui_input(event):
 			elif is_random:
 				GameManager.random_card_chosen.emit(self.card_type)
 			else:
-				GameManager.card_used.connect(_on_card_used)
 				GameManager.select_card(self)
+
+
+func select_connect_signal():
+	GameManager.card_used.connect(_on_card_used)
+
 
 func deselect_self():
 	GameManager.card_used.disconnect(_on_card_used)
