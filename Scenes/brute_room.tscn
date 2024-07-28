@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://byi082db1bj0n"]
+[gd_scene load_steps=6 format=3 uid="uid://byi082db1bj0n"]
 
 [ext_resource type="PackedScene" uid="uid://cmger4fkxwgg4" path="res://Scenes/enemy_brute.tscn" id="1_qcdf1"]
 [ext_resource type="PackedScene" uid="uid://cb5w2t8c6ybt7" path="res://Scenes/player.tscn" id="2_bruxw"]
 [ext_resource type="PackedScene" uid="uid://10f3h0qs5m5x" path="res://Scenes/enemy_cultist.tscn" id="3_n37sd"]
+[ext_resource type="PackedScene" uid="uid://b60xxshhega8y" path="res://Scenes/enemy_boss.tscn" id="4_rqphi"]
+[ext_resource type="PackedScene" uid="uid://dd7hdx0lpmffr" path="res://Scenes/boss_card_interact.tscn" id="5_3r43k"]
 
 [node name="BruteRoom" type="Node2D"]
 
@@ -16,6 +18,7 @@ position = Vector2(276, 185)
 position = Vector2(1014, 198)
 
 [node name="EnemyBrute" parent="." node_paths=PackedStringArray("patrol_points") instance=ExtResource("1_qcdf1")]
+visible = false
 position = Vector2(188, 426)
 patrol_points = [NodePath("../Marker2D"), NodePath("../Marker2D2"), NodePath("../Marker2D3")]
 
@@ -23,4 +26,12 @@ patrol_points = [NodePath("../Marker2D"), NodePath("../Marker2D2"), NodePath("..
 position = Vector2(314, 417)
 
 [node name="EnemyCultist" parent="." instance=ExtResource("3_n37sd")]
+visible = false
 position = Vector2(417, 386)
+
+[node name="EnemyBoss" parent="." instance=ExtResource("4_rqphi")]
+visible = false
+position = Vector2(307, 294)
+
+[node name="BossCardInteract" parent="." instance=ExtResource("5_3r43k")]
+position = Vector2(422, 346)

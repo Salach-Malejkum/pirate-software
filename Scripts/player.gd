@@ -105,7 +105,7 @@ func take_spell_damage(damage: float):
 
 
 func _on_damage_area_body_entered(body):
-	if body is Enemy or body is Enemy_Brute: 
+	if body is Enemy or body is Enemy_Brute or body is Boss: 
 		if self.light.energy > player_min_hp:
 			enemy_arr.append(body)
 			if light.energy > player_min_hp:
@@ -113,19 +113,19 @@ func _on_damage_area_body_entered(body):
 
 
 func _on_damage_area_body_exited(body):
-	if body is Enemy or body is Enemy_Brute: 
+	if body is Enemy or body is Enemy_Brute or body is Boss: 
 		if self.light.energy > player_min_hp:
 			enemy_arr.erase(body)
 			body.del_dmg_source(self)
 
 
 func _on_death_area_body_entered(body):
-	if body is Enemy or body is Enemy_Brute:
+	if body is Enemy or body is Enemy_Brute or body is Boss:
 		self.deadly_enemies += 1
 
 
 func _on_death_area_body_exited(body):
-	if body is Enemy or body is Enemy_Brute:
+	if body is Enemy or body is Enemy_Brute or body is Boss:
 		self.deadly_enemies -= 1
 
 
