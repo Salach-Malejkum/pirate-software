@@ -118,8 +118,14 @@ func player_dead():
 
 func change_scene():
 	print(len(get_children()))
+	var sfx_to_del = []
 	for child in get_children():
 		if child.name == "level_bg":
+			continue
+		sfx_to_del.append(child)
+		
+	for child in sfx_to_del:
+		if child == null:
 			continue
 		if child.name == "Movement_SFX" || child.name == "SFX":
 			await child.finished
