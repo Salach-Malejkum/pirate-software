@@ -16,7 +16,9 @@ var sfx = {
 	"candle_card": preload("res://Audio/candle_card.mp3"),
 	"essence_card": preload("res://Audio/essence_card.mp3"),
 	"cultist_card": preload("res://Audio/cultist_card.mp3"),
-	"cultist_attack": preload("res://Audio/cultist_attack.mp3")
+	"cultist_attack": preload("res://Audio/cultist_attack.mp3"),
+	"mouse_clicked": preload("res://Audio/mouse_clicked.mp3"),
+	"scene_switch": preload("res://Audio/scene_switch.mp3")
 }
 
 var timed_sfx = {
@@ -41,6 +43,23 @@ var music_sfx_names = [
 ]
 
 var is_movement_running = false
+var is_clicked_sound = false
+
+func _input(event):
+	if event is InputEventMouseButton && !is_clicked_sound:
+		is_clicked_sound = true
+		var asp = AudioStreamPlayer.new()
+		asp.stream = sfx["mouse_clicked"]
+		asp.name = "SFX"
+		asp = add_to_bus(asp, "clicked")
+		
+		add_child(asp)
+		asp.play()
+		
+		await asp.finished
+		asp.queue_free()
+		is_clicked_sound = false
+
 
 func play_sfx(sfx_name: String):
 	if sfx.has(sfx_name):

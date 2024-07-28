@@ -26,6 +26,7 @@ func manage_door():
 		AudioPlayer.play_sfx("door_open")
 		await animated_sprite.animation_finished
 		if is_exit:
+			AudioPlayer.play_sfx("scene_switch")
 			get_tree().change_scene_to_packed(exit_scene)
 		is_closed = false
 		door_collision.disabled = true
