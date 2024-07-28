@@ -12,6 +12,7 @@ var tutorial_select_progress : bool = false
 @export var total_new_cards = 0
 @export var total_kills = 0
 @export var cards_used = 0
+@export var boss_kills = 0
 @export var current_hand : Array[Card] = []
 
 # card used jak jest rownoczesnie callowany to lapie tez obecnie usuwana karte
