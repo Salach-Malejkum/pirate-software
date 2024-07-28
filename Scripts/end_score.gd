@@ -28,6 +28,7 @@ var _total_score = 0
 @onready var boss_score_node = $MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/BossKilled
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	AudioPlayer.change_scene(true)
 	title_node.text = _death_text if GameManager.boss_kills < 1 else _victory_text
 	_merged_score = GameManager.merged_total_count * 100
 	_random_card_score = GameManager.total_new_cards * 50

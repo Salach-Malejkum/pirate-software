@@ -406,7 +406,6 @@ visible = false
 color = Color(0, 0, 0, 1)
 
 [node name="CircleTransition" parent="." instance=ExtResource("7_4iy0l")]
-visible = false
 
 [node name="Enemies" type="Node2D" parent="."]
 

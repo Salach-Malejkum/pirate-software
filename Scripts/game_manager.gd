@@ -21,6 +21,7 @@ signal card_used
 signal reshuffle_deck
 signal card_merged(merged_card_type : Globals.card_types)
 signal random_card_chosen(card_type : Globals.card_types)
+signal boss_ended
 
 # tutorial signals
 signal tutorial_furnace

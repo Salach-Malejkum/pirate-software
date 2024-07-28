@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cmger4fkxwgg4"]
+[gd_scene load_steps=10 format=3 uid="uid://cmger4fkxwgg4"]
 
 [ext_resource type="Script" path="res://Scripts/brute_ai.gd" id="1_klkr3"]
 [ext_resource type="Texture2D" uid="uid://d11sstyehkfxv" path="res://ArtAssets/Enemies/enemy_brute_walk.png" id="2_slqtb"]
@@ -46,8 +46,6 @@ animations = [{
 "speed": 11.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_yomej"]
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_iyysk"]
 radius = 34.0147
 
@@ -58,10 +56,6 @@ script = ExtResource("1_klkr3")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_l5i8r")
 animation = &"walk"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -6)
-shape = SubResource("CircleShape2D_yomej")
 
 [node name="PlayerSpotted" type="Area2D" parent="."]
 collision_layer = 4

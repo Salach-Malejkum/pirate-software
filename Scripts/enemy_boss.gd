@@ -4,7 +4,7 @@ extends CharacterBody2D
 
 var player_node : Player
 var _damage_sources = []
-var _current_hp : float = 1000.0
+var _current_hp : float = 3000.0
 
 @onready var sprite_anim = $AnimatedSprite2D
 @onready var spell_timer = $SpellCd
@@ -53,6 +53,7 @@ func _on_spell_cd_timeout():
 		return
 	sprite_anim.play("attack 1")
 	await sprite_anim.animation_finished
+	AudioPlayer.play_sfx("boss_attack")
 	var spell_instance = packaged_spell.instantiate()
 	add_child(spell_instance)
 	spell_timer.start(0.5)
@@ -62,17 +63,18 @@ func _on_spell_cd_timeout():
 
 func _on_morph_timer_timeout():
 	_current_phase = 1 if _current_phase == 2 else 2
-	print(_current_phase)
 	spell_timer.stop()
 	spawn_timer.stop()
 	if _current_phase == 2:
 		sprite_anim.play("morph_1_2")
 		await sprite_anim.animation_finished
+		AudioPlayer.play_sfx("boss_morph")
 		sprite_anim.play("idle_2")
 		spawn_timer.start(1.0)
 	elif _current_phase == 1:
 		sprite_anim.play_backwards("morph_1_2")
 		await sprite_anim.animation_finished
+		AudioPlayer.play_sfx("boss_morph")
 		sprite_anim.play("idle")
 		spell_timer.start(0.5)
 

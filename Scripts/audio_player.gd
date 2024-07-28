@@ -18,7 +18,11 @@ var sfx = {
 	"cultist_card": preload("res://Audio/cultist_card.mp3"),
 	"cultist_attack": preload("res://Audio/cultist_attack.mp3"),
 	"mouse_clicked": preload("res://Audio/mouse_clicked.mp3"),
-	"scene_switch": preload("res://Audio/scene_switch.mp3")
+	"scene_switch": preload("res://Audio/scene_switch.mp3"),
+	"boss_spawn": preload("res://Audio/boss_spawn.mp3"),
+	"lock_open": preload("res://Audio/lock_open.mp3"),
+	"boss_attack": preload("res://Audio/boss_atack.mp3"),
+	"boss_morph": preload("res://Audio/boss_morph.mp3")
 }
 
 var timed_sfx = {
@@ -26,7 +30,8 @@ var timed_sfx = {
 	"furnance_fire": preload("res://Audio/furnace_fire.mp3"),
 	"enemy_sound": preload("res://Audio/enemy_sound.mp3"),
 	"menu_music": preload("res://Audio/menu.mp3"),
-	"level_bg": preload("res://Audio/level_bg.mp3")
+	"level_bg": preload("res://Audio/level_bg.mp3"),
+	"boss_fight": preload("res://Audio/bossfight.mp3")
 }
 
 var movement_sfx = [
@@ -110,17 +115,19 @@ func random_movement_sfx():
 
 func player_dead():
 	for child in get_children():
+		if child == null:
+			continue
 		if child.name == "Movement_SFX" || child.name == "SFX":
 			await child.finished
 		remove_child(child)
 		child.queue_free()
 
 
-func change_scene():
+func change_scene(boss_fight=false):
 	print(len(get_children()))
 	var sfx_to_del = []
 	for child in get_children():
-		if child.name == "level_bg":
+		if !boss_fight && child.name == "level_bg":
 			continue
 		sfx_to_del.append(child)
 		
@@ -140,3 +147,10 @@ func add_to_bus(asp, sfx_name="default"):
 		asp.bus = "SFX"
 	
 	return asp
+
+
+func boss_fight_music():
+	change_scene(true)
+	AudioPlayer.play_sfx("boss_spawn")
+	play_timed_sfx("boss_fight", GameManager.boss_ended)
+	

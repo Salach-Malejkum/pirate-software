@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://c8wy6v5p8g8gm"]
+
+[ext_resource type="Texture2D" uid="uid://b1adcc3gjpsy2" path="res://ArtAssets/Environment/spawner_idle_spawning.png" id="1_x8yto"]
+[ext_resource type="PackedScene" uid="uid://drivg1a0m73sw" path="res://Scenes/lantern.tscn" id="2_3efh0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qhc0u"]
+atlas = ExtResource("1_x8yto")
+region = Rect2(80, 0, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_couei"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qhc0u")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Standing Lantern" type="Node2D"]
+
+[node name="LanternBase" type="StaticBody2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="LanternBase"]
+sprite_frames = SubResource("SpriteFrames_couei")
+
+[node name="Lantern" parent="." instance=ExtResource("2_3efh0")]
+position = Vector2(0, -6)

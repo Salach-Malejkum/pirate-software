@@ -33,6 +33,7 @@ func _card_interaction():
 	# nested ifs to ensure no exceptions
 	if GameManager.selected_card != null and not _boss_spawned and boss_spawnable:
 		if GameManager.selected_card.card_type == Globals.card_types.BEAST_HEAD:
+			AudioPlayer.boss_fight_music()
 			GameManager.card_used.emit()
 			var boss_instance = packed_boss.instantiate()
 			boss_instance.position.y -= 20
