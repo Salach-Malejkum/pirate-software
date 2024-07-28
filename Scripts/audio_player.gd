@@ -79,7 +79,10 @@ func play_timed_sfx(sfx_name: String, signal_name):
 	if timed_sfx.has(sfx_name):
 		var asp = AudioStreamPlayer.new()
 		asp.stream = timed_sfx[sfx_name]
-		asp.name = "Timed_SFX"
+		if sfx_name == "level_bg":
+			asp.name = "level_bg"
+		else:
+			asp.name = "Timed_SFX"
 		asp = add_to_bus(asp, sfx_name)
 		
 		add_child(asp)
@@ -107,6 +110,16 @@ func random_movement_sfx():
 
 func player_dead():
 	for child in get_children():
+		if child.name == "Movement_SFX" || child.name == "SFX":
+			await child.finished
+		remove_child(child)
+		child.queue_free()
+
+
+func change_scene():
+	for child in get_children():
+		if child.name == "level_bg":
+			continue
 		if child.name == "Movement_SFX" || child.name == "SFX":
 			await child.finished
 		remove_child(child)

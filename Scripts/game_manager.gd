@@ -144,5 +144,6 @@ func _merge_cards(merge_key : String):
 
 
 func change_scene(scene_to_load):
+	AudioPlayer.change_scene()
 	player.get_parent().remove_child(player)
 	get_tree().change_scene_to_packed(scene_to_load)
