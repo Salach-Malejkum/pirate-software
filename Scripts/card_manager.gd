@@ -2,10 +2,10 @@ class_name CardManager
 extends Control
 
 const starting_deck = [
-	Globals.card_types.WATER,
+	Globals.card_types.FIRE,
 	Globals.card_types.FIRE,
 	Globals.card_types.CANDLE,
-	Globals.card_types.ELECTRICITY
+	Globals.card_types.BEAST_HEAD
 ]
 
 const tutorial_merge_deck = [
@@ -103,6 +103,8 @@ func add_card(card_type : Globals.card_types):
 		card_instance.index_at_hand = GameManager.current_hand.size()
 		deck.add_child(card_instance)
 		GameManager.current_hand.append(card_instance)
+		for card in GameManager.current_hand:
+			print(Globals.card_types.keys()[card.card_type])
 	else:
 		max_deck_warning.visible = true
 		warning_timer.start(2.0)

@@ -8,7 +8,8 @@ var current_text_idx = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	tutorial_text.visible = true if get_parent().is_tutorial else false
+	if not get_parent().is_tutorial:
+		queue_free()
 	GameManager.tutorial_progress.connect(_progress_tutorial)
 	_show_hint_text()
 

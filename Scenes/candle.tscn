@@ -59,7 +59,7 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_b5uej"]
 radius = 66.0076
 
-[node name="Candle" type="Node2D"]
+[node name="Candle" type="Node2D" groups=["Candle"]]
 script = ExtResource("1_2s80e")
 
 [node name="InteractArea" type="Area2D" parent="."]
