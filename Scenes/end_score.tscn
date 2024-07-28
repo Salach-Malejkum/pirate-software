@@ -114,6 +114,13 @@ theme_override_fonts/font = ExtResource("1_k527e")
 theme_override_font_sizes/font_size = 36
 vertical_alignment = 1
 
+[node name="BossKilled" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.94902, 0.827451, 0.670588, 1)
+theme_override_fonts/font = ExtResource("1_k527e")
+theme_override_font_sizes/font_size = 36
+vertical_alignment = 1
+
 [node name="TotalScore" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.94902, 0.827451, 0.670588, 1)

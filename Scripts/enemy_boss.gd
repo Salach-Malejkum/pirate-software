@@ -15,6 +15,7 @@ var _current_hp : float = 1000.0
 var packaged_enemy = preload("res://Scenes/enemy.tscn")
 var packaged_spell = preload("res://Scenes/cult_mark_spell.tscn")
 var _current_phase = 1
+var end_scene = preload("res://Scenes/end_score.tscn")
 
 func _ready():
 	health_bar.max_value = _current_hp
@@ -29,11 +30,8 @@ func _physics_process(delta):
 	_current_hp -= delta * 30 * _damage_sources.size()
 	health_bar.value = _current_hp
 	if _current_hp <= 0.0:
-		GameManager.total_kills += 1
-		if GameManager.total_kills == 2:
-			GameManager.tutorial_progress.emit()
-		queue_free()
-		emit_signal("enemy_dead")
+		GameManager.boss_kills += 1
+		get_tree().change_scene_to_packed(end_scene)
 
 
 func set_max_hp(max_hp):
