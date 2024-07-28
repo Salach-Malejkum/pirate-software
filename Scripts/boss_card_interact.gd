@@ -35,5 +35,6 @@ func _card_interaction():
 		if GameManager.selected_card.card_type == Globals.card_types.BEAST_HEAD:
 			GameManager.card_used.emit()
 			var boss_instance = packed_boss.instantiate()
+			boss_instance.position.y -= 20
 			add_child(boss_instance)
 			_boss_spawned = true

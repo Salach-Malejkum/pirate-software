@@ -3,9 +3,9 @@ extends Control
 
 const starting_deck = [
 	Globals.card_types.FIRE,
-	Globals.card_types.FIRE,
-	Globals.card_types.CANDLE,
-	Globals.card_types.BEAST_HEAD
+	Globals.card_types.WATER,
+	Globals.card_types.CULT_MARK,
+	Globals.card_types.ELECTRICITY
 ]
 
 const tutorial_merge_deck = [
