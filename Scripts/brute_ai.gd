@@ -22,12 +22,12 @@ var current_position
 
 func _physics_process(delta):
 	if current_position:
-		velocity = self.position.direction_to(current_position.position) * SPEED
+		velocity = self.global_position.direction_to(current_position.global_position) * SPEED
 		if velocity.x < 0.0:
 			sprite.flip_h = true
 		else:
 			sprite.flip_h = false
-		if self.position.distance_to(current_position.position) > 10:
+		if self.global_position.distance_to(current_position.global_position) > 10:
 			move_and_slide()
 		elif not current_position is Player:
 			_get_next_position()

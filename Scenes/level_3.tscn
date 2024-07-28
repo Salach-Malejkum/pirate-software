@@ -187,19 +187,7 @@ position = Vector2(2, 297)
 
 [node name="EnemyBrute3" parent="Enemies" node_paths=PackedStringArray("patrol_points") instance=ExtResource("6_t0gen")]
 position = Vector2(270, 109)
-patrol_points = [NodePath("Marker2D"), NodePath("Marker2D2"), NodePath("Marker2D3"), NodePath("Marker2D4")]
-
-[node name="Marker2D" type="Marker2D" parent="Enemies/EnemyBrute3"]
-position = Vector2(-2, 34)
-
-[node name="Marker2D2" type="Marker2D" parent="Enemies/EnemyBrute3"]
-position = Vector2(-63, 34)
-
-[node name="Marker2D3" type="Marker2D" parent="Enemies/EnemyBrute3"]
-position = Vector2(-62, -28)
-
-[node name="Marker2D4" type="Marker2D" parent="Enemies/EnemyBrute3"]
-position = Vector2(-2, -28)
+patrol_points = [NodePath("../Brute3 Route/Marker2D"), NodePath("../Brute3 Route/Marker2D2"), NodePath("../Brute3 Route/Marker2D3"), NodePath("../Brute3 Route/Marker2D4")]
 
 [node name="EnemyCultist" type="Node2D" parent="Enemies"]
 position = Vector2(17, 242)
@@ -268,6 +256,20 @@ z_index = 1
 y_sort_enabled = true
 position = Vector2(0, 1)
 shape = SubResource("CircleShape2D_jjg0p")
+
+[node name="Brute3 Route" type="Node2D" parent="Enemies"]
+
+[node name="Marker2D" type="Marker2D" parent="Enemies/Brute3 Route"]
+position = Vector2(268, 143)
+
+[node name="Marker2D2" type="Marker2D" parent="Enemies/Brute3 Route"]
+position = Vector2(207, 143)
+
+[node name="Marker2D3" type="Marker2D" parent="Enemies/Brute3 Route"]
+position = Vector2(208, 81)
+
+[node name="Marker2D4" type="Marker2D" parent="Enemies/Brute3 Route"]
+position = Vector2(268, 81)
 
 [node name="Objects" type="Node2D" parent="."]
 

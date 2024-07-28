@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cmger4fkxwgg4" path="res://Scenes/enemy_brute.tscn" id="1_qcdf1"]
 [ext_resource type="PackedScene" uid="uid://cb5w2t8c6ybt7" path="res://Scenes/player.tscn" id="2_bruxw"]
 [ext_resource type="PackedScene" uid="uid://10f3h0qs5m5x" path="res://Scenes/enemy_cultist.tscn" id="3_n37sd"]
-[ext_resource type="PackedScene" path="res://Scenes/enemy_boss.tscn" id="4_rqphi"]
+[ext_resource type="PackedScene" uid="uid://c6tacc3o6kqqa" path="res://Scenes/enemy_boss.tscn" id="4_rqphi"]
 [ext_resource type="PackedScene" path="res://Scenes/boss_card_interact.tscn" id="5_3r43k"]
 
 [node name="BruteRoom" type="Node2D"]
