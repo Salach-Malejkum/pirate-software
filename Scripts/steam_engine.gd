@@ -40,6 +40,7 @@ func _card_interaction():
 		return
 	if GameManager.selected_card != null and not is_tutorial:
 		if GameManager.selected_card.card_type == Globals.card_types.STEAM:
+			AudioPlayer.play_sfx("steam_card")
 			GameManager.card_used.emit()
 			start_engine()
 		

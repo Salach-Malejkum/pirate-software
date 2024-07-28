@@ -39,8 +39,10 @@ func _card_interaction():
 		return
 	if GameManager.selected_card != null and not is_tutorial:
 		if GameManager.selected_card.card_type == Globals.card_types.CANDLE:
+			AudioPlayer.play_sfx("candle_card")
 			_spawn_candle_on_mouse(false)
 		elif GameManager.selected_card.card_type == Globals.card_types.CANDLE_LIT:
+			AudioPlayer.play_sfx("candle_card")
 			_spawn_candle_on_mouse(true)
 		
 		if not _is_tutorial_progressed:

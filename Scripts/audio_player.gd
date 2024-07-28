@@ -11,7 +11,9 @@ var sfx = {
 	"lit_candle": preload("res://Audio/candle_light.mp3"),
 	"card_selected": preload("res://Audio/card_selected.mp3"),
 	"card_unselected": preload("res://Audio/card_unselected.mp3"),
-	"card_draw": preload("res://Audio/card_draw.mp3")
+	"card_draw": preload("res://Audio/card_draw.mp3"),
+	"steam_card": preload("res://Audio/steam_card.mp3"),
+	"candle_card": preload("res://Audio/candle_card.mp3")
 }
 
 var timed_sfx = {
