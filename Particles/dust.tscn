@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://cahapugo3nwj3"]
+
+[ext_resource type="Texture2D" uid="uid://brrcurr8fa8v5" path="res://ArtAssets/Shaders/dust.png" id="1_lq776"]
+[ext_resource type="Script" path="res://Scripts/dust.gd" id="2_w334h"]
+
+[sub_resource type="Curve" id="Curve_kdgph"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.181467, 1), 0.0, 0.0, 0, 0, Vector2(0.505226, 0.448373), 0.0, 0.0, 0, 0, Vector2(0.891892, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[node name="Dust" type="Node2D" node_paths=PackedStringArray("particle_node")]
+script = ExtResource("2_w334h")
+particle_node = NodePath("Dust")
+
+[node name="Dust" type="CPUParticles2D" parent="."]
+amount = 10
+lifetime = 12.0
+randomness = 0.2
+fixed_fps = 30
+draw_order = 1
+texture = ExtResource("1_lq776")
+emission_shape = 3
+emission_rect_extents = Vector2(300, 200)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 30.0
+scale_amount_min = 0.01
+scale_amount_max = 0.01
+scale_amount_curve = SubResource("Curve_kdgph")

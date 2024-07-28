@@ -20,7 +20,7 @@ var is_mouse_hovering : bool = false
 func _ready():
 	texture = load(Globals.card_texture_paths[card_type])
 	if self.is_random:
-		hint_type_label.add_theme_color_override("font_color", Color(0.0, 0.0, 0.0, 1.0))
+		hint_type_label.add_theme_color_override("font_color", Color(1.0, 1.0, 1.0, 1.0))
 	# got values from debugging
 	max_y_pos = Vector2(112.0 * index_at_hand, -lerp_offset)
 	min_y_pos = Vector2(112.0 * index_at_hand, 0.0)
