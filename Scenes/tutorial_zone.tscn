@@ -29,6 +29,7 @@ is_tutorial = true
 
 [node name="Player" parent="." instance=ExtResource("5_a7lq5")]
 position = Vector2(49, 20)
+is_tutorial = true
 
 [node name="SteamEngine" parent="." instance=ExtResource("6_t78qg")]
 position = Vector2(177, 54)

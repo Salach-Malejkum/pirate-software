@@ -1,16 +1,119 @@
-[gd_scene load_steps=3 format=3 uid="uid://c4c0yn3axluwb"]
+[gd_scene load_steps=15 format=3 uid="uid://c4c0yn3axluwb"]
 
 [ext_resource type="Script" path="res://Scripts/enemy_spawner.gd" id="1_2nmba"]
+[ext_resource type="Texture2D" uid="uid://b1adcc3gjpsy2" path="res://ArtAssets/Environment/spawner_idle_spawning.png" id="2_gw420"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_b213s"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_7dles"]
+atlas = ExtResource("2_gw420")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7qpfo"]
+atlas = ExtResource("2_gw420")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ni5rc"]
+atlas = ExtResource("2_gw420")
+region = Rect2(48, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cwqx5"]
+atlas = ExtResource("2_gw420")
+region = Rect2(64, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_810xh"]
+atlas = ExtResource("2_gw420")
+region = Rect2(80, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kq6nt"]
+atlas = ExtResource("2_gw420")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4hhmk"]
+atlas = ExtResource("2_gw420")
+region = Rect2(32, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n8rch"]
+atlas = ExtResource("2_gw420")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jo38h"]
+atlas = ExtResource("2_gw420")
+region = Rect2(48, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_00ead"]
+atlas = ExtResource("2_gw420")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3oakw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7dles")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7qpfo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ni5rc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cwqx5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_810xh")
+}],
+"loop": false,
+"name": &"destroy",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kq6nt")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4hhmk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n8rch")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jo38h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_00ead")
+}],
+"loop": false,
+"name": &"spawning",
+"speed": 6.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fq23e"]
+radius = 15.0333
 
 [node name="EnemySpawner" type="Node2D"]
 script = ExtResource("1_2nmba")
 
-[node name="VisualDebug" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_b213s")
-debug_color = Color(0.130218, 0.520566, 1, 0.42)
-
 [node name="SpawnTimer" type="Timer" parent="."]
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -8)
+sprite_frames = SubResource("SpriteFrames_3oakw")
+animation = &"spawning"
+
+[node name="InteractArea" type="Area2D" parent="."]
+y_sort_enabled = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractArea"]
+z_index = 1
+y_sort_enabled = true
+position = Vector2(0, -6)
+shape = SubResource("CircleShape2D_fq23e")
+
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
+[connection signal="input_event" from="InteractArea" to="." method="_on_interact_area_input_event"]
+[connection signal="mouse_entered" from="InteractArea" to="." method="_on_interact_area_mouse_entered"]
+[connection signal="mouse_exited" from="InteractArea" to="." method="_on_interact_area_mouse_exited"]
