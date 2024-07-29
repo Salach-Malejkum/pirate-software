@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cmger4fkxwgg4"]
+[gd_scene load_steps=11 format=3 uid="uid://cmger4fkxwgg4"]
 
 [ext_resource type="Script" path="res://Scripts/brute_ai.gd" id="1_klkr3"]
 [ext_resource type="Texture2D" uid="uid://d11sstyehkfxv" path="res://ArtAssets/Enemies/enemy_brute_walk.png" id="2_slqtb"]
@@ -49,8 +49,11 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_iyysk"]
 radius = 34.0147
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_vq1a4"]
+
 [node name="EnemyBrute" type="CharacterBody2D"]
 collision_layer = 4
+collision_mask = 0
 script = ExtResource("1_klkr3")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -63,6 +66,10 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerSpotted"]
 shape = SubResource("CircleShape2D_iyysk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -6)
+shape = SubResource("CircleShape2D_vq1a4")
 
 [connection signal="body_entered" from="PlayerSpotted" to="." method="_on_player_spotted_body_entered"]
 [connection signal="body_exited" from="PlayerSpotted" to="." method="_on_player_spotted_body_exited"]

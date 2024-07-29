@@ -86,7 +86,7 @@ radius = 16.0
 size = Vector2(15, 30)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tne4j"]
-size = Vector2(154, 62)
+size = Vector2(91, 101)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rg5au"]
 atlas = ExtResource("13_kifwx")
@@ -155,39 +155,12 @@ visible = false
 color = Color(0, 0, 0, 1)
 
 [node name="CircleTransition" parent="." instance=ExtResource("2_n3ngo")]
+visible = false
 
 [node name="Dust" parent="." instance=ExtResource("4_5baow")]
 position = Vector2(337, 175)
 
 [node name="Enemies" type="Node2D" parent="."]
-
-[node name="EnemyBrute" parent="Enemies" node_paths=PackedStringArray("patrol_points") instance=ExtResource("6_t0gen")]
-position = Vector2(252, 319)
-patrol_points = [NodePath("Marker2D"), NodePath("Marker2D2"), NodePath("Marker2D3")]
-
-[node name="Marker2D" type="Marker2D" parent="Enemies/EnemyBrute"]
-position = Vector2(5, -96)
-
-[node name="Marker2D2" type="Marker2D" parent="Enemies/EnemyBrute"]
-
-[node name="Marker2D3" type="Marker2D" parent="Enemies/EnemyBrute"]
-position = Vector2(-136, 0)
-
-[node name="EnemyBrute2" parent="Enemies" node_paths=PackedStringArray("patrol_points") instance=ExtResource("6_t0gen")]
-position = Vector2(655, 19)
-patrol_points = [NodePath("Marker2D"), NodePath("Marker2D2"), NodePath("Marker2D3")]
-
-[node name="Marker2D" type="Marker2D" parent="Enemies/EnemyBrute2"]
-position = Vector2(-109, -1)
-
-[node name="Marker2D2" type="Marker2D" parent="Enemies/EnemyBrute2"]
-
-[node name="Marker2D3" type="Marker2D" parent="Enemies/EnemyBrute2"]
-position = Vector2(2, 297)
-
-[node name="EnemyBrute3" parent="Enemies" node_paths=PackedStringArray("patrol_points") instance=ExtResource("6_t0gen")]
-position = Vector2(270, 109)
-patrol_points = [NodePath("../Brute3 Route/Marker2D"), NodePath("../Brute3 Route/Marker2D2"), NodePath("../Brute3 Route/Marker2D3"), NodePath("../Brute3 Route/Marker2D4")]
 
 [node name="EnemyCultist" type="Node2D" parent="Enemies"]
 position = Vector2(17, 242)
@@ -242,7 +215,7 @@ collision_layer = 4
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemies/EnemyCultist2/sight_area"]
-position = Vector2(-1, -7)
+position = Vector2(30.5, 12.5)
 shape = SubResource("RectangleShape2D_tne4j")
 
 [node name="Cooldown" type="Timer" parent="Enemies/EnemyCultist2"]
@@ -259,6 +232,10 @@ shape = SubResource("CircleShape2D_jjg0p")
 
 [node name="Brute3 Route" type="Node2D" parent="Enemies"]
 
+[node name="EnemyBrute3" parent="Enemies/Brute3 Route" node_paths=PackedStringArray("patrol_points") instance=ExtResource("6_t0gen")]
+position = Vector2(270, 109)
+patrol_points = [NodePath("../Marker2D"), NodePath("../Marker2D2"), NodePath("../Marker2D3"), NodePath("../Marker2D4")]
+
 [node name="Marker2D" type="Marker2D" parent="Enemies/Brute3 Route"]
 position = Vector2(268, 143)
 
@@ -270,6 +247,42 @@ position = Vector2(208, 81)
 
 [node name="Marker2D4" type="Marker2D" parent="Enemies/Brute3 Route"]
 position = Vector2(268, 81)
+
+[node name="Brute2 route" type="Node2D" parent="Enemies"]
+
+[node name="EnemyBrute2" parent="Enemies/Brute2 route" node_paths=PackedStringArray("patrol_points") instance=ExtResource("6_t0gen")]
+position = Vector2(469, 10)
+patrol_points = [NodePath("../Marker2D"), NodePath("../Marker2D2"), NodePath("../Marker2D3"), NodePath("../Marker2D4")]
+
+[node name="Marker2D" type="Marker2D" parent="Enemies/Brute2 route"]
+position = Vector2(513, 13)
+
+[node name="Marker2D2" type="Marker2D" parent="Enemies/Brute2 route"]
+position = Vector2(515, 96)
+
+[node name="Marker2D3" type="Marker2D" parent="Enemies/Brute2 route"]
+position = Vector2(638, 98)
+
+[node name="Marker2D4" type="Marker2D" parent="Enemies/Brute2 route"]
+position = Vector2(410, 95)
+
+[node name="Brute Route" type="Node2D" parent="Enemies"]
+
+[node name="EnemyBrute" parent="Enemies/Brute Route" node_paths=PackedStringArray("patrol_points") instance=ExtResource("6_t0gen")]
+position = Vector2(258, 275)
+patrol_points = [NodePath("../Marker2D"), NodePath("../Marker2D2"), NodePath("../Marker2D3"), NodePath("../Marker2D4")]
+
+[node name="Marker2D" type="Marker2D" parent="Enemies/Brute Route"]
+position = Vector2(384, 177)
+
+[node name="Marker2D2" type="Marker2D" parent="Enemies/Brute Route"]
+position = Vector2(259, 179)
+
+[node name="Marker2D3" type="Marker2D" parent="Enemies/Brute Route"]
+position = Vector2(257, 323)
+
+[node name="Marker2D4" type="Marker2D" parent="Enemies/Brute Route"]
+position = Vector2(259, 179)
 
 [node name="Objects" type="Node2D" parent="."]
 
@@ -443,5 +456,6 @@ position = Vector2(128, -11)
 [connection signal="mouse_exited" from="Objects/SteamEngine2/InteractArea" to="Objects/SteamEngine2" method="_on_interact_area_mouse_exited"]
 [connection signal="timeout" from="Objects/SteamEngine2/EnginePowerTimer" to="Objects/SteamEngine2" method="_on_engine_power_timer_timeout"]
 
+[editable path="Enemies/Brute Route/EnemyBrute"]
 [editable path="Objects/Candle"]
 [editable path="Objects/Candle2"]
