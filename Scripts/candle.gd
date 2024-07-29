@@ -4,6 +4,7 @@ extends Node2D
 const fire_timer_seconds : float = 5.0
 
 @export var never_expire = false
+@export var is_lit = false
 var is_mouse_hovering : bool = false
 @onready var anim_sprite : AnimatedSprite2D = $CandleSprite
 var enemy_arr = []
@@ -11,6 +12,8 @@ var enemy_arr = []
 
 func _ready():
 	anim_sprite.play("idle")
+	if is_lit:
+		light_candle()
 
 func _on_interact_area_mouse_entered():
 	is_mouse_hovering = true

@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://br31pgwnuthh" path="res://Scenes/tile_map.tscn" id="1_a17bc"]
 [ext_resource type="Script" path="res://Scripts/level2.gd" id="1_o1nn8"]
 [ext_resource type="PackedScene" uid="uid://dondxin01374w" path="res://Scenes/circle_transition.tscn" id="3_s0wgp"]
-[ext_resource type="PackedScene" path="res://Scenes/boss_card_interact.tscn" id="4_bqqdg"]
+[ext_resource type="PackedScene" uid="uid://dd7hdx0lpmffr" path="res://Scenes/boss_card_interact.tscn" id="4_bqqdg"]
 [ext_resource type="Script" path="res://Scripts/cabin.gd" id="4_qcuvq"]
 [ext_resource type="PackedScene" uid="uid://f5gyxbg3cfuh" path="res://Scenes/candle.tscn" id="5_xbg7c"]
 [ext_resource type="PackedScene" uid="uid://c5iwiblniciof" path="res://Scenes/furnace.tscn" id="7_l1u0a"]
@@ -110,6 +110,8 @@ shape = SubResource("RectangleShape2D_6aksi")
 
 [node name="Candle" parent="BossCardInteract/Places For Candles" instance=ExtResource("5_xbg7c")]
 position = Vector2(343, 83)
+never_expire = true
+is_lit = true
 
 [node name="Objects" type="Node2D" parent="."]
 
