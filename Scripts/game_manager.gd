@@ -40,6 +40,7 @@ signal assign_player(player)
 
 @export var tutorial_texts : Dictionary = {
 	"Hello, operator. Today we are going to show you how to control your lightbringer." : null,
+	"In order to proceed to the next level press E or F on stairs. You won't be able to come down!" : null,
 	"If you wish to skip the training, you can exit through the door by pressing E or F." : null,
 	"First, move your lightbringer using W A S D keys." : null,
 	"Now, as you can see on the bottom of your screen, we have assigned you the standard operator deck." : null,
