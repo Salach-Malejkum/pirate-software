@@ -22,7 +22,7 @@ var sfx = {
 	"boss_spawn": preload("res://Audio/boss_spawn.mp3"),
 	"lock_open": preload("res://Audio/lock_open.mp3"),
 	"boss_attack": preload("res://Audio/boss_atack.mp3"),
-	"boss_morph": preload("res://Audio/boss_morph.mp3")
+	"boss_morph": preload("res://Audio/boss_morph.mp3"),
 }
 
 var timed_sfx = {
@@ -31,7 +31,9 @@ var timed_sfx = {
 	"enemy_sound": preload("res://Audio/enemy_sound.mp3"),
 	"menu_music": preload("res://Audio/menu.mp3"),
 	"level_bg": preload("res://Audio/level_bg.mp3"),
-	"boss_fight": preload("res://Audio/bossfight.mp3")
+	"boss_fight": preload("res://Audio/bossfight.mp3"),
+	"boss_idle_1": preload("res://Audio/boss_idle.mp3"),
+	"boss_idle_2": preload("res://Audio/boss_idle_2.mp3")
 }
 
 var movement_sfx = [

@@ -20,17 +20,18 @@ func _process(_delta):
 		await manage_door()
 
 func manage_door():
-	if is_closed:
+	if is_closed && !animated_sprite.is_playing():
 		animated_sprite.play(open_anim_name)
-		manage_oclussion()
 		AudioPlayer.play_sfx("door_open")
 		await animated_sprite.animation_finished
+		
 		if is_exit:
 			AudioPlayer.play_sfx("scene_switch")
 			get_tree().change_scene_to_packed(exit_scene)
-		is_closed = false
 		door_collision.disabled = true
-	else:
+		manage_oclussion()
+		is_closed = false
+	elif !is_closed && !animated_sprite.is_playing():
 		animated_sprite.play_backwards(open_anim_name)
 		door_collision.disabled = false
 		AudioPlayer.play_sfx("door_close")

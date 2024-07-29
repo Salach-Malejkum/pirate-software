@@ -10,7 +10,6 @@ func _process(_delta):
 
 func delete_tile(x: int, y: int):
 	set_cell(1, Vector2i(x, y), -1)  # Setting the tile ID to -1 removes the tile
-	print("Deleted tile at (", x, ", ", y, ")")
 
 
 func start_path_opening():

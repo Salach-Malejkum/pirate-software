@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cxi65aji40i2b"]
+[gd_scene load_steps=36 format=3 uid="uid://cxi65aji40i2b"]
 
 [ext_resource type="Script" path="res://Scripts/level2.gd" id="1_8x3p3"]
 [ext_resource type="PackedScene" uid="uid://dht5pjj6hwyae" path="res://Scenes/stairs.tscn" id="1_c4g4c"]
@@ -8,14 +8,104 @@
 [ext_resource type="PackedScene" uid="uid://bmjpimvwupc8p" path="res://Scenes/steam_engine.tscn" id="6_v5yr8"]
 [ext_resource type="PackedScene" uid="uid://dondxin01374w" path="res://Scenes/circle_transition.tscn" id="7_4iy0l"]
 [ext_resource type="PackedScene" uid="uid://drivg1a0m73sw" path="res://Scenes/lantern.tscn" id="7_jwl3s"]
+[ext_resource type="Script" path="res://Scripts/lantern.gd" id="8_8l0g0"]
 [ext_resource type="PackedScene" uid="uid://10f3h0qs5m5x" path="res://Scenes/enemy_cultist.tscn" id="8_08sm2"]
 [ext_resource type="PackedScene" uid="uid://c5iwiblniciof" path="res://Scenes/furnace.tscn" id="8_nq82j"]
 [ext_resource type="PackedScene" uid="uid://bk7smumc7rwo7" path="res://Scenes/cabin.tscn" id="9_ky4ep"]
 [ext_resource type="PackedScene" uid="uid://cahapugo3nwj3" path="res://Particles/dust.tscn" id="9_rqd2o"]
-[ext_resource type="PackedScene" uid="uid://dofng5bamm7sw" path="res://Scenes/lantern_base.tscn" id="10_eiof3"]
+[ext_resource type="Texture2D" uid="uid://ckce10rmdiya4" path="res://ArtAssets/Environment/lantern.png" id="9_ulck4"]
+[ext_resource type="Texture2D" uid="uid://1vg2qw4odvfq" path="res://ArtAssets/lightmap.png" id="10_vtcbm"]
+[ext_resource type="Texture2D" uid="uid://b1adcc3gjpsy2" path="res://ArtAssets/Environment/spawner_idle_spawning.png" id="13_hw7qk"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_e8lq8"]
 polygon = PackedVector2Array(-6, -17, -6, 17)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3e60l"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lwwdv"]
+atlas = ExtResource("9_ulck4")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s8o2h"]
+atlas = ExtResource("9_ulck4")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q47is"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lwwdv")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s8o2h")
+}],
+"loop": true,
+"name": &"lit",
+"speed": 5.0
+}]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8ukq2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oleu8"]
+radius = 66.0076
+
+[sub_resource type="Animation" id="Animation_rkeig"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LanternSprite:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_wwoxy"]
+resource_name = "idle"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LanternSprite:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [-0.174533, 0.0, 0.174533, 0.0, -0.174533]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tceu1"]
+_data = {
+"RESET": SubResource("Animation_rkeig"),
+"idle": SubResource("Animation_wwoxy")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qhc0u"]
+atlas = ExtResource("13_hw7qk")
+region = Rect2(80, 0, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_couei"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qhc0u")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="GDScript" id="GDScript_5bvc1"]
 script/source = "extends Node2D
@@ -193,6 +283,7 @@ size = Vector2(262, 93)
 size = Vector2(142, 164.5)
 
 [node name="Level2" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_8x3p3")
 
 [node name="TileMap" parent="." instance=ExtResource("1_lnr04")]
@@ -203,8 +294,10 @@ layer_1/tile_data = PackedInt32Array(1114112, 0, 6, 1179648, 0, 7, 1245184, 0, 8
 position = Vector2(688, -2)
 
 [node name="Objects" type="Node2D" parent="."]
+y_sort_enabled = true
 
 [node name="Doors" type="Node2D" parent="Objects"]
+y_sort_enabled = true
 
 [node name="Doors" parent="Objects/Doors" instance=ExtResource("3_mvghb")]
 position = Vector2(40, 304)
@@ -374,12 +467,55 @@ position = Vector2(-108, -102)
 [node name="Lantern5" parent="Objects/SteamGenerators/SteamEngine2" instance=ExtResource("7_jwl3s")]
 position = Vector2(-201, -102)
 
-[node name="Lantern6" parent="Objects/SteamGenerators/SteamEngine2" instance=ExtResource("7_jwl3s")]
+[node name="Lantern6" type="Node2D" parent="Objects/SteamGenerators/SteamEngine2"]
+y_sort_enabled = true
 position = Vector2(-132, 74)
+script = ExtResource("8_8l0g0")
+
+[node name="InteractArea" type="Area2D" parent="Objects/SteamGenerators/SteamEngine2/Lantern6"]
+y_sort_enabled = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/SteamGenerators/SteamEngine2/Lantern6/InteractArea"]
+z_index = 1
+y_sort_enabled = true
+position = Vector2(0, 1)
+shape = SubResource("CircleShape2D_3e60l")
+
+[node name="LanternTimer" type="Timer" parent="Objects/SteamGenerators/SteamEngine2/Lantern6"]
+
+[node name="LanternSprite" type="AnimatedSprite2D" parent="Objects/SteamGenerators/SteamEngine2/Lantern6"]
+z_index = 1
+y_sort_enabled = true
+position = Vector2(0, -7)
+sprite_frames = SubResource("SpriteFrames_q47is")
+animation = &"idle"
+offset = Vector2(0, 7)
+
+[node name="PointLight2D" type="PointLight2D" parent="Objects/SteamGenerators/SteamEngine2/Lantern6"]
+material = SubResource("ShaderMaterial_8ukq2")
+position = Vector2(0, 4)
+energy = 0.0
+shadow_enabled = true
+texture = ExtResource("10_vtcbm")
+texture_scale = 4.0
+
+[node name="DamageArea" type="Area2D" parent="Objects/SteamGenerators/SteamEngine2/Lantern6/PointLight2D"]
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/SteamGenerators/SteamEngine2/Lantern6/PointLight2D/DamageArea"]
+shape = SubResource("CircleShape2D_oleu8")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Objects/SteamGenerators/SteamEngine2/Lantern6"]
+libraries = {
+"": SubResource("AnimationLibrary_tceu1")
+}
+autoplay = "idle"
 
 [node name="Furnaces" type="Node2D" parent="Objects"]
 
 [node name="Furnace" parent="Objects/Furnaces" instance=ExtResource("8_nq82j")]
+z_index = 1
 position = Vector2(515, 255)
 
 [node name="Furnace2" parent="Objects/Furnaces" instance=ExtResource("8_nq82j")]
@@ -388,21 +524,24 @@ position = Vector2(124, -16)
 [node name="Cabins" type="Node2D" parent="Objects"]
 
 [node name="Cabin3" parent="Objects/Cabins" instance=ExtResource("9_ky4ep")]
-position = Vector2(680, 155)
+position = Vector2(680, 159)
 
 [node name="Cabin2" parent="Objects/Cabins" instance=ExtResource("9_ky4ep")]
-position = Vector2(323, 154)
+z_index = 1
+position = Vector2(323, 158)
 
 [node name="Cabin" parent="Objects/Cabins" instance=ExtResource("9_ky4ep")]
-position = Vector2(543, 154)
+position = Vector2(543, 157)
 
 [node name="LanternBases" type="Node2D" parent="Objects"]
 
-[node name="LanternBase" parent="Objects/LanternBases" instance=ExtResource("10_eiof3")]
+[node name="LanternBase" type="StaticBody2D" parent="Objects/LanternBases"]
 position = Vector2(389, 155)
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Objects/LanternBases/LanternBase"]
+sprite_frames = SubResource("SpriteFrames_couei")
+
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-visible = false
 color = Color(0, 0, 0, 1)
 
 [node name="CircleTransition" parent="." instance=ExtResource("7_4iy0l")]
@@ -451,6 +590,12 @@ position = Vector2(370, 179)
 
 [connection signal="level_entered" from="." to="CircleTransition" method="_on_level_1_level_entered"]
 [connection signal="level_exit" from="Objects/Stairs_up" to="CircleTransition" method="_on_stairs_level_exit"]
+[connection signal="input_event" from="Objects/SteamGenerators/SteamEngine2/Lantern6/InteractArea" to="Objects/SteamGenerators/SteamEngine2/Lantern6" method="_on_interact_area_input_event"]
+[connection signal="mouse_entered" from="Objects/SteamGenerators/SteamEngine2/Lantern6/InteractArea" to="Objects/SteamGenerators/SteamEngine2/Lantern6" method="_on_interact_area_mouse_entered"]
+[connection signal="mouse_exited" from="Objects/SteamGenerators/SteamEngine2/Lantern6/InteractArea" to="Objects/SteamGenerators/SteamEngine2/Lantern6" method="_on_interact_area_mouse_exited"]
+[connection signal="timeout" from="Objects/SteamGenerators/SteamEngine2/Lantern6/LanternTimer" to="Objects/SteamGenerators/SteamEngine2/Lantern6" method="_on_lantern_timer_timeout"]
+[connection signal="body_entered" from="Objects/SteamGenerators/SteamEngine2/Lantern6/PointLight2D/DamageArea" to="Objects/SteamGenerators/SteamEngine2/Lantern6" method="_on_damage_area_body_entered"]
+[connection signal="body_exited" from="Objects/SteamGenerators/SteamEngine2/Lantern6/PointLight2D/DamageArea" to="Objects/SteamGenerators/SteamEngine2/Lantern6" method="_on_damage_area_body_exited"]
 [connection signal="exit_anim_finished" from="CircleTransition" to="Objects/Stairs_up" method="exit_level"]
 
 [editable path="Enemies/EnemyCultist"]

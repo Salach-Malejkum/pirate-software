@@ -2,6 +2,9 @@ class_name Boss
 
 extends CharacterBody2D
 
+signal boss_idle_1_end
+signal boss_idle_2_end
+
 var player_node : Player
 var _damage_sources = []
 var _current_hp : float = 3000.0
@@ -17,6 +20,7 @@ var _current_phase = 1
 var end_scene = preload("res://Scenes/end_score.tscn")
 
 func _ready():
+	AudioPlayer.play_timed_sfx("boss_idle_1", boss_idle_1_end)
 	GameManager.boss_spawned.emit()
 	_current_hp = GameManager.boss_max_hp 
 	sprite_anim.play("idle")
@@ -67,12 +71,18 @@ func _on_morph_timer_timeout():
 	spawn_timer.stop()
 	if _current_phase == 2:
 		sprite_anim.play("morph_1_2")
+		boss_idle_1_end.emit()
+		AudioPlayer.play_timed_sfx("boss_idle_2", boss_idle_2_end)
+		print("BOSS IDLE 2")
 		await sprite_anim.animation_finished
 		AudioPlayer.play_sfx("boss_morph")
 		sprite_anim.play("idle_2")
 		spawn_timer.start(1.0)
 	elif _current_phase == 1:
 		sprite_anim.play_backwards("morph_1_2")
+		boss_idle_2_end.emit()
+		AudioPlayer.play_timed_sfx("boss_idle_1", boss_idle_1_end)
+		print("BOSS IDLE 1")
 		await sprite_anim.animation_finished
 		AudioPlayer.play_sfx("boss_morph")
 		sprite_anim.play("idle")

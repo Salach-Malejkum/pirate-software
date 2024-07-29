@@ -60,6 +60,7 @@ animations = [{
 radius = 66.0076
 
 [node name="Candle" type="Node2D" groups=["Candle"]]
+z_index = 1
 script = ExtResource("1_2s80e")
 
 [node name="InteractArea" type="Area2D" parent="."]
@@ -69,7 +70,6 @@ position = Vector2(0, 1)
 shape = SubResource("CircleShape2D_3pm15")
 
 [node name="CandleSprite" type="AnimatedSprite2D" parent="."]
-z_index = 2
 sprite_frames = SubResource("SpriteFrames_2v1v6")
 animation = &"fire"
 

@@ -4,7 +4,7 @@ extends CharacterBody2D
 signal enemy_dead
 
 var player_node : Player
-const SPEED : int = 45
+const SPEED : int = 99
 
 var _damage_sources = []
 var _current_hp : float = 200.0

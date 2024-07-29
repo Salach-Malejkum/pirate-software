@@ -3,6 +3,7 @@ extends Node2D
 
 const fire_timer_seconds : float = 5.0
 
+@export var is_idle = false
 @export var never_expire = false
 @export var is_lit = false
 var is_mouse_hovering : bool = false
@@ -68,13 +69,13 @@ func _process(delta):
 
 
 func _on_damage_area_body_entered(body):
-	if body is Enemy or body is Boss:
+	if !is_idle && body is Enemy or body is Boss:
 		enemy_arr.append(body)
 		if light.energy > 0.0:
 			body.add_dmg_source(self)
 
 
 func _on_damage_area_body_exited(body):
-	if body is Enemy or body is Boss:
+	if !is_idle && body is Enemy or body is Boss:
 		enemy_arr.erase(body)
 		body.del_dmg_source(self)
