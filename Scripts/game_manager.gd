@@ -14,6 +14,8 @@ var tutorial_select_progress : bool = false
 @export var cards_used = 0
 @export var boss_kills = 0
 @export var current_hand : Array[Card] = []
+@export var boss_hp : float = 3000.0
+@export var boss_max_hp : float = 3000.0
 
 # card used jak jest rownoczesnie callowany to lapie tez obecnie usuwana karte
 # i sie jebie deck, dodatkowy sygnal po usunieciu karty naprawia problem
@@ -22,6 +24,7 @@ signal reshuffle_deck
 signal card_merged(merged_card_type : Globals.card_types)
 signal random_card_chosen(card_type : Globals.card_types)
 signal boss_ended
+signal boss_spawned
 
 # tutorial signals
 signal tutorial_furnace

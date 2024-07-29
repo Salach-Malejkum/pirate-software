@@ -17,10 +17,11 @@ var enemy_arr = []
 var deadly_enemies = 0
 
 var _death_scene = preload("res://Scenes/end_score.tscn")
-
+var _boss_hp_scene = preload("res://Scenes/boss_hp_bar.tscn")
 
 func _ready():
 	player_dead.connect(Callable(AudioPlayer, "player_dead"))
+	GameManager.boss_spawned.connect(_show_boss_bar)
 	GameManager.card_used.connect(_add_hp_on_card_use)
 	if not is_tutorial:
 		GameManager.tutorial_select_blocked = false
@@ -30,6 +31,11 @@ func _ready():
 func move_player():
 	var movement_direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	velocity = movement_direction * SPEED
+
+
+func _show_boss_bar():
+	var hp_bar_instance = _boss_hp_scene.instantiate()
+	add_child(hp_bar_instance)
 
 
 func _add_hp_on_card_use():

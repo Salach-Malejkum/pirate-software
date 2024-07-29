@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://c6tacc3o6kqqa"]
+[gd_scene load_steps=31 format=3 uid="uid://c6tacc3o6kqqa"]
 
 [ext_resource type="Script" path="res://Scripts/enemy_boss.gd" id="1_annak"]
 [ext_resource type="Texture2D" uid="uid://dhf767c47nqt4" path="res://ArtAssets/Enemies/boss_atk_1.png" id="1_k6uvf"]
@@ -193,35 +193,6 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vh6of"]
 size = Vector2(36, 41)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pdh26"]
-bg_color = Color(0.286275, 0.301961, 0.494118, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.152941, 0.152941, 0.266667, 1)
-corner_radius_top_left = 2
-corner_radius_top_right = 2
-corner_radius_bottom_right = 2
-corner_radius_bottom_left = 2
-expand_margin_left = 1.0
-expand_margin_top = 1.0
-expand_margin_right = 1.0
-expand_margin_bottom = 1.0
-anti_aliasing = false
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_68phl"]
-bg_color = Color(0.94902, 0.827451, 0.670588, 1)
-corner_radius_top_left = 2
-corner_radius_top_right = 2
-corner_radius_bottom_right = 2
-corner_radius_bottom_left = 2
-anti_aliasing = false
-
-[sub_resource type="Theme" id="Theme_803vi"]
-ProgressBar/styles/background = SubResource("StyleBoxFlat_pdh26")
-ProgressBar/styles/fill = SubResource("StyleBoxFlat_68phl")
-
 [node name="EnemyBoss" type="CharacterBody2D"]
 collision_layer = 4
 collision_mask = 2
@@ -243,16 +214,6 @@ one_shot = true
 
 [node name="SpawnCd" type="Timer" parent="."]
 one_shot = true
-
-[node name="ProgressBar" type="ProgressBar" parent="."]
-offset_left = -45.0
-offset_top = -42.0
-offset_right = 47.0
-offset_bottom = -31.0
-theme = SubResource("Theme_803vi")
-max_value = 2000.0
-value = 250.0
-show_percentage = false
 
 [connection signal="timeout" from="SpellCd" to="." method="_on_spell_cd_timeout"]
 [connection signal="timeout" from="MorphTimer" to="." method="_on_morph_timer_timeout"]

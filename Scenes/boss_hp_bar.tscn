@@ -1,0 +1,80 @@
+[gd_scene load_steps=6 format=3 uid="uid://b7d2st22vxac4"]
+
+[ext_resource type="Script" path="res://Scripts/boss_hp_bar.gd" id="1_jqg0c"]
+[ext_resource type="FontFile" uid="uid://b3h400kk2q3w3" path="res://ArtAssets/Fonts/KodeMono-Bold.ttf" id="2_id63s"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pdh26"]
+bg_color = Color(0.286275, 0.301961, 0.494118, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.152941, 0.152941, 0.266667, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_68phl"]
+bg_color = Color(0.94902, 0.827451, 0.670588, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+anti_aliasing = false
+
+[sub_resource type="Theme" id="Theme_xygkd"]
+ProgressBar/styles/background = SubResource("StyleBoxFlat_pdh26")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_68phl")
+
+[node name="BossHpBar" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jqg0c")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 35
+theme_override_constants/margin_right = 100
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = ExtResource("2_id63s")
+theme_override_font_sizes/font_size = 24
+text = "Henry, The Good Boy"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(500, 24)
+layout_mode = 2
+theme = SubResource("Theme_xygkd")
+max_value = 2000.0
+value = 250.0
+show_percentage = false

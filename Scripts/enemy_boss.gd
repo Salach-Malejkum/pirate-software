@@ -10,7 +10,6 @@ var _current_hp : float = 3000.0
 @onready var spell_timer = $SpellCd
 @onready var morph_timer = $MorphTimer
 @onready var spawn_timer = $SpawnCd
-@onready var health_bar = $ProgressBar
 
 var packaged_enemy = preload("res://Scenes/enemy.tscn")
 var packaged_spell = preload("res://Scenes/cult_mark_spell.tscn")
@@ -18,7 +17,8 @@ var _current_phase = 1
 var end_scene = preload("res://Scenes/end_score.tscn")
 
 func _ready():
-	health_bar.max_value = _current_hp
+	GameManager.boss_spawned.emit()
+	_current_hp = GameManager.boss_max_hp 
 	sprite_anim.play("idle")
 	spell_timer.start(3.0)
 
@@ -28,7 +28,7 @@ func _physics_process(delta):
 		player_node = get_tree().get_first_node_in_group("Player")
 	
 	_current_hp -= delta * 30 * _damage_sources.size()
-	health_bar.value = _current_hp
+	GameManager.boss_hp = _current_hp
 	if _current_hp <= 0.0:
 		GameManager.boss_kills += 1
 		get_tree().change_scene_to_packed(end_scene)
