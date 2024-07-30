@@ -25,6 +25,7 @@ signal card_merged(merged_card_type : Globals.card_types)
 signal random_card_chosen(card_type : Globals.card_types)
 signal boss_ended
 signal boss_spawned
+signal shake_screen
 
 # tutorial signals
 signal tutorial_furnace

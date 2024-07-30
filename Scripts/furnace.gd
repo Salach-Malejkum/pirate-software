@@ -9,6 +9,7 @@ var is_mouse_hovering : bool = false
 var enemy_arr = []
 @onready var anim_sprite : AnimatedSprite2D = $Static/FurnaceSprite
 @onready var light = $PointLight2D
+@onready var heat_disortion = $HeatDisortion
 @export var is_tutorial : bool = false
 var _is_tutorial_progressed : bool = false
 
@@ -45,10 +46,12 @@ func _card_interaction():
 		if GameManager.selected_card.card_type == Globals.card_types.FIRE:
 			GameManager.card_used.emit()
 			light.energy = Globals.interactable_light_energy
+			#heat_disortion.visible = true
 			anim_sprite.play("fire")
 			AudioPlayer.play_sfx("fire_card")
 			AudioPlayer.play_timed_sfx("furnance_fire", furnance_stop)
 		elif  GameManager.selected_card.card_type == Globals.card_types.WATER:
+			#heat_disortion.visible = false
 			AudioPlayer.play_sfx("water_card")
 			GameManager.card_used.emit()
 			light.energy = 0.0
@@ -62,6 +65,7 @@ func _card_interaction():
 
 func _process(delta):
 	if light.energy <= 0.1:
+		#heat_disortion.visible = false
 		anim_sprite.play("idle")
 		emit_signal("furnance_stop")
 

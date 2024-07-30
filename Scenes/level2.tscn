@@ -513,15 +513,17 @@ libraries = {
 autoplay = "idle"
 
 [node name="Furnaces" type="Node2D" parent="Objects"]
+y_sort_enabled = true
 
 [node name="Furnace" parent="Objects/Furnaces" instance=ExtResource("8_nq82j")]
-z_index = 1
 position = Vector2(515, 255)
 
 [node name="Furnace2" parent="Objects/Furnaces" instance=ExtResource("8_nq82j")]
-position = Vector2(124, -16)
+z_index = 1
+position = Vector2(124, -11)
 
 [node name="Cabins" type="Node2D" parent="Objects"]
+y_sort_enabled = true
 
 [node name="Cabin3" parent="Objects/Cabins" instance=ExtResource("9_ky4ep")]
 position = Vector2(680, 159)
@@ -542,6 +544,7 @@ position = Vector2(389, 155)
 sprite_frames = SubResource("SpriteFrames_couei")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
 color = Color(0, 0, 0, 1)
 
 [node name="CircleTransition" parent="." instance=ExtResource("7_4iy0l")]

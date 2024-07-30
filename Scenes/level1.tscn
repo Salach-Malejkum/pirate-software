@@ -135,6 +135,7 @@ position = Vector2(159, 28)
 [node name="Walls" type="Node2D" parent="Light"]
 
 [node name="CanvasModulate" type="CanvasModulate" parent="Light"]
+visible = false
 color = Color(0, 0, 0, 1)
 
 [node name="Spawners" type="Node2D" parent="."]

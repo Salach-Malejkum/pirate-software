@@ -1,14 +1,14 @@
-[gd_scene load_steps=10 format=3 uid="uid://dy0keyrjq0bxh"]
+[gd_scene load_steps=10 format=3 uid="uid://c4uvqoyb6vay5"]
 
 [ext_resource type="PackedScene" uid="uid://br31pgwnuthh" path="res://Scenes/tile_map.tscn" id="1_nrvku"]
 [ext_resource type="PackedScene" uid="uid://1xiakxfc81rn" path="res://Scenes/doors.tscn" id="2_x87vy"]
-[ext_resource type="PackedScene" uid="uid://c5iwiblniciof" path="res://Scenes/furnace.tscn" id="3_4acx4"]
-[ext_resource type="PackedScene" uid="uid://b360hv35yusk0" path="res://Scenes/level1.tscn" id="3_khhgn"]
-[ext_resource type="PackedScene" uid="uid://cb5w2t8c6ybt7" path="res://Scenes/player.tscn" id="4_olgio"]
-[ext_resource type="PackedScene" uid="uid://bmjpimvwupc8p" path="res://Scenes/steam_engine.tscn" id="5_1crpv"]
-[ext_resource type="PackedScene" uid="uid://drivg1a0m73sw" path="res://Scenes/lantern.tscn" id="6_fb4m4"]
-[ext_resource type="PackedScene" uid="uid://bk7smumc7rwo7" path="res://Scenes/cabin.tscn" id="7_4rrxb"]
-[ext_resource type="PackedScene" uid="uid://c4c0yn3axluwb" path="res://Scenes/enemy_spawner.tscn" id="8_4nlo7"]
+[ext_resource type="PackedScene" uid="uid://b360hv35yusk0" path="res://Scenes/level1.tscn" id="3_2gnc6"]
+[ext_resource type="PackedScene" uid="uid://c5iwiblniciof" path="res://Scenes/furnace.tscn" id="4_ypr2f"]
+[ext_resource type="PackedScene" uid="uid://cb5w2t8c6ybt7" path="res://Scenes/player.tscn" id="5_khe4c"]
+[ext_resource type="PackedScene" uid="uid://bmjpimvwupc8p" path="res://Scenes/steam_engine.tscn" id="6_mwx0f"]
+[ext_resource type="PackedScene" uid="uid://drivg1a0m73sw" path="res://Scenes/lantern.tscn" id="7_t66vq"]
+[ext_resource type="PackedScene" uid="uid://bk7smumc7rwo7" path="res://Scenes/cabin.tscn" id="8_ydaxp"]
+[ext_resource type="PackedScene" uid="uid://c4c0yn3axluwb" path="res://Scenes/enemy_spawner.tscn" id="9_x0opm"]
 
 [node name="TutorialZone" type="Node2D"]
 y_sort_enabled = true
@@ -21,30 +21,30 @@ layer_1/tile_data = PackedInt32Array(-196608, 0, 3, -131072, 0, 4, -65536, 0, 5,
 [node name="Doors" parent="." instance=ExtResource("2_x87vy")]
 position = Vector2(184, -16)
 is_exit = true
-exit_scene = ExtResource("3_khhgn")
+exit_scene = ExtResource("3_2gnc6")
 
-[node name="Furnace" parent="." instance=ExtResource("3_4acx4")]
+[node name="Furnace" parent="." instance=ExtResource("4_ypr2f")]
 position = Vector2(78, -18)
 is_tutorial = true
 
-[node name="Player" parent="." instance=ExtResource("4_olgio")]
+[node name="Player" parent="." instance=ExtResource("5_khe4c")]
 position = Vector2(49, 20)
 is_tutorial = true
 
-[node name="SteamEngine" parent="." instance=ExtResource("5_1crpv")]
+[node name="SteamEngine" parent="." instance=ExtResource("6_mwx0f")]
 position = Vector2(177, 54)
 is_tutorial = true
 
-[node name="Lantern" parent="SteamEngine" instance=ExtResource("6_fb4m4")]
+[node name="Lantern" parent="SteamEngine" instance=ExtResource("7_t66vq")]
 position = Vector2(-34, -81)
 is_tutorial = true
 
-[node name="Cabin" parent="." instance=ExtResource("7_4rrxb")]
+[node name="Cabin" parent="." instance=ExtResource("8_ydaxp")]
 y_sort_enabled = false
 position = Vector2(108, -4)
 is_tutorial = true
 
-[node name="EnemySpawner" parent="." instance=ExtResource("8_4nlo7")]
+[node name="EnemySpawner" parent="." instance=ExtResource("9_x0opm")]
 position = Vector2(225, 64)
 spawn_timer = 5.0
 is_tutorial = true

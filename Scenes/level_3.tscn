@@ -378,10 +378,10 @@ never_expire = true
 shadow_item_cull_mask = 1
 
 [node name="Cabin" parent="Objects" instance=ExtResource("10_oan30")]
-position = Vector2(545, -4)
+position = Vector2(546, 0)
 
 [node name="Cabin2" parent="Objects" instance=ExtResource("10_oan30")]
-position = Vector2(61, -6)
+position = Vector2(63, -2)
 
 [node name="Cabin3" parent="Objects" instance=ExtResource("10_oan30")]
 position = Vector2(279, -2)

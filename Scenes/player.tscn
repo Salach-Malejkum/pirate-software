@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://cb5w2t8c6ybt7"]
+[gd_scene load_steps=25 format=3 uid="uid://cb5w2t8c6ybt7"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_ip5or"]
 [ext_resource type="PackedScene" uid="uid://b3uuv03a8cak8" path="res://Scenes/tutorial_info.tscn" id="2_owgf5"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://1vg2qw4odvfq" path="res://ArtAssets/lightmap.png" id="3_8ingo"]
 [ext_resource type="PackedScene" uid="uid://nbofjqjf8huq" path="res://Scenes/card_manager.tscn" id="3_kv13g"]
 [ext_resource type="Texture2D" uid="uid://ym2jwup17sgg" path="res://ArtAssets/Characters/player_shield.png" id="4_2kpp6"]
+[ext_resource type="Script" path="res://Scripts/Camera2D.gd" id="7_0tm6u"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sgxte"]
 atlas = ExtResource("2_st8uh")
@@ -166,6 +167,9 @@ shape = SubResource("RectangleShape2D_47bd2")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(4, 4)
+script = ExtResource("7_0tm6u")
+random_strength = 2.0
+shake_fade = 1.0
 
 [node name="ColorBG" type="CanvasLayer" parent="."]
 layer = -100

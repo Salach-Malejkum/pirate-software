@@ -30,5 +30,6 @@ func _on_activate_timeout():
 	if spell_target != null:
 		spell_target.take_spell_damage(0.10)
 	sprite.play("fire")
+	GameManager.shake_screen.emit()
 	await sprite.animation_finished
 	queue_free()

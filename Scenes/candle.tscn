@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://f5gyxbg3cfuh"]
+[gd_scene load_steps=14 format=3 uid="uid://cn0rp30devw6m"]
 
-[ext_resource type="Script" path="res://Scripts/candle.gd" id="1_2s80e"]
 [ext_resource type="Texture2D" uid="uid://dt8ju8vspnib" path="res://ArtAssets/Environment/candle.png" id="1_a3eqh"]
-[ext_resource type="Texture2D" uid="uid://1vg2qw4odvfq" path="res://ArtAssets/lightmap.png" id="3_rxa5u"]
+[ext_resource type="Script" path="res://Scripts/candle.gd" id="1_x8err"]
+[ext_resource type="Texture2D" uid="uid://1vg2qw4odvfq" path="res://ArtAssets/lightmap.png" id="3_dejo8"]
+[ext_resource type="PackedScene" uid="uid://5s0v8c2hbcf5" path="res://Scenes/heat_disortion.tscn" id="4_1jc4y"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3pm15"]
 
@@ -61,7 +62,7 @@ radius = 66.0076
 
 [node name="Candle" type="Node2D" groups=["Candle"]]
 z_index = 1
-script = ExtResource("1_2s80e")
+script = ExtResource("1_x8err")
 
 [node name="InteractArea" type="Area2D" parent="."]
 
@@ -78,7 +79,7 @@ material = SubResource("ShaderMaterial_h76jh")
 energy = 0.0
 shadow_enabled = true
 shadow_item_cull_mask = 2
-texture = ExtResource("3_rxa5u")
+texture = ExtResource("3_dejo8")
 texture_scale = 4.0
 
 [node name="DamageArea" type="Area2D" parent="PointLight2D"]
@@ -89,6 +90,11 @@ collision_mask = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PointLight2D/DamageArea"]
 position = Vector2(9, -3)
 shape = SubResource("CircleShape2D_b5uej")
+
+[node name="HeatDisortion" parent="." instance=ExtResource("4_1jc4y")]
+visible = false
+position = Vector2(0, 5.36442e-06)
+scale = Vector2(122.138, 118)
 
 [connection signal="input_event" from="InteractArea" to="." method="_on_interact_area_input_event"]
 [connection signal="mouse_entered" from="InteractArea" to="." method="_on_interact_area_mouse_entered"]

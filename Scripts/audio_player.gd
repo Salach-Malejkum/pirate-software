@@ -96,7 +96,8 @@ func play_timed_sfx(sfx_name: String, signal_name):
 		asp.play()
 		
 		await signal_name
-		asp.queue_free()
+		if asp != null:
+			asp.queue_free()
 
 func random_movement_sfx():
 	if is_movement_running:
