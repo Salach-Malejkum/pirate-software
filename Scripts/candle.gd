@@ -10,7 +10,6 @@ var is_mouse_hovering : bool = false
 @onready var anim_sprite : AnimatedSprite2D = $CandleSprite
 var enemy_arr = []
 @onready var light = $PointLight2D
-@onready var heat_disortion = $HeatDisortion
 
 func _ready():
 	anim_sprite.play("idle")
@@ -41,7 +40,6 @@ func _card_interaction():
 			GameManager.card_used.emit()
 			light_candle()
 		elif  GameManager.selected_card.card_type == Globals.card_types.WATER:
-			heat_disortion.visible = false
 			AudioPlayer.play_sfx("water_card")
 			GameManager.card_used.emit()
 			light.energy = 0.0
@@ -49,7 +47,6 @@ func _card_interaction():
 
 
 func light_candle():
-	heat_disortion.visible = true
 	light.energy = Globals.interactable_light_energy
 	anim_sprite.play("fire")
 	AudioPlayer.play_sfx("lit_candle")
@@ -58,7 +55,6 @@ func light_candle():
 func _process(delta):
 	if light.energy <= 0.1:
 		anim_sprite.play("idle")
-		heat_disortion.visible = false
 	for enemy in enemy_arr:
 		if not is_instance_valid(enemy):
 			enemy_arr.erase(enemy)

@@ -544,7 +544,6 @@ position = Vector2(389, 155)
 sprite_frames = SubResource("SpriteFrames_couei")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-visible = false
 color = Color(0, 0, 0, 1)
 
 [node name="CircleTransition" parent="." instance=ExtResource("7_4iy0l")]
