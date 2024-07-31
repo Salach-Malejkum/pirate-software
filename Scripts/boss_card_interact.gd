@@ -7,7 +7,7 @@ var _boss_spawned = false
 var placed_candles = 0
 var boss_spawnable = false
 
-func _process(delta):
+func _process(_delta):
 	placed_candles = get_tree().get_nodes_in_group("Candle").size()
 	if placed_candles >= 5:
 		boss_spawnable = true
@@ -21,7 +21,7 @@ func _on_mouse_exited():
 	is_mouse_hovering = false
 
 
-func _on_input_event(viewport, event, shape_idx):
+func _on_input_event(_viewport, event, _shape_idx):
 	# nested ifs to ensure no exceptions
 	if is_mouse_hovering and event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:

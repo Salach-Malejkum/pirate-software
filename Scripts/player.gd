@@ -81,7 +81,6 @@ func _physics_process(delta):
 	move_anim()
 	move_and_slide()
 	move_sfx()
-	#light_shader.material.set_shader_parameter("u_resolution", get_viewport().size)
 	
 	# clear dead enemies before rest
 	for enemy in enemy_arr:

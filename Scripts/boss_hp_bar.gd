@@ -12,5 +12,5 @@ func _boss_killed():
 	queue_free()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	bar.value = GameManager.boss_hp
