@@ -1,19 +1,11 @@
 class_name CardManager
 extends Control
 
-#const starting_deck = [
-	#Globals.card_types.FIRE,
-	#Globals.card_types.WATER,
-	#Globals.card_types.CULT_MARK,
-	#Globals.card_types.ELECTRICITY
-#]
 const starting_deck = [
 	Globals.card_types.FIRE,
-	Globals.card_types.FIRE,
-	Globals.card_types.CANDLE_LIT,
-	Globals.card_types.CANDLE_LIT,
-	Globals.card_types.CANDLE_LIT,
-	Globals.card_types.CANDLE_LIT
+	Globals.card_types.WATER,
+	Globals.card_types.CULT_MARK,
+	Globals.card_types.ELECTRICITY
 ]
 
 const tutorial_merge_deck = [
