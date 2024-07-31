@@ -1,10 +1,9 @@
-[gd_scene load_steps=18 format=3 uid="uid://bka73swxe7mtq"]
+[gd_scene load_steps=14 format=3 uid="uid://bka73swxe7mtq"]
 
 [ext_resource type="Texture2D" uid="uid://dt8ju8vspnib" path="res://ArtAssets/Environment/candle.png" id="1_a3eqh"]
 [ext_resource type="Script" path="res://Scripts/candle.gd" id="1_x8err"]
 [ext_resource type="Texture2D" uid="uid://1vg2qw4odvfq" path="res://ArtAssets/lightmap.png" id="3_dejo8"]
 [ext_resource type="PackedScene" uid="uid://5s0v8c2hbcf5" path="res://Scenes/heat_disortion.tscn" id="4_1jc4y"]
-[ext_resource type="Shader" path="res://Shaders/heat_disortion.gdshader" id="5_31s6v"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3pm15"]
 
@@ -61,20 +60,6 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_b5uej"]
 radius = 66.0076
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_hvv53"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_g7krs"]
-seamless = true
-seamless_blend_skirt = 0.208
-noise = SubResource("FastNoiseLite_hvv53")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_wifqu"]
-shader = ExtResource("5_31s6v")
-shader_parameter/speed = 0.05
-shader_parameter/strength = 0.005
-shader_parameter/direction = Vector2(0.01, -0.006)
-shader_parameter/noise_texture = SubResource("NoiseTexture2D_g7krs")
-
 [node name="Candle" type="Node2D" groups=["Candle"]]
 z_index = 1
 script = ExtResource("1_x8err")
@@ -107,9 +92,7 @@ position = Vector2(9, -3)
 shape = SubResource("CircleShape2D_b5uej")
 
 [node name="HeatDisortion" parent="." instance=ExtResource("4_1jc4y")]
-material = SubResource("ShaderMaterial_wifqu")
-position = Vector2(0, 5.36442e-06)
-scale = Vector2(122.138, 118)
+visible = false
 
 [connection signal="input_event" from="InteractArea" to="." method="_on_interact_area_input_event"]
 [connection signal="mouse_entered" from="InteractArea" to="." method="_on_interact_area_mouse_entered"]
